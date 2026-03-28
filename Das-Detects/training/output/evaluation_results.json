@@ -1,0 +1,15 @@
+{
+  "threshold": 0.5,
+  "accuracy": 0.986875,
+  "precision": 0.989321608040201,
+  "recall": 0.984375,
+  "f1": 0.9868421052631579,
+  "far": 0.015625,
+  "frr": 0.010625,
+  "eer": 0.01406250000000002,
+  "eer_threshold": 0.4246782958507538,
+  "true_positives": 1575.0,
+  "true_negatives": 1583.0,
+  "false_positives": 17.0,
+  "false_negatives": 25.0
+}
