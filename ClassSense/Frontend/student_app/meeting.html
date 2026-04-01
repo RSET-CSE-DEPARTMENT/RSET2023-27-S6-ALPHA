@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ClassSense – Focus Mode</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Toast System -->
+  <style id="toastStyles">
+    .cs-toast-container {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 400px;
+    }
+
+    .cs-toast {
+      padding: 1rem 1.25rem;
+      border-radius: 0.85rem;
+      color: #fff;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      animation: csToastIn 0.35s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cs-toast.cs-toast-out {
+      animation: csToastOut 0.3s ease forwards;
+    }
+
+    .cs-toast-success {
+      background: rgba(22, 101, 52, 0.92);
+    }
+
+    .cs-toast-error {
+      background: rgba(153, 27, 27, 0.92);
+    }
+
+    .cs-toast-warning {
+      background: rgba(146, 64, 14, 0.92);
+    }
+
+    .cs-toast-info {
+      background: rgba(30, 64, 175, 0.92);
+    }
+
+    .cs-toast i {
+      font-size: 1.1rem;
+      margin-top: 0.1rem;
+    }
+
+    .cs-toast-content {
+      flex: 1;
+    }
+
+    .cs-toast-title {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .cs-toast-msg {
+      font-size: 0.82rem;
+      opacity: 0.9;
+    }
+
+    .cs-toast-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0;
+    }
+
+    .cs-toast-close:hover {
+      color: #fff;
+    }
+
+    @keyframes csToastIn {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes csToastOut {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+    }
+  </style>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #020617;
+      color: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-topbar {
+      padding: 0.6rem 1.25rem;
+      border-bottom: 1px solid #111827;
+      background: rgba(15, 23, 42, 0.98);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cs-chip {
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.75rem;
+    }
+
+    .cs-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .cs-focus-card {
+      width: 100%;
+      max-width: 720px;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.2) 0, #020617 55%, #020617 100%);
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      border: 1px solid rgba(30, 64, 175, 0.5);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9);
+    }
+
+    .cs-status-pill {
+      border-radius: 999px;
+      padding: 0.1rem 0.55rem;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cs-toast-container" id="toastContainer"></div>
+
+  <header class="cs-topbar">
+    <div class="d-flex align-items-center gap-2">
+      <div class="rounded-circle bg-primary-subtle text-primary d-inline-flex align-items-center justify-content-center"
+        style="width:30px;height:30px;">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <div class="small">
+        <div class="fw-semibold">ClassSense Focus Mode</div>
+        <div class="text-secondary" style="font-size:0.75rem;">
+          Your attention is analysed locally on this device only.
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 small">
+      <span id="statusCamera" class="cs-status-pill bg-secondary-subtle text-secondary">
+        <i class="fa-solid fa-video-slash"></i> Camera idle
+      </span>
+
+      <button id="leaveBtn" class="btn btn-outline-danger btn-sm ms-2">
+        <i class="fa-solid fa-door-open me-1"></i> Leave
+      </button>
+    </div>
+  </header>
+
+
+  <main class="cs-main">
+
+    <div class="cs-focus-card">
+
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <div class="small text-secondary">You are in</div>
+          <div class="fw-semibold">
+            <span id="codeText" class="text-primary"></span>
+          </div>
+        </div>
+
+        <div class="text-end small">
+          <div>Name</div>
+          <div id="nameText" class="fw-semibold text-light"></div>
+        </div>
+      </div>
+
+      <hr class="border-secondary border-opacity-50 my-3">
+
+      <div class="mb-3">
+        <div class="small text-secondary mb-1">Attention feedback</div>
+        <div id="focusMessage" class="h4 mb-1">Starting attention monitoring…</div>
+        <div id="focusSub" class="small text-secondary">
+          Camera permission will be requested before monitoring starts.
+        </div>
+      </div>
+
+      <div class="mt-4 small text-secondary">
+        Camera analysis runs locally. No raw video or images are ever uploaded – only numerical attention scores
+        are shared with your teacher.
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /* ===== TOAST SYSTEM ===== */
+    function showToast(type, title, message, duration = 4000) {
+      const container = document.getElementById('toastContainer');
+      const iconMap = { success: 'fa-circle-check', error: 'fa-circle-xmark', warning: 'fa-triangle-exclamation', info: 'fa-circle-info' };
+      const toast = document.createElement('div');
+      toast.className = `cs-toast cs-toast-${type}`;
+      toast.innerHTML = `
+    <i class="fa-solid ${iconMap[type] || iconMap.info}"></i>
+    <div class="cs-toast-content">
+      <div class="cs-toast-title">${title}</div>
+      <div class="cs-toast-msg">${message}</div>
+    </div>
+    <button class="cs-toast-close" onclick="this.parentElement.classList.add('cs-toast-out'); setTimeout(() => this.parentElement.remove(), 300);">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  `;
+      container.appendChild(toast);
+      setTimeout(() => { if (toast.parentElement) { toast.classList.add('cs-toast-out'); setTimeout(() => toast.remove(), 300); } }, duration);
+    }
+
+    const BACKEND_URL = "http://127.0.0.1:5000";
+
+    const params = new URLSearchParams(window.location.search);
+    const sessionCode = params.get("code");
+    const studentName = params.get("name") || localStorage.getItem("studentName") || "Student";
+    const studentId = params.get("id") || localStorage.getItem("studentId");
+
+    document.getElementById("codeText").innerText = `Session ${sessionCode || ""}`;
+    document.getElementById("nameText").innerText = studentName;
+
+    const focusMessage = document.getElementById("focusMessage");
+    const focusSub = document.getElementById("focusSub");
+    const statusCamera = document.getElementById("statusCamera");
+    let lastAlertLevel = null; // Track last alert to avoid spamming
+
+
+    /* -------------------- CAMERA PERMISSION -------------------- */
+
+    async function requestCameraPermission() {
+
+      try {
+
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true
+        });
+
+        console.log("Camera permission granted");
+
+        statusCamera.classList.remove("bg-secondary-subtle", "text-secondary");
+        statusCamera.classList.add("bg-success-subtle", "text-success");
+        statusCamera.innerHTML = '<i class="fa-solid fa-video"></i> Camera ready';
+
+        stream.getTracks().forEach(track => track.stop());
+
+        startMonitoring();
+
+      } catch (err) {
+
+        console.error("Camera permission denied");
+
+        statusCamera.classList.remove("bg-secondary-subtle", "text-secondary");
+        statusCamera.classList.add("bg-danger-subtle", "text-danger");
+        statusCamera.innerHTML = '<i class="fa-solid fa-video-slash"></i> Camera blocked';
+
+        showToast('error', 'Camera Blocked', 'Camera permission is required for attention monitoring. Please allow camera access and reload.');
+
+      }
+
+    }
+
+
+    /* -------------------- START MONITORING -------------------- */
+
+    async function startMonitoring() {
+
+      if (!studentId || !sessionCode) return;
+
+      try {
+
+        await fetch(`${BACKEND_URL}/start-monitoring`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            studentId: studentId,
+            sessionCode: sessionCode
+          })
+        });
+
+        statusCamera.classList.remove("bg-secondary-subtle", "text-secondary");
+        statusCamera.classList.add("bg-success-subtle", "text-success");
+        statusCamera.innerHTML = '<i class="fa-solid fa-video"></i> Camera active';
+
+      } catch (err) {
+
+        console.error("Monitoring failed:", err);
+
+      }
+
+    }
+
+    /* -------------------- CHECK IF MONITORING ALREADY RUNNING -------------------- */
+
+    async function initMonitoring() {
+      // On refresh, check if monitoring subprocess is already running
+      try {
+        const res = await fetch(`${BACKEND_URL}/my-attention?studentId=${studentId}&sessionCode=${sessionCode}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.attentionScore != null) {
+            // Monitoring is already running - skip camera request
+            console.log("Monitoring already active, skipping camera request");
+            statusCamera.classList.remove("bg-secondary-subtle", "text-secondary");
+            statusCamera.classList.add("bg-success-subtle", "text-success");
+            statusCamera.innerHTML = '<i class="fa-solid fa-video"></i> Monitoring active';
+            return;
+          }
+        }
+      } catch (e) { }
+
+      // No existing monitoring - request camera and start fresh
+      requestCameraPermission();
+    }
+
+    initMonitoring();
+
+
+    /* -------------------- NETWORK CHECK -------------------- */
+
+    fetch(BACKEND_URL + "/teacher", { method: "GET" })
+      .then(() => { })
+      .catch(() => {
+        showToast('warning', 'Network Issue', 'Unable to reach the server. Some features may not work.');
+      });
+
+
+    /* -------------------- HEARTBEAT -------------------- */
+
+    function sendHeartbeat() {
+      if (studentId && sessionCode) {
+        fetch(`${BACKEND_URL}/heartbeat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            studentId: studentId,
+            sessionCode: sessionCode
+          })
+        }).catch(() => { });
+      }
+    }
+
+    sendHeartbeat();
+    setInterval(sendHeartbeat, 20000);
+
+
+    /* -------------------- ATTENTION FEEDBACK -------------------- */
+
+    function updateFeedbackFromBackend() {
+
+      if (!studentId || !sessionCode) return;
+
+      fetch(`${BACKEND_URL}/my-attention?studentId=${studentId}&sessionCode=${sessionCode}`)
+        .then(res => {
+
+          // Detect if teacher ended session
+          if (!res.ok) {
+            statusCamera.classList.remove("bg-success-subtle", "text-success", "bg-secondary-subtle", "text-secondary");
+            statusCamera.classList.add("bg-danger-subtle", "text-danger");
+            statusCamera.innerHTML = '<i class="fa-solid fa-video-slash"></i> Session ended';
+            showToast('info', 'Session Ended', 'The teacher has ended the session. Redirecting to dashboard...');
+            setTimeout(() => { window.top.location.href = "home.html"; }, 2000);
+            return null;
+          }
+
+          return res.json();
+
+        })
+        .then(data => {
+
+          if (!data) return;
+
+          const score = data.attentionScore;
+
+          // Issue #5: Show loading state if score not yet available
+          if (score == null) {
+            focusMessage.textContent = "Initializing attention monitoring…";
+            focusSub.textContent = "Please wait while the model loads. This may take a moment.";
+            // Update camera status to initializing
+            statusCamera.classList.remove("bg-secondary-subtle", "text-secondary", "bg-success-subtle", "text-success");
+            statusCamera.classList.add("bg-warning-subtle", "text-warning");
+            statusCamera.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Initializing...';
+            return;
+          }
+
+          // Camera is actively monitoring
+          statusCamera.classList.remove("bg-secondary-subtle", "text-secondary", "bg-warning-subtle", "text-warning");
+          statusCamera.classList.add("bg-success-subtle", "text-success");
+          statusCamera.innerHTML = '<i class="fa-solid fa-video"></i> Monitoring active';
+
+          focusMessage.textContent = `Attention Score: ${score}%`;
+
+          if (score >= 70) {
+            focusSub.textContent = "Great job staying focused on the class.";
+          } else if (score >= 40) {
+            focusSub.textContent = "Your attention is dropping. Try to refocus on the screen.";
+            // Issue #16: Student alert for moderate attention
+            if (lastAlertLevel !== 'warning') {
+              showToast('warning', 'Attention Dropping', 'Your attention level is moderate. Try to refocus on the class.', 5000);
+              lastAlertLevel = 'warning';
+            }
+          } else {
+            focusSub.textContent = "Low attention detected. Please concentrate on the class content.";
+            // Issue #16: Student alert for low attention
+            if (lastAlertLevel !== 'critical') {
+              showToast('error', 'Low Attention Alert', 'Your attention is very low. Please focus on the class content immediately.', 6000);
+              lastAlertLevel = 'critical';
+            }
+          }
+
+          // Reset alert level when attention is good
+          if (score >= 70) lastAlertLevel = null;
+
+        })
+        .catch(() => {
+          // Network error - update camera status
+          statusCamera.classList.remove("bg-success-subtle", "text-success", "bg-warning-subtle", "text-warning");
+          statusCamera.classList.add("bg-danger-subtle", "text-danger");
+          statusCamera.innerHTML = '<i class="fa-solid fa-wifi-slash"></i> Connection lost';
+        });
+
+    }
+
+    updateFeedbackFromBackend();
+    setInterval(updateFeedbackFromBackend, 2000);
+
+
+    /* -------------------- LEAVE SESSION -------------------- */
+
+    let hasLeft = false; // Prevent duplicate leave requests
+
+    function sendLeaveBeacon() {
+      if (hasLeft) return;
+      hasLeft = true;
+
+      if (!studentId || !sessionCode) return;
+
+      // Use sendBeacon for reliable delivery during page navigation.
+      // sendBeacon guarantees the request is queued even if the page is unloading,
+      // which fixes the issue where same-laptop leave requests were being aborted.
+      const payload = JSON.stringify({
+        studentId: studentId,
+        sessionCode: sessionCode
+      });
+      const blob = new Blob([payload], { type: "application/json" });
+      navigator.sendBeacon(`${BACKEND_URL}/leave-session`, blob);
+    }
+
+    // Safety net: if the student closes the tab or navigates away without clicking Leave
+    window.addEventListener("beforeunload", () => {
+      sendLeaveBeacon();
+    });
+
+    document.getElementById("leaveBtn").onclick = () => {
+
+      if (!studentId || !sessionCode) {
+        window.top.location.href = "home.html";
+        return;
+      }
+
+      sendLeaveBeacon();
+
+      // Small delay to let the beacon queue before navigating
+      setTimeout(() => {
+        window.top.location.href = "home.html";
+      }, 300);
+
+    };
+
+  </script>
+
+</body>
+
+</html>
