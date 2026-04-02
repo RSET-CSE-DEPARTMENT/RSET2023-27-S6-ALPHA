@@ -1,0 +1,68 @@
+# Track only code/docs; ignore large media and ML artifacts.
+
+# Media
+*.mp4
+*.pdf
+
+# ML models / artifacts
+/models/
+*.bin
+*.lock
+
+# OS / editor
+.DS_Store
+
+# Python cache
+__pycache__/
+*.py[cod]
+.Python
+*.egg-info/
+
+# Keep this repo focused on code/docs.
+# Ignore large media and ML model artifacts.
+
+# Media (videos, mp4)
+/INDIAN SIGN LANGUAGE ANIMATED VIDEOS*/
+*.mp4
+*.pdf
+
+# ML models / artifacts
+/models/
+*.bin
+*.lock
+
+# OS / editor
+.DS_Store
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+*.egg-info/
+
+# Project-specific ignores (requested)
+
+/INDIAN SIGN LANGUAGE ANIMATED VIDEOS /
+/INDIAN SIGN LANGUAGE ANIMATED VIDEOS/
+/models/
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
