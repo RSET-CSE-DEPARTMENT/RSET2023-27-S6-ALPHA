@@ -1,0 +1,44 @@
+{
+  "scheme_id": "EDU_SCH_012",
+  "scheme_name": "Kanyashree Prakalpa",
+  "sector": "Women & Child Welfare",
+  "state": "West Bengal",
+  "ministry_or_department": "Department of Women Development and Social Welfare & Child Development",
+  "implementing_agency": "Government of West Bengal",
+  "description": "Conditional cash transfer scheme to encourage girls’ education and delay early marriage.",
+  "objectives": [
+    "Promote continuation of girls’ education",
+    "Prevent early marriage",
+    "Enhance financial inclusion and empowerment"
+  ],
+  "benefits": {
+    "annual_scholarship_K1": "₹1,000 per year (Age 13–18)",
+    "one_time_grant_K2": "₹25,000 (After 18 years)"
+  },
+  "eligibility": {
+    "gender": "Female",
+    "residence": "West Bengal",
+    "marital_status": "Unmarried",
+    "income_limit": "₹1,20,000 per annum",
+    "age_K1": "13–18 years",
+    "age_K2": "18–19 years",
+    "bank_account": "Mandatory in applicant's name"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect K1 or K2 form from institution",
+      "Open bank account if not available",
+      "Submit filled form with documents",
+      "Receive acknowledgement slip",
+      "Track application on portal"
+    ]
+  },
+  "documents_required": [
+    "Birth certificate",
+    "Unmarried status declaration",
+    "Income certificate (if applicable)",
+    "Bank passbook copy",
+    "Disability certificate (if applicable)"
+  ]
+}

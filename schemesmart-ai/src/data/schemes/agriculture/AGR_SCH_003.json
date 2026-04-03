@@ -1,0 +1,35 @@
+{
+  "scheme_id": "AGR_SCH_003",
+  "scheme_name": "Uttam Pashu Puraskar Yojana",
+  "sector": "Agriculture",
+  "sub_sector": "Animal Husbandry",
+  "state": "Himachal Pradesh",
+  "implementing_department": "Department of Animal Husbandry, Government of Himachal Pradesh",
+  "description": "Incentive scheme for livestock owners with high-yielding cattle and buffaloes.",
+  "benefits": [
+    "₹1,000 cash prize per animal",
+    "Maximum two animals per farmer",
+    "Direct bank transfer"
+  ],
+  "eligibility": [
+    "Permanent resident of Himachal Pradesh",
+    "Owner of cattle/buffalo yielding ≥15 litres milk per day"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Apply through HP Animal Husbandry DBT portal",
+      "Upload documents",
+      "Milk yield verification",
+      "Prize transferred to bank account"
+    ]
+  },
+  "documents_required": [
+    "Identity Proof",
+    "Bank Passbook",
+    "Residence Proof",
+    "BPL Certificate",
+    "Caste Certificate"
+  ],
+  "additional_notes": "Milk recording done at government veterinary centers."
+}

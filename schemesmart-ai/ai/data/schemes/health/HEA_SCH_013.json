@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HEA_SCH_013",
+  "scheme_name": "Atal Pension Yojana",
+  "sector": "Social Security",
+  "sub_sector": "Pension",
+  "state": "All India",
+  "implementing_department": "Pension Fund Regulatory and Development Authority (PFRDA)",
+  "description": "A pension scheme for unorganized sector workers ensuring a guaranteed monthly pension after the age of 60.",
+  "benefits": [
+    "Guaranteed monthly pension of ₹1,000 to ₹5,000",
+    "Return of corpus to nominee after subscriber’s death"
+  ],
+  "eligibility": [
+    "Indian citizen aged 18 to 40 years",
+    "Active savings bank account",
+    "Not a member of any other statutory social security scheme"
+  ],
+  "application_process": {
+    "mode": "Offline / Online",
+    "steps": [
+      "Visit bank branch or enroll via online banking",
+      "Choose pension amount",
+      "Monthly contribution auto-debited"
+    ]
+  },
+  "required_documents": [
+    "Aadhaar Card",
+    "Mobile Number",
+    "Bank Account Details"
+  ],
+  "additional_notes": "Monthly contribution depends on age and selected pension amount."
+}

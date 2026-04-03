@@ -1,0 +1,35 @@
+{
+  "scheme_id": "WOMEN_CHILD_004",
+  "scheme_name": "Udyogini Scheme",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Women Entrepreneurship",
+  "implementing_authority": "Government of Karnataka / Karnataka State Women’s Development Corporation",
+  "description": "Promotes self-employment among women through subsidized loans for micro-enterprises.",
+  "benefits": {
+    "loan_amount": "Up to ₹3,00,000",
+    "subsidy": "30%–50% depending on category"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "age": "18–55 years",
+    "residency": "Karnataka",
+    "income_limit": "₹1.5–2 lakh per annum (relaxed for widows/disabled)"
+  },
+  "application_process": {
+    "mode": "Online / Offline",
+    "steps": [
+      "Obtain application from bank or KSWDC",
+      "Submit project report and documents",
+      "Bank verification and loan sanction",
+      "Subsidy release"
+    ]
+  },
+  "documents_required": [
+    "Photographs",
+    "Project Report",
+    "Income Certificate",
+    "Caste Certificate",
+    "Identity Proof",
+    "Machinery Quotations"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "scheme_id": "HOUSING_004",
+  "scheme_name": "Usha Kiran Yojana",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Protection Homes",
+  "implementing_authority": "State Government",
+  "description": "Provides protection and assistance to women and children affected by domestic violence.",
+  "benefits": {
+    "protection": "Safety and support against domestic violence"
+  },
+  "eligibility": {
+    "women": "All age groups",
+    "children": "Below 18 years"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Approach Protection Officer",
+      "Visit One Stop Center or Police Station"
+    ]
+  },
+  "documents_required": [
+    "Passport Size Photograph",
+    "Aadhaar Card"
+  ]
+}

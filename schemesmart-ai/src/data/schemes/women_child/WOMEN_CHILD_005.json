@@ -1,0 +1,35 @@
+{
+  "scheme_id": "WOMEN_CHILD_005",
+  "scheme_name": "Mukhyamantri Mahila Utkarsh Yojana",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Women Entrepreneurship / Financial Inclusion",
+  "implementing_authority": "Government of Gujarat",
+  "description": "Provides interest-free loans to women entrepreneurs to start or expand businesses.",
+  "benefits": {
+    "loan": "Interest-free loan up to ₹1,00,000",
+    "repayment_period": "5 years",
+    "subsidy": "6% on timely repayment"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "age": "18 years and above",
+    "education": "Passed 8th standard",
+    "residency": "Gujarat"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Download application form",
+      "Fill business and personal details",
+      "Attach documents",
+      "Submit to GWEDC office"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Education Certificate",
+    "Business Plan",
+    "Bank Details",
+    "Photographs"
+  ]
+}

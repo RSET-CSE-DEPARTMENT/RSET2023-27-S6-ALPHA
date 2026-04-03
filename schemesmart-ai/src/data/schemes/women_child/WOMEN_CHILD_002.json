@@ -1,0 +1,36 @@
+{
+  "scheme_id": "WOMEN_CHILD_002",
+  "scheme_name": "Financial Assistance for Marriage of Daughters of Poor Widows and Orphan Girls",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Marriage Assistance",
+  "implementing_authority": "Department of Social Welfare, GNCT of Delhi",
+  "description": "Provides financial assistance for the marriage of daughters of poor widows or orphan girls.",
+  "benefits": {
+    "financial_assistance": "₹30,000 one-time (up to two daughters)"
+  },
+  "eligibility": {
+    "residency": "Minimum 5 years in Delhi",
+    "income_limit": "Below ₹1,00,000 per annum",
+    "age_of_girl": "18 years or above",
+    "bank_account": "Single-operated Aadhaar-linked account in Delhi"
+  },
+  "application_process": {
+    "mode": "Online / Offline",
+    "steps": [
+      "Register on e-District Delhi portal",
+      "Apply under Women & Child Development Department",
+      "Upload documents and submit application",
+      "OTP verification and acknowledgment"
+    ]
+  },
+  "documents_required": [
+    "Death Certificate of Husband (for widows)",
+    "Residence Proof",
+    "Income Declaration",
+    "Age Proof of Girl",
+    "Marriage Invitation Card",
+    "Aadhaar Card",
+    "Bank Account Details",
+    "Photographs"
+  ]
+}

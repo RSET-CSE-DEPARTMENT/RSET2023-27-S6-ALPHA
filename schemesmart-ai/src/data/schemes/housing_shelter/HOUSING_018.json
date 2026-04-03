@@ -1,0 +1,14 @@
+{
+  "scheme_name": "Providing Model Maps for Residential Construction",
+  "sector": ["Housing"],
+  "state": "Uttarakhand",
+  "implementing_department": "Haridwar-Roorkee Development Authority",
+  "details": "Provides ready-to-use residential construction model maps.",
+  "benefits": ["Access to approved residential model maps"],
+  "eligibility": ["Landowners in Haridwar district"],
+  "application_process": {
+    "mode": "Online",
+    "steps": ["Select model map from official website"]
+  },
+  "documents_required": ["As per authority guidelines"]
+}

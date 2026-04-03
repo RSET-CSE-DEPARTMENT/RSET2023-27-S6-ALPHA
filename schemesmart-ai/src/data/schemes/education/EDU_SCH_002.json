@@ -1,0 +1,103 @@
+{
+  "scheme_id": "EDU_SCH_002",
+  "scheme_name": "Post-Matric Scholarship for Students with Disabilities",
+  "sector": "Education",
+  "ministry": "Department of Empowerment of Persons with Disabilities",
+  "implementing_agency": "Department of Empowerment of Persons with Disabilities (DoEPwD)",
+  "description": "A scholarship scheme for students with disabilities pursuing post-matric education in India from Class 11 onwards, including diploma, undergraduate, and postgraduate courses in recognized institutions.",
+  "objective": "To support students with disabilities in pursuing higher education and enable them to overcome financial and social barriers to achieve self-reliance and dignified livelihoods.",
+  "target_beneficiaries": [
+    "Students with visual disabilities",
+    "Students with hearing disabilities",
+    "Students with speech disabilities",
+    "Students with loco-motor disabilities",
+    "Students with intellectual disabilities",
+    "Students with other disabilities as defined under RPwD Act, 2016"
+  ],
+  "benefits": {
+    "maintenance_allowance_per_month": {
+      "group_1": {
+        "description": "Bachelor’s/Postgraduate professional degree courses",
+        "hosteller": 1600,
+        "day_scholar": 750
+      },
+      "group_2": {
+        "description": "Professional degree/diploma and certificate courses",
+        "hosteller": 1100,
+        "day_scholar": 700
+      },
+      "group_3": {
+        "description": "General graduate degree courses",
+        "hosteller": 950,
+        "day_scholar": 650
+      },
+      "group_4": {
+        "description": "Post-matric non-degree courses (Class 11 & 12, ITI, Polytechnics)",
+        "hosteller": 900,
+        "day_scholar": 550
+      }
+    },
+    "disability_allowance_per_annum": {
+      "visually_impaired": 4000,
+      "hearing_impaired": 2000,
+      "physically_disabled": 2000,
+      "intellectual_disability": 4000,
+      "other_disabilities": 2000
+    },
+    "book_allowance_per_annum": 1500
+  },
+  "eligibility": {
+    "student_status": "Must be a student",
+    "education_level": [
+      "Class 11",
+      "Class 12",
+      "ITI",
+      "Polytechnic Diploma",
+      "Bachelor’s Degree/Diploma",
+      "Master’s Degree/Diploma"
+    ],
+    "disability_percentage": "40% or above",
+    "family_income_limit": "Up to INR 2,50,000 per annum",
+    "other_conditions": [
+      "Must not be availing any other government scholarship",
+      "Must not be the third sibling receiving this scholarship"
+    ]
+  },
+  "exclusions": [
+    "More than two students from the same family are not eligible (except twins)",
+    "Cannot hold any other scholarship or stipend",
+    "Repeating a class is not eligible for scholarship",
+    "Providing false information will lead to recovery with interest and blacklisting"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "portal": "National Scholarship Portal",
+    "steps": [
+      "Register on the National Scholarship Portal",
+      "Receive Application ID and password",
+      "Login and reset password using OTP",
+      "Fill the application form and upload documents",
+      "Submit the application"
+    ]
+  },
+  "documents_required": [
+    "Photograph",
+    "Proof of Age",
+    "Disability Certificate (RPwD Act, 2016)",
+    "Income Certificate",
+    "Tuition Fee Receipt",
+    "Last Academic Qualification Certificate",
+    "Bank Account Details of Applicant or Parent/Guardian"
+  ],
+  "source_links": [
+    "http://www.scholarships.gov.in/",
+    "https://scholarships.gov.in/fresh/newstdRegfrmInstruction"
+  ],
+  "keywords": [
+    "post-matric scholarship",
+    "students with disabilities",
+    "education support",
+    "financial assistance",
+    "inclusive education"
+  ]
+}

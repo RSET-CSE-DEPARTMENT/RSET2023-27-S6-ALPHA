@@ -1,0 +1,37 @@
+{
+  "scheme_id": "WOMEN_CHILD_014",
+  "scheme_name": "Moovalur Ramamirtham Ammaiyar Ninaivu Marriage Assistance Scheme-1",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Marriage Assistance",
+  "implementing_authority": "Social Welfare Department, Government of Tamil Nadu",
+  "description": "Provides cash and gold assistance to financially poor families for marriage of educated daughters.",
+  "benefits": {
+    "cash_assistance": "₹25,000",
+    "gold": "8 gram 22-carat gold coin"
+  },
+  "eligibility": {
+    "income_limit": "₹72,000 per annum",
+    "bride_age": "18 years and above",
+    "education": "Minimum Class 10 (Class 5 for ST)",
+    "family_limit": "One girl per family"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect form from District Social Welfare Office",
+      "Fill application and attach documents",
+      "Submit to DSWO",
+      "Receive acknowledgment"
+    ]
+  },
+  "documents_required": [
+    "Income Certificate",
+    "Community Certificate",
+    "Marriage Invitation",
+    "School Certificate",
+    "Marksheet",
+    "Ration Card",
+    "Aadhaar Card",
+    "Bank Passbook"
+  ]
+}

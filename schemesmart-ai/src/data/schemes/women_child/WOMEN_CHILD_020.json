@@ -1,0 +1,34 @@
+{
+  "scheme_id": "WOMEN_CHILD_020",
+  "scheme_name": "Widow Pension (CBOCWWB)",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Labour Welfare / Pension",
+  "implementing_authority": "Chandigarh Building and Other Construction Workers Welfare Board",
+  "description": "Provides monthly pension to widows of registered construction workers in Chandigarh.",
+  "benefits": {
+    "monthly_pension": "₹1,000"
+  },
+  "eligibility": {
+    "status": "Widow of registered construction worker",
+    "membership_duration": "Minimum 6 months",
+    "application_time": "Within 1 year of death",
+    "exclusion": "Not covered under EPF"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on Labour Department portal",
+      "Login and apply for scheme",
+      "Upload documents",
+      "Submit application"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "BOCW Card",
+    "Death Certificate",
+    "Bank Passbook",
+    "Salary Slip",
+    "Self-Declaration"
+  ]
+}

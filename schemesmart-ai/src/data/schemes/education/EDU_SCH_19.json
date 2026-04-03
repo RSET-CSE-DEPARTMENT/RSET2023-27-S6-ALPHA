@@ -1,0 +1,49 @@
+{
+  "scheme_id": "EDU_SCH_019",
+  "scheme_name": "OEC Pre-matric Educational Assistance",
+  "sector": "Education",
+  "sub_sector": "School Education",
+  "state": "Kerala",
+  "central_or_state": "State",
+  "implementing_department": "Backward Classes Development Department, Government of Kerala",
+  "description": "Provides educational assistance to pre-matric students belonging to Other Eligible Communities (OEC) and Other Equivalent Communities studying in schools in Kerala.",
+  "objectives": [
+    "Support education of students from OEC communities",
+    "Reduce school dropout rate among backward communities"
+  ],
+  "benefits": [
+    "₹320 per year for Classes I–IV",
+    "₹630 per year for Classes V–VII",
+    "₹940 per year for Classes VIII–X"
+  ],
+  "eligibility": [
+    "Student must belong to OEC or Other Equivalent Communities of Kerala",
+    "Student must be studying in Classes 1 to 10",
+    "Student must be enrolled in Government, Aided, Recognized Unaided, CBSE, ICSE or Kendriya Vidyalaya schools in Kerala"
+  ],
+  "application_mode": "Online",
+  "application_process": [
+    "School authorities enter student details on the scholarship portal",
+    "Educational Officer verifies the submitted data",
+    "Amount is credited to the student's bank account through DBT"
+  ],
+  "documents_required": [
+    "Student identity proof",
+    "Aadhaar card",
+    "Student photograph",
+    "Caste certificate",
+    "Income certificate (if applicable)",
+    "Residence proof",
+    "Disability certificate (if applicable)"
+  ],
+  "target_beneficiaries": [
+    "OEC students",
+    "School students (Classes 1–10)"
+  ],
+  "income_limit": "No limit for OEC communities; ₹6,00,000 for Other Equivalent Communities",
+  "education_level": "School (Pre-matric)",
+  "gender_specific": "No",
+  "disability_specific": false,
+  "dbt": true,
+  "official_source": "myscheme.gov.in"
+}

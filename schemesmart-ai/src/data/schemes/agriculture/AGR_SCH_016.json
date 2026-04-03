@@ -1,0 +1,29 @@
+{
+  "scheme_id": "AGR_SCH_016",
+  "scheme_name": "Supply of Agriculture Machineries Scheme",
+  "sector": "Agriculture",
+  "sub_sector": "Farm Mechanization",
+  "state": "Meghalaya",
+  "implementing_department": "Department of Agriculture & Farmers Welfare, Government of Meghalaya",
+  "description": "Subsidized sale of agricultural machinery to farmers.",
+  "benefits": [
+    "50% subsidy on farm machinery"
+  ],
+  "eligibility": [
+    "Permanent resident of Meghalaya",
+    "Bonafide farmer"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Submit application at agriculture office",
+      "First come first serve"
+    ]
+  },
+  "documents_required": [
+    "Identity Proof",
+    "Farmer Proof",
+    "Bank Passbook",
+    "Photograph"
+  ]
+}

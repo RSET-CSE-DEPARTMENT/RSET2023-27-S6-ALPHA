@@ -1,0 +1,90 @@
+{
+  "scheme_id": "EDU_SCH_001",
+  "scheme_name": "National Overseas Scholarship for Students with Disabilities",
+  "sector": "Education",
+  "ministry": "Ministry of Social Justice & Empowerment",
+  "implementing_agency": "Department of Empowerment of Persons with Disabilities (DEPwD)",
+  "description": "A scholarship scheme to support students with disabilities in pursuing higher education abroad (Master’s and Ph.D. programmes) to help them achieve self-reliance and a dignified livelihood.",
+  "objective": "To provide financial assistance to students with disabilities so they can pursue higher education abroad and overcome physical, financial, and social barriers.",
+  "target_beneficiaries": [
+    "Students with visual disabilities",
+    "Students with hearing disabilities",
+    "Students with speech disabilities",
+    "Students with loco-motor disabilities",
+    "Students with mental retardation",
+    "Students with other disabilities as defined under RPwD Act, 2016"
+  ],
+  "benefits": {
+    "annual_maintenance_allowance": {
+      "usa_and_others": "15400 USD",
+      "uk": "9900 GBP"
+    },
+    "contingency_allowance": {
+      "usa_and_others": "1500 USD",
+      "uk": "1100 GBP"
+    },
+    "equipment_allowance": "1500 INR",
+    "tuition_fees": "Actuals as charged",
+    "visa_fees": "Actuals in INR",
+    "medical_insurance": "Actuals",
+    "air_passage": "Economy class air fare from India to institution and back",
+    "local_travel": "Rail/bus fare as applicable"
+  },
+  "eligibility": {
+    "student_status": "Must be a student",
+    "course_level": [
+      "Master's Degree",
+      "Ph.D."
+    ],
+    "institution_requirement": "University/Institution must be accredited by the authorized body of that country",
+    "disability_percentage": "40% or above",
+    "age_limit": "35 years or below",
+    "family_income_limit": "Up to INR 6,00,000 per annum"
+  },
+  "exclusions": [
+    "Bachelor’s degree courses are not covered",
+    "Candidates already studying or completed studies abroad through other scholarships are not eligible",
+    "More than two children with disabilities from the same parents are not eligible (except twins)",
+    "Scholarship is not available for repeating a class",
+    "Cannot hold another scholarship or stipend simultaneously"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Download the application form from the official website",
+      "Fill the application form",
+      "Send the form along with required documents to the specified address"
+    ],
+    "application_address": "Under Secretary (Scholarships), Department of Empowerment of Persons with Disabilities, Room No. 516, Pt. Deendayal Antyodaya Bhawan, CGO Complex, Lodhi Road, New Delhi – 110003",
+    "application_period": "Applications accepted throughout the year"
+  },
+  "documents_required": [
+    "Application form (duplicate)",
+    "Proof of Date of Birth",
+    "Disability Certificate",
+    "Voter ID",
+    "Aadhaar Card",
+    "Proof of Residence",
+    "PAN Card (Applicant)",
+    "Bank Account linked with Aadhaar",
+    "PAN Card of Parent/Guardian",
+    "Educational Certificates and Mark Sheets",
+    "Income Certificate",
+    "Income Tax Returns",
+    "Details of Proposed Study",
+    "Admission Offer Letter",
+    "Self-attested declaration of no other scholarship"
+  ],
+  "source_links": [
+    "http://disabilityaffairs.gov.in/upload/uploadfiles/files/scholarship2(1).pdf",
+    "http://disabilityaffairs.gov.in/upload/uploadfiles/files/Appl-Form%20-NOS(1).pdf"
+  ],
+  "keywords": [
+    "scholarship",
+    "disability",
+    "overseas education",
+    "masters",
+    "phd",
+    "financial assistance"
+  ]
+}

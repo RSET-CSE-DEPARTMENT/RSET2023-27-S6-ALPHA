@@ -1,0 +1,34 @@
+{
+  "scheme_name": "Running of Scheduled Caste Hostel",
+  "sector": ["Housing"],
+  "state": "Madhya Pradesh",
+  "implementing_department": "Tribal Welfare and Scheduled Caste Department",
+  "details": "Provides free hostel accommodation and food to Scheduled Caste students.",
+  "benefits": [
+    "Free accommodation",
+    "Free food",
+    "Scholarship",
+    "Sports and library facilities"
+  ],
+  "eligibility": [
+    "Scheduled Caste student",
+    "Resident of Madhya Pradesh",
+    "Enrolled in a recognized institution"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application from hostel or district office",
+      "Submit application via institution head",
+      "Verification by district officer"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Domicile Certificate",
+    "Caste Certificate",
+    "Marksheet",
+    "Samagra ID",
+    "Bank Account Details"
+  ]
+}

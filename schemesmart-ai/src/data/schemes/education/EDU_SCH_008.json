@@ -1,0 +1,18 @@
+{
+  "scheme_id": "EDU_SCH_008",
+  "scheme_name": "OBC Fee Reimbursement Scheme (Uttar Pradesh)",
+  "sector": "Education",
+  "ministry": "Department of Backward Classes Welfare, UP",
+  "benefits": {
+    "monthly_scholarship": "₹150 per month",
+    "annual_grant": "₹750"
+  },
+  "eligibility": {
+    "state": "Uttar Pradesh",
+    "category": "OBC",
+    "income_limit": "₹2,00,000 per annum"
+  },
+  "application_process": {
+    "mode": "Online"
+  }
+}

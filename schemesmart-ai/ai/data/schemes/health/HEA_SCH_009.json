@@ -1,0 +1,36 @@
+{
+  "scheme_id": "HEA_SCH_009",
+  "scheme_name": "Kanyashree Prakalpa",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Girl Child Education",
+  "state": "West Bengal",
+  "implementing_department": "Department of Women Development and Social Welfare, Government of West Bengal",
+  "description": "Conditional cash transfer scheme to encourage education and delay marriage among adolescent girls.",
+  "benefits": [
+    "Annual Scholarship (K1): ₹1,000 per year",
+    "One-Time Grant (K2): ₹25,000"
+  ],
+  "eligibility": [
+    "Resident of West Bengal",
+    "Unmarried girl",
+    "Enrolled in a recognized educational institution",
+    "Family income not exceeding ₹1,20,000 per annum",
+    "Age 13–18 for K1, 18–19 for K2"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Obtain application form from educational institution",
+      "Open a bank account in applicant's name",
+      "Submit filled form and documents to Head of Institution"
+    ]
+  },
+  "required_documents": [
+    "Birth Certificate",
+    "Income Certificate",
+    "Unmarried Status Declaration",
+    "Bank Passbook Copy",
+    "Disability Certificate (if applicable)"
+  ],
+  "additional_notes": "Relaxed income criteria for specially-abled and orphan girls."
+}

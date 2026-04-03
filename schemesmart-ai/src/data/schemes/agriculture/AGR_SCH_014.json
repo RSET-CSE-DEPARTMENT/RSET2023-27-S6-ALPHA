@@ -1,0 +1,35 @@
+{
+  "scheme_id": "AGR_SCH_014",
+  "scheme_name": "Mukhya Mantri Krishak Udyami Yojana",
+  "sector": "Employment",
+  "sub_sector": "Entrepreneurship",
+  "state": "Madhya Pradesh",
+  "implementing_department": "Department of MSME, Government of Madhya Pradesh",
+  "description": "Loan and subsidy scheme for children of farmers to start businesses.",
+  "benefits": [
+    "Capital subsidy up to 30%",
+    "Interest subsidy up to 6%",
+    "Loan support up to ₹10 lakh"
+  ],
+  "eligibility": [
+    "Permanent resident of MP",
+    "Age 18–45",
+    "Minimum 10th pass",
+    "Non-income taxpayer"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on portal",
+      "Submit application",
+      "Verification and approval"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "PAN Card",
+    "Income Certificate",
+    "10th Marksheet",
+    "BPL Certificate (if applicable)"
+  ]
+}

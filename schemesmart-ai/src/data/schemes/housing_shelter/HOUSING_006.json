@@ -1,0 +1,30 @@
+{
+  "scheme_id": "HOUSING_006",
+  "scheme_name": "Government Working Women’s Hostel",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Women Hostels",
+  "implementing_authority": "Social Welfare and Women Empowerment Department, Tamil Nadu",
+  "description": "Provides safe and affordable hostel accommodation for working women.",
+  "benefits": {
+    "rent": "₹300 in Chennai, ₹200 in other districts",
+    "stay_duration": "Up to 3 years"
+  },
+  "eligibility": {
+    "gender": "Female",
+    "profession": "Working women",
+    "income_limit": "₹25,000 Chennai / ₹15,000 other districts"
+  },
+  "application_process": {
+    "mode": "Online via CSC / Offline",
+    "steps": [
+      "Visit CSC",
+      "Biometric verification",
+      "Submit application"
+    ]
+  },
+  "documents_required": [
+    "Employer Certificate",
+    "Income Certificate",
+    "Residence Certificate"
+  ]
+}

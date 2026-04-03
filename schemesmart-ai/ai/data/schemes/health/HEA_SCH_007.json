@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HEA_SCH_007",
+  "scheme_name": "Scholarship for Students with Disabilities (Classes 1–8)",
+  "sector": "Education",
+  "sub_sector": "Disability Welfare",
+  "state": "Tamil Nadu",
+  "implementing_department": "Department for the Welfare of Differently Abled Persons, Government of Tamil Nadu",
+  "description": "Provides financial assistance to differently-abled students studying in classes 1 to 8 for the purchase of books and notebooks.",
+  "benefits": [
+    "Classes 1–5: ₹1,000 per annum",
+    "Classes 6–8: ₹3,000 per annum"
+  ],
+  "eligibility": [
+    "Student with disability",
+    "Studying in Class 1 to 8",
+    "Studying in government-recognized schools",
+    "Not availing similar assistance from other sources"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application form from District Differently Abled Welfare Office",
+      "Fill application and attach required documents",
+      "Submit to the District Welfare Officer"
+    ]
+  },
+  "required_documents": [
+    "Disability Certificate",
+    "Certificate from Headmaster stating no similar assistance availed"
+  ],
+  "additional_notes": "Scholarship is specifically for notebooks and study materials."
+}

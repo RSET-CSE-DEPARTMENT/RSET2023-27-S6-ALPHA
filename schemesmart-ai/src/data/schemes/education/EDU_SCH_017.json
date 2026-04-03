@@ -1,0 +1,35 @@
+{
+  "scheme_id": "EDU_SCH_017",
+  "scheme_name": "Biotechnology Career Advancement and Re-orientation (BioCARe)",
+  "sector": "Science & Research",
+  "state": "All India",
+  "ministry_or_department": "Department of Biotechnology",
+  "implementing_agency": "ICGEB, New Delhi",
+  "description": "Research funding program to support unemployed women scientists in biotechnology.",
+  "benefits": {
+    "category_I": "Up to ₹60 lakh (₹68,000/month fellowship)",
+    "category_II": "Up to ₹40 lakh (₹50,000/month fellowship)",
+    "duration": "3 years"
+  },
+  "eligibility": {
+    "gender": "Female",
+    "age_limit": "Up to 55 years",
+    "employment_status": "Unemployed",
+    "education": "PhD / MTech / MPharma / MVSc / MD / MDS"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Apply via DBT portal",
+      "Screening and peer review",
+      "Presentation before expert committee"
+    ]
+  },
+  "documents_required": [
+    "Educational certificates",
+    "Research proposal",
+    "Mentor details",
+    "Identity proof",
+    "Declaration"
+  ]
+}

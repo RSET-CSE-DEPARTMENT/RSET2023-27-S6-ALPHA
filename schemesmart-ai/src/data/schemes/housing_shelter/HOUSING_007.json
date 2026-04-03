@@ -1,0 +1,29 @@
+{
+  "scheme_id": "HOUSING_007",
+  "scheme_name": "Adi Dravidar and Tribal Welfare Department Hostels",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Student Hostels",
+  "implementing_authority": "Adi Dravidar and Tribal Welfare Department, Tamil Nadu",
+  "description": "Provides hostel accommodation to Adi Dravidar and Tribal students up to XII standard.",
+  "benefits": {
+    "accommodation": "Free hostel facility"
+  },
+  "eligibility": {
+    "community": "Adi Dravidar / Tribal",
+    "education_level": "Up to XII Standard",
+    "residency": "Tamil Nadu"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Contact hostel warden",
+      "Submit documents"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Caste Certificate",
+    "Income Certificate",
+    "School Enrollment Proof"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "scheme_id": "AGR_SCH_008",
+  "scheme_name": "Coffee Development Programme – Drying Yards",
+  "sector": "Agriculture",
+  "sub_sector": "Plantation Infrastructure",
+  "state": "North Eastern States",
+  "implementing_department": "Coffee Board, Ministry of Commerce & Industry",
+  "description": "Subsidy for construction of cement drying yards to improve coffee quality.",
+  "benefits": [
+    "75% subsidy",
+    "₹15,000 unit cost for holdings up to 2 ha",
+    "₹45,000 unit cost for holdings above 2 ha"
+  ],
+  "eligibility": [
+    "Tribal coffee grower",
+    "Should not have availed XII Plan benefits"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Application submission",
+      "Field inspection",
+      "Verification and subsidy release via EFT"
+    ]
+  },
+  "documents_required": [
+    "Identity Proof",
+    "Land Records",
+    "Bank Passbook",
+    "Work Completion Report"
+  ]
+}

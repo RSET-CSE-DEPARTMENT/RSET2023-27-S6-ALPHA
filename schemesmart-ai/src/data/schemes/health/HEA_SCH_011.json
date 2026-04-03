@@ -1,0 +1,33 @@
+{
+  "scheme_id": "HEA_SCH_011",
+  "scheme_name": "Pradhan Mantri Matru Vandana Yojana",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Maternity Benefit",
+  "state": "All India",
+  "implementing_department": "Ministry of Women and Child Development, Government of India",
+  "description": "A maternity benefit scheme providing partial wage compensation to pregnant and lactating women for the first living child.",
+  "benefits": [
+    "Cash incentive of ₹5,000 in three installments",
+    "Additional ₹1,000 under Janani Suraksha Yojana for institutional delivery"
+  ],
+  "eligibility": [
+    "Pregnant and lactating women aged 19 years or above",
+    "Applicable for first living child only",
+    "Not in regular employment with Central or State Government or PSUs"
+  ],
+  "application_process": {
+    "mode": "Online / Offline",
+    "steps": [
+      "Register at Anganwadi Centre or approved health facility",
+      "Submit required documents",
+      "Installments released after verification via DBT"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Mother and Child Protection (MCP) Card",
+    "Bank Account Details",
+    "Identity Proof"
+  ],
+  "additional_notes": "Beneficiary must fulfill health and nutrition conditions to receive installments."
+}

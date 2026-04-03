@@ -1,0 +1,35 @@
+{
+  "scheme_id": "HEA_SCH_005",
+  "scheme_name": "Chikitsa Pratipoorti Yojana",
+  "sector": "Health",
+  "sub_sector": "Worker Welfare",
+  "state": "Jharkhand",
+  "implementing_department": "Department of Labour, Employment, Training & Skill Development",
+  "description": "Medical reimbursement scheme for registered construction workers suffering from serious diseases.",
+  "benefits": [
+    "Financial assistance for treatment of listed serious illnesses",
+    "Applicable once per disease per beneficiary"
+  ],
+  "eligibility": [
+    "Domicile of Jharkhand",
+    "Registered with Jharkhand BOCW Board",
+    "Age 18 years or above",
+    "Suffering from listed serious diseases"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on Labour Management System portal",
+      "Login and apply for scheme",
+      "Upload documents and submit application"
+    ]
+  },
+  "required_documents": [
+    "Aadhaar Card",
+    "Domicile Certificate",
+    "eSHRAM Card",
+    "Medical Proof",
+    "Bank Account Details"
+  ],
+  "additional_notes": "Approval required from district-level committee."
+}

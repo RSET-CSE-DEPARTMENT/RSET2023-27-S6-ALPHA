@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HEA_SCH_020",
+  "scheme_name": "Pradhan Mantri Awas Yojana – Gramin",
+  "sector": "Housing",
+  "sub_sector": "Rural Housing",
+  "state": "All India",
+  "implementing_department": "Ministry of Rural Development, Government of India",
+  "description": "Provides financial assistance for construction of pucca houses for rural poor.",
+  "benefits": [
+    "₹1,20,000 in plain areas",
+    "₹1,30,000 in hilly or difficult areas"
+  ],
+  "eligibility": [
+    "Households identified under SECC",
+    "Homeless or living in kutcha houses"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Beneficiary identification through SECC",
+      "Verification by Gram Panchayat",
+      "Funds released in installments"
+    ]
+  },
+  "required_documents": [
+    "Aadhaar Card",
+    "Job Card",
+    "Bank Account Details",
+    "Consent Letter"
+  ],
+  "additional_notes": "House construction monitored using geo-tagging."
+}

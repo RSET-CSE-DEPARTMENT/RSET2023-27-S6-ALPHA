@@ -1,0 +1,41 @@
+{
+  "scheme_name": "Scheme For Loan And Advances to the Beneficiary For Construction Of House",
+  "sector": ["Housing", "Shelter"],
+  "state": "Tripura",
+  "implementing_department": "Tripura Building and Other Construction Workers Welfare Board, Labour Department",
+  "details": "The scheme provides credit-linked interest subsidy to registered construction workers for construction of dwelling houses.",
+  "benefits": {
+    "interest_subsidy": "6.5%",
+    "maximum_loan_amount": "₹6,00,000",
+    "repayment_period": "Up to 20 years",
+    "note": "Subsidy is directly credited to the loan account"
+  },
+  "eligibility": [
+    "Registered active BOC worker in Tripura",
+    "Minimum 5 years of registration",
+    "At least 20 years before retirement",
+    "Should not own a pucca house anywhere in India",
+    "Minimum land area of 30 sq. meters",
+    "Annual income not exceeding ₹3,00,000",
+    "Belonging to EWS category"
+  ],
+  "application_process": {
+    "mode": "Online via CSC",
+    "steps": [
+      "Visit nearest CSC",
+      "Complete biometric verification",
+      "Submit application with documents",
+      "Collect acknowledgment receipt"
+    ]
+  },
+  "documents_required": [
+    "BOC Worker Registration Card",
+    "Aadhaar Card",
+    "Income Affidavit",
+    "Identity and Address Proof",
+    "EWS Certificate",
+    "Bank Account Details",
+    "Property Valuation Certificate",
+    "Affidavit of non-ownership of pucca house"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "scheme_id": "HEA_SCH_002",
+  "scheme_name": "Medical Assistance for Non-Pensioner Ex-Servicemen/Widows",
+  "sector": "Health",
+  "sub_sector": "Defence Welfare",
+  "state": "All India",
+  "implementing_department": "Kendriya Sainik Board Secretariat",
+  "description": "Financial assistance for non-pensioner ex-servicemen and widows to meet routine medical expenses.",
+  "benefits": [
+    "Financial assistance up to ₹30,000 per year"
+  ],
+  "eligibility": [
+    "Non-pensioner ex-serviceman or widow",
+    "Rank Havildar or below",
+    "Recommended by Zila Sainik Board",
+    "Treatment in recognized government hospitals"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on KSB portal",
+      "Fill online application",
+      "Upload attested documents",
+      "Verification by ZSB and KSB"
+    ]
+  },
+  "documents_required": [
+    "Discharge Book",
+    "ZSB Identity Card",
+    "Medical Bills",
+    "Hospital Discharge Summary",
+    "Bank Account Details"
+  ],
+  "additional_notes": "Serious disease treatment is covered under a separate scheme."
+}

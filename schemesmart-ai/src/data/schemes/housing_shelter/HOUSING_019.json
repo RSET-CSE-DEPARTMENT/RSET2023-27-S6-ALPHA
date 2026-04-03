@@ -1,0 +1,17 @@
+{
+  "scheme_name": "Map Simplification Process",
+  "sector": ["Housing"],
+  "state": "Uttarakhand",
+  "implementing_department": "Haridwar-Roorkee Development Authority",
+  "details": "Simplifies approval process for residential and commercial maps.",
+  "benefits": [
+    "Residential approval within 15 days",
+    "Commercial approval within 30 days"
+  ],
+  "eligibility": ["Landowners in Haridwar district"],
+  "application_process": {
+    "mode": "Online",
+    "steps": ["Submit map online for approval"]
+  },
+  "documents_required": ["As prescribed by authority"]
+}

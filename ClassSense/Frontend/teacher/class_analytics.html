@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ClassSense – Class Analytics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #e0edff 0, #f8fafc 42%, #eff6ff 100%);
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .cs-hero-card {
+      border-radius: 1.5rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+    }
+
+    .cs-badge-soft {
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      background: #e0edff;
+      color: #1d4ed8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 1rem;
+      border: 1px solid #e2e8f0;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #64748b;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .session-item {
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .session-item:hover {
+      background: #f8fafc;
+      transform: translateY(-1px);
+    }
+
+    .session-item.active {
+      border-color: #2563eb !important;
+      background: #eff6ff;
+    }
+
+    .pill-low {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .pill-medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .pill-high {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .risk-row {
+      font-size: 0.86rem;
+    }
+
+    .risk-row span.name {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .risk-row span.score {
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-11">
+        <div class="cs-hero-card p-4 p-md-5">
+          <!-- Header -->
+          <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+            <div class="d-flex align-items-center gap-3">
+              <div
+                class="rounded-circle bg-primary-subtle text-primary d-inline-flex align-items-center justify-content-center"
+                style="width:48px;height:48px;font-size:1.2rem;">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <div>
+                <h4 class="mb-0 fw-bold">
+                  <span id="classNameHeading">Class Analytics</span>
+                </h4>
+                <div class="text-muted small">
+                  <span id="classMeta"></span>
+                </div>
+              </div>
+            </div>
+            <a href="/teacher/subject_dashboard.html" class="btn btn-outline-secondary btn-sm">
+              <i class="fa-solid fa-arrow-left me-1"></i> Back to Subject Dashboard
+            </a>
+          </div>
+
+          <!-- Top Stats -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value text-primary" id="statAvgAttention">--%</div>
+                <div class="stat-label mt-1">Average Class Attention</div>
+                <div class="small text-muted mt-1">Across all recorded sessions</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value" id="statTotalSessions">--</div>
+                <div class="stat-label mt-1">Sessions Conducted</div>
+                <div class="small text-muted mt-1">In this class & subject</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value" id="statBestWorst">-- / --</div>
+                <div class="stat-label mt-1">Best / Worst Session</div>
+                <div class="small text-muted mt-1">By average attention</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <!-- Left: Class Trend + Session History -->
+            <div class="col-lg-7">
+              <div class="p-4 rounded-4 bg-white border mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="cs-badge-soft d-inline-flex align-items-center gap-1">
+                    <i class="fa-solid fa-arrow-trend-up"></i> Class Attention Trend
+                  </span>
+                </div>
+                <div style="height: 260px;">
+                  <canvas id="classTrendChart"></canvas>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-4 bg-light border">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="fw-bold mb-0">
+                    <i class="fa-solid fa-clock-rotate-left text-primary me-2"></i>Session History
+                  </h6>
+                  <small class="text-muted" id="sessionCountLabel">0 sessions</small>
+                </div>
+                <div id="sessionList" class="d-flex flex-column gap-2 small">
+                  <div class="text-center text-muted py-3">Loading sessions...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Session Report + Risk -->
+            <div class="col-lg-5">
+              <div class="p-4 rounded-4 bg-white border mb-3">
+                <h6 class="fw-bold mb-2">
+                  <i class="fa-solid fa-file-lines text-primary me-2"></i>Session Report
+                </h6>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <div class="small text-muted" id="selectedSessionLabel">
+                    Select a session from the history to view detailed analytics.
+                  </div>
+                  <button class="btn btn-outline-secondary btn-sm" onclick="downloadCurrentSession()">
+                    <i class="fa-solid fa-download me-1"></i> Download CSV
+                  </button>
+                </div>
+
+                <div id="sessionReportEmpty" class="text-center text-muted py-4 small">
+                  No session selected.
+                </div>
+
+                <div id="sessionReportArea" class="d-none">
+                  <div class="row g-2 mb-3">
+                    <div class="col-6">
+                      <div class="border rounded-3 p-2 text-center">
+                        <div class="text-muted small text-uppercase fw-semibold">Avg. Attention</div>
+                        <div class="fw-bold fs-4" id="sessAvgAttention">--%</div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="border rounded-3 p-2 text-center">
+                        <div class="text-muted small text-uppercase fw-semibold">Students</div>
+                        <div class="fw-bold fs-4" id="sessTotalStudents">--</div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="border rounded-3 p-2 text-center mt-2">
+                        <div class="text-muted small text-uppercase fw-semibold">Total Alerts</div>
+                        <div class="fw-bold" id="sessTotalAlerts">--</div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="border rounded-3 p-2 text-center mt-2">
+                        <div class="text-muted small text-uppercase fw-semibold">Duration</div>
+                        <div class="fw-bold" id="sessDuration">--</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <div class="small fw-semibold text-muted text-uppercase">Student Attention</div>
+                    </div>
+                    <div style="height: 180px;">
+                      <canvas id="studentBarChart"></canvas>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <div class="small fw-semibold text-muted text-uppercase">Focus Distribution</div>
+                    </div>
+                    <div style="height: 170px;">
+                      <canvas id="focusPieChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-4 bg-light border">
+                <h6 class="fw-bold mb-2">
+                  <i class="fa-solid fa-triangle-exclamation text-danger me-2"></i>Students Needing Attention
+                </h6>
+                <div class="small text-muted mb-2">
+                  Based on average attention across all recorded sessions for this class.
+                </div>
+                <div id="riskList" class="d-flex flex-column gap-1 small">
+                  <div class="text-muted">No risk data yet.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Student Trend (inline, optional) -->
+          <div class="mt-4 pt-3 border-top">
+            <h6 class="fw-bold mb-2">
+              <i class="fa-solid fa-user-graduate text-primary me-2"></i>Student Attention Trend
+            </h6>
+            <div class="row g-3 align-items-center mb-2">
+              <div class="col-md-4">
+                <select class="form-select form-select-sm" id="studentTrendSelect">
+                  <option value="">Select a student...</option>
+                </select>
+              </div>
+              <div class="col-md-8 small text-muted" id="studentTrendLabel">
+                Choose a student to view their attention across all sessions in this class.
+              </div>
+            </div>
+            <div style="height: 220px;">
+              <canvas id="studentTrendChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVjpHNiWzoGudpyIlwMIWsRiRXeuxEQqk",
+      authDomain: "classsense-1b1cd.firebaseapp.com",
+      projectId: "classsense-1b1cd",
+      storageBucket: "classsense-1b1cd.firebasestorage.app",
+      messagingSenderId: "171751023325",
+      appId: "1:171751023325:web:96074fa2db15b6d896b134",
+      measurementId: "G-D37P2EYV04"
+    };
+
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetClass = urlParams.get("class");
+    const targetSubject = urlParams.get("subject");
+
+    document.getElementById("classNameHeading").innerText =
+      targetClass ? `${targetClass} – ${targetSubject || "Subject"}` : "Class Analytics";
+    document.getElementById("classMeta").innerText =
+      targetClass ? `Analytics for ${targetClass}${targetSubject ? " · " + targetSubject : ""}` :
+        "Select a class from the Subject Dashboard to see analytics.";
+
+    let classTrendChartInstance = null;
+    let studentBarChartInstance = null;
+    let focusPieChartInstance = null;
+    let studentTrendChartInstance = null;
+    let loadedSessions = [];
+    let studentAggregate = {}; // studentId -> { name, total, count }
+
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        window.location.href = "/teacher/login";
+        return;
+      }
+      if (!targetClass) {
+        document.getElementById("sessionList").innerHTML =
+          `<div class="text-center text-muted py-3 small">No class specified. Open this page from the Subject Dashboard.</div>`;
+        return;
+      }
+
+      await loadClassAnalytics(user.uid);
+    });
+
+    async function loadClassAnalytics(teacherUid) {
+      try {
+        const params = new URLSearchParams();
+        if (targetClass) params.append("className", targetClass);
+        if (targetSubject) params.append("subject", targetSubject);
+
+        const res = await fetch(`/api/analytics/class?${params.toString()}`);
+        const json = await res.json();
+        if (json.error) {
+          console.error(json.error);
+          document.getElementById("sessionList").innerHTML =
+            `<div class="text-center text-danger py-3 small">Error loading analytics.</div>`;
+          return;
+        }
+
+        loadedSessions = json.sessions || [];
+
+        renderSummary(json.summary || {}, loadedSessions);
+        renderClassTrend(loadedSessions);
+        renderSessionHistory(loadedSessions);
+        buildStudentAggregates(loadedSessions);
+        renderRiskList();
+        populateStudentTrendSelect();
+      } catch (e) {
+        console.error(e);
+        document.getElementById("sessionList").innerHTML =
+          `<div class="text-center text-danger py-3 small">Error loading analytics.</div>`;
+      }
+    }
+
+    function renderSummary(summary, sessions) {
+      const total = summary.totalSessions || 0;
+      document.getElementById("statTotalSessions").innerText = total;
+      document.getElementById("statAvgAttention").innerText =
+        summary.averageAttention != null ? `${summary.averageAttention}%` : "--%";
+      document.getElementById("statBestWorst").innerText =
+        summary.bestSession != null && summary.worstSession != null
+          ? `${summary.bestSession}% / ${summary.worstSession}%`
+          : "-- / --";
+
+      const label = total === 1 ? "1 session" : `${total} sessions`;
+      document.getElementById("sessionCountLabel").innerText = label;
+    }
+
+    function renderClassTrend(sessions) {
+      const ctx = document.getElementById("classTrendChart").getContext("2d");
+      if (classTrendChartInstance) classTrendChartInstance.destroy();
+
+      if (!sessions.length) {
+        classTrendChartInstance = new Chart(ctx, {
+          type: "line",
+          data: { labels: [], datasets: [] },
+          options: { responsive: true, maintainAspectRatio: false }
+        });
+        return;
+      }
+
+      const labels = sessions.map((s, idx) => {
+        const dt = s.createdAt || s.endedAt;
+        const dateStr = dt ? new Date(dt).toLocaleDateString([], { month: "short", day: "numeric" }) : `Session ${idx + 1}`;
+        return dateStr;
+      });
+      const data = sessions.map(s => parseInt(s.averageAttention || 0, 10));
+
+      classTrendChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            label: "Avg Class Attention",
+            data,
+            borderColor: "#2563eb",
+            fill: false,
+            tension: 0.3,
+            borderWidth: 2,
+            pointBackgroundColor: "#ffffff",
+            pointBorderColor: "#2563eb",
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
+      });
+    }
+
+    function renderSessionHistory(sessions) {
+      const container = document.getElementById("sessionList");
+      container.innerHTML = "";
+
+      if (!sessions.length) {
+        container.innerHTML =
+          `<div class="text-center text-muted py-3 small">No completed sessions found for this class and subject.</div>`;
+        return;
+      }
+
+      sessions
+        .slice()
+        .sort((a, b) => (b.createdAt || b.endedAt || "").localeCompare(a.createdAt || a.endedAt || ""))
+        .forEach((s, idx) => {
+          const div = document.createElement("div");
+          div.className = "session-item p-2 border rounded-3 d-flex justify-content-between align-items-center";
+          div.dataset.sessionId = s.sessionId || s.id || "";
+
+          const dateStr = (s.createdAt || s.endedAt)
+            ? new Date(s.createdAt || s.endedAt).toLocaleString([], { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })
+            : `Session ${idx + 1}`;
+          const avg = parseInt(s.averageAttention || 0, 10);
+
+          div.innerHTML = `
+            <div>
+              <div class="fw-semibold">${dateStr}</div>
+              <div class="text-muted" style="font-size:0.8rem;">${s.subject || ""}</div>
+            </div>
+            <div class="text-end">
+              <div class="fw-bold ${avg >= 70 ? "text-success" : avg >= 40 ? "text-warning" : "text-danger"}">${avg}%</div>
+            </div>
+          `;
+
+          div.addEventListener("click", () => selectSession(s.id || s.sessionId));
+          container.appendChild(div);
+        });
+    }
+
+    let currentSessionKey = null;
+
+    function selectSession(sessionKey) {
+      const session = loadedSessions.find(s => (s.id || s.sessionId) === sessionKey);
+      if (!session) return;
+
+      currentSessionKey = sessionKey;
+
+      // Highlight selected
+      document.querySelectorAll("#sessionList .session-item").forEach(el => {
+        el.classList.toggle("active", (session.id || session.sessionId) === el.dataset.sessionId);
+      });
+
+      const dtStr = (session.createdAt || session.endedAt)
+        ? new Date(session.createdAt || session.endedAt).toLocaleString([], { dateStyle: "medium", timeStyle: "short" })
+        : "Session";
+      document.getElementById("selectedSessionLabel").innerText =
+        `Showing analytics for ${dtStr}.`;
+
+      document.getElementById("sessionReportEmpty").classList.add("d-none");
+      document.getElementById("sessionReportArea").classList.remove("d-none");
+
+      const avg = parseInt(session.averageAttention || 0, 10);
+      const totalStudents = session.totalStudents || (session.students ? session.students.length : 0);
+      const totalAlerts = session.totalAlerts != null ? session.totalAlerts : "--";
+
+      document.getElementById("sessAvgAttention").innerText = `${avg}%`;
+      document.getElementById("sessTotalStudents").innerText = totalStudents;
+      document.getElementById("sessTotalAlerts").innerText = totalAlerts;
+
+      const durSec = session.durationSeconds;
+      if (durSec != null) {
+        const mins = Math.floor(durSec / 60);
+        const secs = durSec % 60;
+        document.getElementById("sessDuration").innerText =
+          mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+      } else {
+        document.getElementById("sessDuration").innerText = "--";
+      }
+
+      const students = session.students || [];
+      const labels = students.map(s => s.name || s.id || "Student");
+      const scores = students.map(s => parseInt(s.attentionScore || 0, 10));
+
+      drawStudentBarChart(labels, scores);
+      drawFocusPieChart(scores);
+    }
+
+    function downloadCurrentSession() {
+      if (!currentSessionKey) return;
+      window.open(`/api/analytics/session/${encodeURIComponent(currentSessionKey)}/download`, "_blank");
+    }
+
+    function drawStudentBarChart(labels, scores) {
+      const ctx = document.getElementById("studentBarChart").getContext("2d");
+      if (studentBarChartInstance) studentBarChartInstance.destroy();
+
+      studentBarChartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [{
+            label: "Attention",
+            data: scores,
+            backgroundColor: scores.map(v =>
+              v >= 70 ? "#22c55e" : v >= 40 ? "#eab308" : "#ef4444"
+            ),
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
+      });
+    }
+
+    function drawFocusPieChart(scores) {
+      const ctx = document.getElementById("focusPieChart").getContext("2d");
+      if (focusPieChartInstance) focusPieChartInstance.destroy();
+
+      const low = scores.filter(v => v < 40).length;
+      const medium = scores.filter(v => v >= 40 && v < 70).length;
+      const high = scores.filter(v => v >= 70).length;
+
+      focusPieChartInstance = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Low", "Medium", "High"],
+          datasets: [{
+            data: [low, medium, high],
+            backgroundColor: ["#ef4444", "#eab308", "#22c55e"]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: "bottom" }
+          },
+          cutout: "60%"
+        }
+      });
+    }
+
+    function buildStudentAggregates(sessions) {
+      studentAggregate = {};
+
+      sessions.forEach(s => {
+        (s.students || []).forEach(stu => {
+          const id = stu.id || stu.studentId;
+          if (!id) return;
+          const score = parseInt(stu.attentionScore || 0, 10);
+
+          if (!studentAggregate[id]) {
+            studentAggregate[id] = { name: stu.name || id, total: 0, count: 0 };
+          }
+          studentAggregate[id].total += score;
+          studentAggregate[id].count += 1;
+        });
+      });
+    }
+
+    function renderRiskList() {
+      const riskContainer = document.getElementById("riskList");
+      riskContainer.innerHTML = "";
+
+      const entries = Object.entries(studentAggregate)
+        .map(([id, v]) => ({
+          id,
+          name: v.name,
+          avg: v.count ? Math.round(v.total / v.count) : 0
+        }))
+        .filter(e => e.avg < 60)
+        .sort((a, b) => a.avg - b.avg)
+        .slice(0, 10);
+
+      if (!entries.length) {
+        riskContainer.innerHTML =
+          `<div class="text-muted small">No students are currently flagged as needing attention (threshold &lt; 60%).</div>`;
+        return;
+      }
+
+      entries.forEach(e => {
+        const row = document.createElement("div");
+        row.className = "d-flex justify-content-between align-items-center risk-row";
+        row.innerHTML = `
+          <div>
+            <span class="name">${e.name}</span>
+          </div>
+          <div>
+            <span class="score text-danger">${e.avg}%</span>
+          </div>
+        `;
+        riskContainer.appendChild(row);
+      });
+    }
+
+    function populateStudentTrendSelect() {
+      const select = document.getElementById("studentTrendSelect");
+      select.innerHTML = `<option value="">Select a student...</option>`;
+
+      Object.entries(studentAggregate)
+        .sort((a, b) => a[1].name.localeCompare(b[1].name))
+        .forEach(([id, v]) => {
+          const opt = document.createElement("option");
+          opt.value = id;
+          opt.innerText = v.name;
+          select.appendChild(opt);
+        });
+
+      select.addEventListener("change", () => {
+        const sid = select.value;
+        if (!sid) {
+          drawStudentTrendChart([], []);
+          document.getElementById("studentTrendLabel").innerText =
+            "Choose a student to view their attention across all sessions in this class.";
+          return;
+        }
+        renderStudentTrendFor(sid);
+      });
+    }
+
+    function renderStudentTrendFor(studentId) {
+      const labels = [];
+      const scores = [];
+
+      loadedSessions
+        .slice()
+        .sort((a, b) => (a.createdAt || a.endedAt || "").localeCompare(b.createdAt || b.endedAt || ""))
+        .forEach((s, idx) => {
+          const dt = s.createdAt || s.endedAt;
+          labels.push(
+            dt
+              ? new Date(dt).toLocaleDateString([], { month: "short", day: "numeric" })
+              : `Session ${idx + 1}`
+          );
+
+          let score = 0;
+          (s.students || []).forEach(stu => {
+            if ((stu.id || stu.studentId) === studentId && stu.attentionScore != null) {
+              score = parseInt(stu.attentionScore, 10);
+            }
+          });
+          scores.push(score);
+        });
+
+      const agg = studentAggregate[studentId];
+      const name = agg ? agg.name : studentId;
+      document.getElementById("studentTrendLabel").innerText =
+        `Attention trend for ${name} across sessions.`;
+
+      drawStudentTrendChart(labels, scores);
+    }
+
+    function drawStudentTrendChart(labels, scores) {
+      const ctx = document.getElementById("studentTrendChart").getContext("2d");
+      if (studentTrendChartInstance) studentTrendChartInstance.destroy();
+
+      studentTrendChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            label: "Student Attention",
+            data: scores,
+            borderColor: "#10b981",
+            fill: false,
+            tension: 0.3,
+            borderWidth: 2,
+            pointBackgroundColor: "#ffffff",
+            pointBorderColor: "#10b981",
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

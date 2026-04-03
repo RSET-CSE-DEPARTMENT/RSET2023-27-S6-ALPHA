@@ -1,0 +1,21 @@
+{
+  "scheme_id": "EDU_SCH_007",
+  "scheme_name": "Post Matric Scholarship for ST Students",
+  "sector": "Education",
+  "ministry": "Ministry of Tribal Affairs",
+  "implementing_agency": "State/UT Governments",
+  "description": "Scholarship for Scheduled Tribe students from Class XI to Post Graduation.",
+  "benefits": {
+    "stipend_range": "₹230 to ₹1,200 per month",
+    "additional_disability_allowance": "₹600–₹800 per month"
+  },
+  "eligibility": {
+    "category": "Scheduled Tribe",
+    "income_limit": "₹2,00,000 per annum",
+    "education_level": "Post-matric courses"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "submission": "Through Head of Institution"
+  }
+}

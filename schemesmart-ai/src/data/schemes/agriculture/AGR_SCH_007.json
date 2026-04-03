@@ -1,0 +1,31 @@
+{
+  "scheme_id": "AGR_SCH_007",
+  "scheme_name": "Coffee Development Programme – Supply of Baby Pulpers",
+  "sector": "Agriculture",
+  "sub_sector": "Plantation Crops",
+  "state": "North Eastern States",
+  "implementing_department": "Coffee Board, Ministry of Commerce & Industry",
+  "description": "Scheme to improve coffee quality by supplying baby pulpers to tribal coffee growers.",
+  "benefits": [
+    "75% subsidy",
+    "Maximum unit cost ₹16,000"
+  ],
+  "eligibility": [
+    "Tribal coffee grower",
+    "Eligible for one unit only",
+    "Should not have availed benefits during XII Plan"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Identification by Extension Officer",
+      "Submission of application with land records",
+      "Tendering and procurement",
+      "Inspection and subsidy release"
+    ]
+  },
+  "documents_required": [
+    "Grower Registration Proof",
+    "Land Records in beneficiary name"
+  ]
+}

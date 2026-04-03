@@ -1,0 +1,31 @@
+{
+  "scheme_name": "Sardar Patel Awas Yojana",
+  "sector": ["Housing", "Shelter"],
+  "state": "Gujarat",
+  "implementing_department": ["Gujarat Housing Board", "Gujarat Rural Housing Corporation"],
+  "details": "Provides financial assistance to BPL families for construction of houses.",
+  "benefits": [
+    "Affordable housing",
+    "Government subsidy",
+    "Improved living standards"
+  ],
+  "eligibility": [
+    "Below Poverty Line family",
+    "No existing house or plot",
+    "Benefit available only once"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Fill application form",
+      "Submit to Taluka or Panchayat office"
+    ]
+  },
+  "documents_required": [
+    "BPL Certificate",
+    "Identity Proof",
+    "Address Proof",
+    "Land Records",
+    "Sarpanch Certificate"
+  ]
+}

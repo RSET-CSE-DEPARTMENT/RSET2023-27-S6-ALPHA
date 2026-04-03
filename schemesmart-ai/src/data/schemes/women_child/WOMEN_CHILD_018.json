@@ -1,0 +1,34 @@
+{
+  "scheme_id": "WOMEN_CHILD_018",
+  "scheme_name": "Grant of Retention Scholarship to Scheduled Caste Girl Students",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Primary Education / SC Welfare",
+  "implementing_authority": "Adi Dravidar Welfare Department, Government of Puducherry",
+  "description": "Provides financial assistance to SC girl students studying in Classes I–V to encourage retention in primary education.",
+  "benefits": {
+    "annual_scholarship": "₹1,000 per year (₹100 per month for 10 months)"
+  },
+  "eligibility": {
+    "gender": "Girl student",
+    "caste": "Scheduled Caste",
+    "class": "I to V",
+    "income_limit": "₹24,000 per annum",
+    "residency": "Puducherry"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on NSP portal",
+      "Login with registration ID",
+      "Fill application form",
+      "Submit"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Caste Certificate",
+    "Income Certificate",
+    "School Certificate",
+    "Bank Account Details"
+  ]
+}

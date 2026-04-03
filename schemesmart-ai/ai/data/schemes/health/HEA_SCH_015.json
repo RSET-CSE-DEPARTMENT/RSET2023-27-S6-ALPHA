@@ -1,0 +1,36 @@
+{
+  "scheme_id": "HEA_SCH_015",
+  "scheme_name": "Unemployment Allowance Scheme",
+  "sector": "Employment",
+  "sub_sector": "Unemployment Assistance",
+  "state": "Himachal Pradesh",
+  "implementing_department": "Department of Labour & Employment, Government of Himachal Pradesh",
+  "description": "Provides monthly unemployment allowance to educated unemployed youth registered with employment exchanges.",
+  "benefits": [
+    "₹1,000 per month for 10+2 qualified candidates",
+    "₹1,500 per month for graduates and postgraduates"
+  ],
+  "eligibility": [
+    "Permanent resident of Himachal Pradesh",
+    "Registered with employment exchange",
+    "Educational qualification of 10+2 or above",
+    "Unemployed for at least three years"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on Employment Exchange portal",
+      "Submit unemployment allowance application",
+      "Verification by concerned authority",
+      "Monthly payment via DBT"
+    ]
+  },
+  "required_documents": [
+    "Aadhaar Card",
+    "Employment Exchange Registration Card",
+    "Educational Certificates",
+    "Bank Account Details",
+    "Residence Proof"
+  ],
+  "additional_notes": "Allowance stops once beneficiary gets employment."
+}

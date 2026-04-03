@@ -1,0 +1,43 @@
+{
+  "scheme_id": "AGR_SCH_018",
+  "scheme_name": "Financial Assistance to Purchase/Construct New Fishing Craft Less than 26 Feet",
+  "sector": "Fisheries",
+  "sub_sector": "Fishing Infrastructure",
+  "state": "Goa",
+  "implementing_department": "Department of Fisheries, Government of Goa",
+  "description": "Subsidy scheme for construction or purchase of new fishing craft below 26 feet for inland fishing in Goa.",
+  "benefits": [
+    "50% subsidy up to ₹30,000 for General category",
+    "60% subsidy up to ₹36,000 for SC/ST/Women category",
+    "Benefit can be availed once every 7 years for replacement"
+  ],
+  "eligibility": [
+    "Applicant must be a traditional fisherman by birth or profession",
+    "Applicant must be a resident of Goa",
+    "Fishing canoe must be registered with Captain of Ports, Government of Goa"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Purchase application form by paying ₹50",
+      "Fill and submit application with documents",
+      "Submit at Fisheries Department or BDO/Sub-Offices"
+    ]
+  },
+  "documents_required": [
+    "Invoice for FRP Canoe construction/purchase",
+    "Vessel Registration Certificate",
+    "River Gill Net Registration Certificate",
+    "License Certificate",
+    "Undertaking as per proforma",
+    "Aadhaar Card",
+    "OBC (Kharvi)/Professional Certificate",
+    "SC/ST Certificate (if applicable)",
+    "Mandate Form and Bank Passbook",
+    "Authorized Boat Dealer Bills"
+  ],
+  "grievance_redressal": {
+    "email": "dir-fish.goa@nic.in",
+    "resolution_time_days": 30
+  }
+}

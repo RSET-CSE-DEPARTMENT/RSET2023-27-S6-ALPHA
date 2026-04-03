@@ -1,0 +1,32 @@
+{
+  "scheme_id": "WOMEN_CHILD_010",
+  "scheme_name": "Chief Minister Ekal Nari Samman Pension Yojana",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Pension / Financial Assistance",
+  "implementing_authority": "Government of Rajasthan",
+  "description": "Provides monthly pension to widowed, divorced or abandoned women.",
+  "benefits": {
+    "monthly_pension": "₹500–₹1500 based on age"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "age": "18 years and above",
+    "income_limit": "Below ₹48,000 per annum",
+    "residency": "Rajasthan"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Fill application on official portal",
+      "Upload documents",
+      "Submit and await approval"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Residence Certificate",
+    "Income Declaration",
+    "Bank Account Details",
+    "Relevant Status Certificate"
+  ]
+}

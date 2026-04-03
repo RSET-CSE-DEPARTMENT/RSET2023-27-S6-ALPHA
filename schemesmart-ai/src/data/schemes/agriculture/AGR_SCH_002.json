@@ -1,0 +1,39 @@
+{
+  "scheme_id": "AGR_SCH_002",
+  "scheme_name": "Mukhya Mantri Krishi Sa Sajuli Yojana",
+  "sector": "Agriculture",
+  "sub_sector": "Farm Mechanization",
+  "state": "Assam",
+  "implementing_department": "Department of Agriculture, Government of Assam",
+  "description": "Provides financial assistance to small and marginal farmers for purchasing scientific farm tools.",
+  "benefits": [
+    "₹5,000 financial assistance via DBT",
+    "Promotion of mechanized farming",
+    "Increased agricultural productivity"
+  ],
+  "eligibility": [
+    "Resident farmer of Assam",
+    "Small or marginal farmer",
+    "Age above 21 years",
+    "Minimum 3 years of farming experience",
+    "Kisan Credit Card holder"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Submit application through Agriculture Extension Assistant",
+      "Verification at GP/VDP level",
+      "Approval by District Level Committee",
+      "DBT transfer to bank account"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Residence Certificate",
+    "Bank Account Details",
+    "Land Proof",
+    "Caste Certificate",
+    "Passport Photograph"
+  ],
+  "additional_notes": "Only one farmer per family is eligible."
+}

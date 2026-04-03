@@ -1,0 +1,34 @@
+{
+  "scheme_id": "HEA_SCH_001",
+  "scheme_name": "Medical Expenses – Treatment for Major Ailments Including Surgery",
+  "sector": "Health",
+  "sub_sector": "Worker Welfare",
+  "state": "West Bengal",
+  "implementing_department": "Building and Other Construction Workers Welfare Board, Labour Department",
+  "description": "Financial assistance for registered construction workers or their dependents suffering from major diseases including cancer, heart, kidney and others.",
+  "benefits": [
+    "Medical assistance up to ₹20,000 per annum",
+    "Up to ₹60,000 for surgeries like heart or kidney operations"
+  ],
+  "eligibility": [
+    "Resident of West Bengal",
+    "Registered construction worker under BOCW Welfare Board",
+    "Age between 18 and 60 years",
+    "Worker or dependent suffering from listed major ailments"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Register as a construction worker using Form-27",
+      "Submit application Form-XI for medical assistance",
+      "Submit documents to Assistant Labour Commissioner"
+    ]
+  },
+  "documents_required": [
+    "BOCW Identity Card",
+    "Medical Certificate",
+    "Medical Bills",
+    "Dependent Certificate (if applicable)"
+  ],
+  "additional_notes": "Annual renewal of registration is mandatory."
+}

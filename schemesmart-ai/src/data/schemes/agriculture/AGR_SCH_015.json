@@ -1,0 +1,31 @@
+{
+  "scheme_id": "AGR_SCH_015",
+  "scheme_name": "Post Harvest Marketing Scheme",
+  "sector": "Agriculture",
+  "sub_sector": "Post Harvest Infrastructure",
+  "state": "Meghalaya",
+  "implementing_department": "Department of Agriculture & Farmers Welfare, Government of Meghalaya",
+  "description": "Assistance for post-harvest marketing infrastructure and transportation.",
+  "benefits": [
+    "₹2,00,000 subsidy for transport vehicles",
+    "Training allowance ₹189 per day"
+  ],
+  "eligibility": [
+    "Permanent resident of Meghalaya",
+    "Bonafide farmer",
+    "Minimum land holding of 0.2 ha"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Submit application at horticulture office",
+      "First come first serve selection"
+    ]
+  },
+  "documents_required": [
+    "Identity Proof",
+    "Land Documents",
+    "Bank Passbook",
+    "Photograph"
+  ]
+}

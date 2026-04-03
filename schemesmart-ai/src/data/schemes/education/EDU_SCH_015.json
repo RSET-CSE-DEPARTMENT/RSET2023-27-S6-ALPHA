@@ -1,0 +1,33 @@
+{
+  "scheme_id": "EDU_SCH_015",
+  "scheme_name": "Chhattisgarh Saraswati Cycle Scheme",
+  "sector": "Education",
+  "state": "Chhattisgarh",
+  "ministry_or_department": "Department of Education",
+  "implementing_agency": "Government of Chhattisgarh",
+  "description": "Provides free bicycles to girl students to encourage school attendance.",
+  "benefits": {
+    "cycle": "Free bicycle"
+  },
+  "eligibility": {
+    "gender": "Female",
+    "class": "Class 9",
+    "category": "BPL / SC / ST",
+    "residence": "Chhattisgarh"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Contact school headmaster or DEO",
+      "Submit application with documents",
+      "Verification and approval"
+    ]
+  },
+  "documents_required": [
+    "Residence certificate",
+    "BPL card",
+    "Caste certificate",
+    "School certificate",
+    "Aadhaar card"
+  ]
+}

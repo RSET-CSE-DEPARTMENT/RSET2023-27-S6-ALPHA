@@ -1,0 +1,34 @@
+{
+  "scheme_id": "EDU_SCH_014",
+  "scheme_name": "Mukhyamantri Yuba Yogayog Yojana – Special",
+  "sector": "Education",
+  "state": "Tripura",
+  "ministry_or_department": "Directorate of Information Technology",
+  "implementing_agency": "Government of Tripura",
+  "description": "Provides financial assistance for purchasing smartphones to final-year undergraduate students.",
+  "benefits": {
+    "smartphone_grant": "₹5,000 or cost of phone (whichever is lower)",
+    "disbursement_mode": "Direct Benefit Transfer (DBT)"
+  },
+  "eligibility": {
+    "residence": "Tripura",
+    "course_year": "Final year undergraduate",
+    "institution_type": "Government institutions in Tripura",
+    "ration_card": "Tripura ration card holder"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on BMS portal",
+      "Fill application and upload documents",
+      "Submit and download acknowledgement slip"
+    ]
+  },
+  "documents_required": [
+    "Mobile invoice",
+    "Final year marksheet",
+    "Bank passbook",
+    "Ration card",
+    "Applicant photograph"
+  ]
+}

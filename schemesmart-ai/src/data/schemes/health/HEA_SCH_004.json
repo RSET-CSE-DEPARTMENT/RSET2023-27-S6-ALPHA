@@ -1,0 +1,35 @@
+{
+  "scheme_id": "HEA_SCH_004",
+  "scheme_name": "Integrated Child Development Services (ICDS)",
+  "sector": "Health & Nutrition",
+  "sub_sector": "Child Welfare",
+  "state": "Nagaland",
+  "implementing_department": "Social Welfare Department, Government of Nagaland",
+  "description": "Provides nutrition, health and early education services to children, pregnant women and lactating mothers.",
+  "benefits": [
+    "Supplementary Nutrition",
+    "Immunization",
+    "Health Check-ups",
+    "Pre-school Education",
+    "Referral Services"
+  ],
+  "eligibility": [
+    "Children aged 0-6 years",
+    "Pregnant women",
+    "Lactating mothers"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Visit nearest Anganwadi Centre",
+      "Register beneficiary details"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Proof of Age",
+    "Address Proof",
+    "Passport Size Photograph"
+  ],
+  "additional_notes": "Services provided through Anganwadi centres."
+}

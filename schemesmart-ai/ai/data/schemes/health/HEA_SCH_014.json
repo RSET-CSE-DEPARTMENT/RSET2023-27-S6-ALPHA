@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HEA_SCH_014",
+  "scheme_name": "Mukhyamantri Rajshri Yojana",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Girl Child Welfare",
+  "state": "Rajasthan",
+  "implementing_department": "Department of Women and Child Development, Government of Rajasthan",
+  "description": "A scheme to promote the welfare and education of the girl child through staged financial assistance.",
+  "benefits": [
+    "Total assistance of ₹50,000 in six installments from birth to Class 12"
+  ],
+  "eligibility": [
+    "Girl child born in Rajasthan",
+    "Birth in government or private medical institution",
+    "Parents must have undergone family planning after two children"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Register birth at medical institution",
+      "Submit required documents at Anganwadi Centre",
+      "Installments released at different education stages"
+    ]
+  },
+  "required_documents": [
+    "Birth Certificate",
+    "Bhamashah Card / Jan Aadhaar",
+    "Bank Account Details",
+    "Aadhaar Card of Parents"
+  ],
+  "additional_notes": "Installments linked with immunization and school enrollment."
+}

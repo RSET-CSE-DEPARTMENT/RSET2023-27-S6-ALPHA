@@ -1,0 +1,22 @@
+{
+  "scheme_id": "EDU_SCH_010",
+  "scheme_name": "Scholarship for Cadets of Sainik School Imphal",
+  "sector": "Education",
+  "ministry": "Ministry of Defence",
+  "implementing_agency": "Sainik School Imphal",
+  "description": "Financial assistance for cadets facing economic hardship.",
+  "benefits": [
+    "Tuition fees",
+    "Boarding and lodging",
+    "Uniform and academic expenses"
+  ],
+  "eligibility": {
+    "residence": "Mizoram",
+    "institution": "Sainik School Imphal",
+    "income_limit": "₹2.5 lakh per annum"
+  },
+  "application_process": {
+    "mode": "Online",
+    "submission": "Through school authorities"
+  }
+}

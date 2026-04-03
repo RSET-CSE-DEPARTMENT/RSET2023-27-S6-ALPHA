@@ -1,0 +1,34 @@
+{
+  "scheme_id": "AGR_SCH_009",
+  "scheme_name": "Financial Assistance to Purchase Singel Net / Small Rampon Net",
+  "sector": "Fisheries",
+  "sub_sector": "Fishing Equipment",
+  "state": "Goa",
+  "implementing_department": "Department of Fisheries, Government of Goa",
+  "description": "Subsidy for purchase of fishing nets and accessories for traditional fishermen.",
+  "benefits": [
+    "50% subsidy",
+    "Maximum subsidy ₹50,000",
+    "Once every 5 years"
+  ],
+  "eligibility": [
+    "Traditional fisherman",
+    "Resident of Goa",
+    "Belongs to OBC (Kharvi)",
+    "No registered fishing trawler"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Fill application form",
+      "Submit documents",
+      "Inspection and subsidy release"
+    ]
+  },
+  "documents_required": [
+    "Fishing Net License",
+    "Aadhaar Card",
+    "Bank Passbook",
+    "Inspection Report"
+  ]
+}

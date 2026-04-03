@@ -1,0 +1,32 @@
+{
+  "scheme_id": "WOMEN_CHILD_017",
+  "scheme_name": "Asangathit Karmakaar Silai Machine Sahayata Yojana",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Women Employment / Self-Reliance",
+  "implementing_authority": "Labour Department, Government of Chhattisgarh",
+  "description": "Provides free sewing machines to registered unorganized women workers to promote self-employment.",
+  "benefits": {
+    "non_monetary": "Free sewing machine"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "age": "18–50 years",
+    "occupation": "Tailoring / Sewing",
+    "registration": "Registered with Labour Board"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Apply on Labour Department portal",
+      "Select scheme",
+      "Fill form and upload documents",
+      "Submit application"
+    ]
+  },
+  "documents_required": [
+    "Labour Registration Card",
+    "Age Certificate",
+    "Income Certificate",
+    "Bank Passbook"
+  ]
+}
