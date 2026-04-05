@@ -1,0 +1,35 @@
+{
+  "scheme_id": "WOMEN_CHILD_019",
+  "scheme_name": "Widow Pension",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Pension / Social Welfare",
+  "implementing_authority": "Women and Child Development & Social Welfare Department, Government of West Bengal",
+  "description": "Provides monthly pension to widows facing economic hardship in West Bengal.",
+  "benefits": {
+    "monthly_pension": "₹1,000"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "status": "Widow",
+    "age": "60 years and above",
+    "income_limit": "₹1,000 per month",
+    "residency": "West Bengal (10 years)"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect Form-P",
+      "Fill and attach documents",
+      "Submit to respective authority",
+      "Await approval"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Ration Card",
+    "Voter ID",
+    "Income Certificate",
+    "Husband Death Certificate",
+    "Bank Passbook"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "scheme_id": "AGR_SCH_019",
+  "scheme_name": "Subsidy for the Purchase of Wooden/Fiber Reinforced Plastic/Steel Mechanised Boats",
+  "sector": "Fisheries",
+  "state": "Puducherry",
+  "implementing_department": "Department of Fisheries and Fishermen Welfare, Government of Puducherry",
+  "description": "Provides subsidies for purchase and modernization of mechanised fishing boats to increase marine fish production.",
+  "benefits": [
+    "50% subsidy up to ₹7,50,000 for mechanised boats above 47 feet with nets",
+    "50% subsidy up to ₹11,00,000 for steel mechanised boats (45–54 feet)",
+    "50% subsidy up to ₹2,50,000 for conversion/modernization of existing boats",
+    "50% subsidy up to ₹5,00,000 for tuna long-lining modernization"
+  ],
+  "eligibility": [
+    "Member of fishermen community or full-time fishing/fish trade professional",
+    "Resident of Puducherry for minimum 5 years",
+    "Age between 23 and 60 years",
+    "Member of Fishermen Co-operative Society",
+    "No government employment",
+    "Minimum 5 years sea fishing experience (for male applicants)"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application form from Fisheries Department",
+      "Fill form and attach documents",
+      "Submit application and obtain acknowledgment"
+    ]
+  },
+  "documents_required": [
+    "Passport size photograph",
+    "Aadhaar Card",
+    "Voter ID",
+    "Ration Card",
+    "Birth Certificate",
+    "Fishermen Co-operative Membership Certificate",
+    "Residence Certificate (5 years)",
+    "Sea Fishing Experience Proof",
+    "Loan Sanction Order"
+  ]
+}

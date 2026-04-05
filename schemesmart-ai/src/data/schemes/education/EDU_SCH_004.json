@@ -1,0 +1,34 @@
+{
+  "scheme_id": "EDU_SCH_004",
+  "scheme_name": "ICAR Junior Research Fellowship (PGS)",
+  "sector": "Education",
+  "ministry": "Indian Council of Agricultural Research",
+  "implementing_agency": "ICAR",
+  "description": "JRF for postgraduate studies in agriculture and allied sciences.",
+  "benefits": {
+    "veterinary_sciences": "₹12,000 per month + ₹6,000 contingency per year",
+    "other_disciplines": "₹8,640 per month + ₹6,000 contingency per year"
+  },
+  "tenure": "2 years",
+  "eligibility": {
+    "qualification": "Bachelor’s degree in relevant discipline",
+    "minimum_marks": "60% (General/OBC), 55% (SC/ST/PwD)",
+    "age_limit": "Minimum 19 years"
+  },
+  "selection_process": "Based on ICAR All India Entrance Examination",
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Online registration",
+      "Application fee payment",
+      "Send hard copy by post"
+    ]
+  },
+  "documents_required": [
+    "Photograph",
+    "Signature",
+    "Thumb impression",
+    "Government ID",
+    "Fee payment receipt"
+  ]
+}

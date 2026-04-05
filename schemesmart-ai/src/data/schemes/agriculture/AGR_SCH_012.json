@@ -1,0 +1,33 @@
+{
+  "scheme_id": "AGR_SCH_012",
+  "scheme_name": "Subsidy for Purchase of Mechanised Fishing Boats",
+  "sector": "Fisheries",
+  "sub_sector": "Marine Fisheries",
+  "state": "Puducherry",
+  "implementing_department": "Department of Fisheries and Fishermen Welfare, Puducherry",
+  "description": "Subsidy for procurement and modernization of mechanised fishing boats.",
+  "benefits": [
+    "50% subsidy up to ₹11 lakh",
+    "Support for modernization and conversion"
+  ],
+  "eligibility": [
+    "Fishermen or fishing entrepreneurs",
+    "Resident of Puducherry for 5 years",
+    "Member of Fishermen Cooperative Society",
+    "Age between 23 and 60"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application",
+      "Submit documents",
+      "Verification and sanction"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Residence Certificate",
+    "Fishing Experience Proof",
+    "Loan Sanction Letter"
+  ]
+}

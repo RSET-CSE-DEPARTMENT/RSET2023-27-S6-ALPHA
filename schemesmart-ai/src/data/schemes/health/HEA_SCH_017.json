@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HEA_SCH_017",
+  "scheme_name": "Ayushman Bharat – Pradhan Mantri Jan Arogya Yojana",
+  "sector": "Healthcare",
+  "sub_sector": "Health Insurance",
+  "state": "All India",
+  "implementing_department": "Ministry of Health and Family Welfare, Government of India",
+  "description": "Health insurance scheme providing cashless treatment coverage for secondary and tertiary care.",
+  "benefits": [
+    "Health cover up to ₹5,00,000 per family per year",
+    "Cashless and paperless treatment"
+  ],
+  "eligibility": [
+    "Families identified in SECC database",
+    "No restriction on family size or age"
+  ],
+  "application_process": {
+    "mode": "Online / Offline",
+    "steps": [
+      "Check eligibility at PM-JAY portal or hospital",
+      "Verify identity using Aadhaar or ration card",
+      "Receive treatment at empanelled hospitals"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Ration Card",
+    "PM-JAY ID",
+    "Identity Proof"
+  ],
+  "additional_notes": "Covers pre and post-hospitalization expenses."
+}

@@ -1,0 +1,43 @@
+{
+  "scheme_id": "AGR_SCH_017",
+  "scheme_name": "Financial Assistance to Purchase Outboard Motor of 2HP to 5HP",
+  "sector": "Fisheries",
+  "sub_sector": "Fishing Equipment",
+  "state": "Goa",
+  "implementing_department": "Department of Fisheries, Government of Goa",
+  "description": "Subsidy scheme to assist traditional fishermen in purchasing outboard motors (2HP to 5HP) for fishing canoes below 26 feet.",
+  "benefits": [
+    "50% subsidy up to ₹30,000 for General category (unit cost ₹60,000)",
+    "60% subsidy up to ₹36,000 for SC/ST/Women category (unit cost ₹60,000)",
+    "Subsidy applicable for only one outboard motor",
+    "Benefit can be availed once every 5 years"
+  ],
+  "eligibility": [
+    "Applicant must be a traditional fisherman by birth or profession",
+    "Applicant must be a resident of Goa",
+    "Fishing canoe must be registered with Captain of Ports, Government of Goa"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Purchase application form by paying ₹50",
+      "Fill application and attach required documents",
+      "Submit application at Department of Fisheries or BDO/Sub-Offices"
+    ]
+  },
+  "documents_required": [
+    "Vessel Registration Certificate (VRC)",
+    "River Gill Net Registration Certificate",
+    "License Certificate",
+    "Undertaking as per proforma",
+    "Aadhaar Card",
+    "SC/ST Certificate (if applicable)",
+    "Mandate Form and Bank Passbook",
+    "Caste/Professional Certificate",
+    "Original Invoice from Authorized Dealer"
+  ],
+  "grievance_redressal": {
+    "email": "dir-fish.goa@nic.in",
+    "resolution_time_days": 30
+  }
+}

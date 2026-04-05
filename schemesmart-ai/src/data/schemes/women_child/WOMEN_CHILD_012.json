@@ -1,0 +1,36 @@
+{
+  "scheme_id": "WOMEN_CHILD_012",
+  "scheme_name": "Incentive To Girls",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Girl Education / Agriculture",
+  "implementing_authority": "Government of Rajasthan",
+  "description": "Provides annual financial incentives to girl students pursuing agriculture education from senior secondary to PhD level.",
+  "benefits": {
+    "senior_secondary": "₹15,000 per annum",
+    "graduation": "₹25,000 per annum",
+    "post_graduation": "₹25,000 per annum",
+    "phd": "₹40,000 per annum (max 3 years)"
+  },
+  "eligibility": {
+    "gender": "Girl student",
+    "residency": "Rajasthan",
+    "institution": "State-recognized institutions",
+    "academic_status": "Must not have failed previous year"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Login using Jan Aadhaar or SSO ID",
+      "Fill application form",
+      "Upload documents",
+      "Submit application"
+    ]
+  },
+  "documents_required": [
+    "Jan Aadhaar",
+    "Photograph",
+    "Age & Address Proof",
+    "Educational Certificates",
+    "Bank Passbook"
+  ]
+}

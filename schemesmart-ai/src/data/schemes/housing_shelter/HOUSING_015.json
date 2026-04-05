@@ -1,0 +1,31 @@
+{
+  "scheme_name": "Pandit Dindayal Upadhyay Awas Yojana (EBC)",
+  "sector": ["Housing", "Shelter"],
+  "state": "Gujarat",
+  "implementing_department": "Social Justice and Empowerment Department",
+  "details": "Provides housing assistance to Economically Backward Classes.",
+  "benefits": {
+    "financial_assistance": "Up to ₹1,20,000"
+  },
+  "eligibility": [
+    "Belong to EBC category",
+    "Resident of Gujarat",
+    "Annual income not exceeding ₹6,00,000",
+    "Must own or be allotted land"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on eSamajkalyan portal",
+      "Login and fill application",
+      "Upload documents and submit"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Caste Certificate",
+    "Income Certificate",
+    "Land Ownership Proof",
+    "Bank Passbook"
+  ]
+}

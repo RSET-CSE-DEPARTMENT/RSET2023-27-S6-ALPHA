@@ -1,0 +1,34 @@
+{
+  "scheme_name": "Operation of Sports Hostels",
+  "sector": ["Housing"],
+  "state": "Rajasthan",
+  "implementing_department": "Tribal Area Development Department",
+  "details": "Provides residential sports hostels for tribal students with professional training.",
+  "benefits": [
+    "Free accommodation",
+    "Nutritious meals",
+    "Sports training and equipment",
+    "School uniforms"
+  ],
+  "eligibility": [
+    "Scheduled Tribe student",
+    "Resident of Rajasthan",
+    "Studying in class 6–12",
+    "Passed selection test"
+  ],
+  "application_process": {
+    "mode": "Online via CSC/E-Mitra",
+    "steps": [
+      "Visit E-Mitra center",
+      "Submit application with documents",
+      "Biometric verification"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Jan Aadhaar Card",
+    "Caste Certificate",
+    "Income Certificate",
+    "Marksheet"
+  ]
+}

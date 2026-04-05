@@ -1,0 +1,35 @@
+{
+  "scheme_id": "WOMEN_CHILD_001",
+  "scheme_name": "RMEWF – Financial Assistance for Vocational Training of Widows of Ex-Servicemen",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Widow Welfare / Skill Training",
+  "implementing_authority": "Kendriya Sainik Board Secretariat",
+  "description": "Provides one-time financial assistance to widows of Ex-Servicemen to undergo vocational training and settle independently.",
+  "benefits": {
+    "financial_assistance": "₹20,000 (one-time aid after successful completion of training)"
+  },
+  "eligibility": {
+    "beneficiary": "Widow of Ex-Serviceman up to rank of Havildar",
+    "conditions": [
+      "Training must be successfully completed",
+      "Recommendation by Zila Sainik Board"
+    ]
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on KSB portal",
+      "Fill application and upload documents",
+      "Verification by Zila Sainik Welfare Officer",
+      "Forwarding to Kendriya Sainik Board for approval",
+      "Payment through ECS"
+    ]
+  },
+  "documents_required": [
+    "Service Discharge Certificate",
+    "Widow Identity Card",
+    "Training Completion Certificate",
+    "Employment Certificate from ZSWO",
+    "Bank Account Details (PNB/SBI)"
+  ]
+}

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>ClassSense Home</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: transparent;
+            color: #e5e7eb;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        /* HERO SECTION */
+
+        .hero-container {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 3.6rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero-text {
+            color: #cbd5f5;
+            max-width: 700px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* FEATURES */
+
+        .section-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .feature-box {
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            padding: 25px;
+            height: 100%;
+            transition: 0.2s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: #cbd5f5;
+        }
+
+        /* HOW TO USE */
+
+        .info-card {
+            margin-top: 40px;
+            background: rgba(2, 6, 23, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .info-card ul {
+            color: #cbd5f5;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            padding-left: 20px;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .glass-container {
+    max-width: 900px;
+    padding: 40px;
+    border-radius: 20px;
+
+    /* Glass background */
+    background: rgba(255, 255, 255, 0.08);
+
+    /* Stronger blur */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    /* Glass border */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    /* Depth shadow */
+    box-shadow: 
+        0 8px 32px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+
+    color: white;
+    text-align: center;
+}
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HERO SECTION -->
+
+    <div class="hero-container">
+        <div class="glass-container">
+            <h1 class="hero-title mb-4">
+                Welcome to ClassSense
+            </h1>
+
+            <p class="hero-text">
+                ClassSense is a smart classroom engagement system designed to help students stay focused
+                during online sessions. By analyzing participation and attention patterns, the system
+                provides meaningful insights that help students understand their engagement levels
+                and improve their learning experience.
+            </p>
+
+        </div>
+    </div>
+
+
+
+    <!-- FEATURES -->
+
+    <div class="section-container">
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="feature-box">
+
+                    <div class="feature-title">
+                        📊 Engagement Insights
+                    </div>
+
+                    <p class="feature-text">
+                        ClassSense evaluates your activity during meetings and generates an attention score
+                        to help you understand your engagement level in each session.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-box">
+
+                    <div class="feature-title">
+                        🔒 Privacy Protection
+                    </div>
+
+                    <p class="feature-text">
+                        Monitoring occurs only during active classes and collected data is securely stored
+                        for academic engagement analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-box">
+
+                    <div class="feature-title">
+                        📈 Self Improvement
+                    </div>
+
+                    <p class="feature-text">
+                        Session reports allow you to track attention scores, alerts, and participation
+                        duration to improve focus in future classes.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HOW TO USE -->
+
+        <div class="info-card">
+
+            <h5 class="mb-3">
+                How to Use ClassSense
+            </h5>
+
+            <ul>
+
+                <li>Use the <strong>Join Meeting</strong> option in the navigation bar.</li>
+
+                <li>Enter the meeting code provided by your instructor.</li>
+
+                <li>Participate normally during the class session.</li>
+
+                <li>ClassSense analyzes engagement and attention during the session.</li>
+
+                <li>After the session ends, visit the <strong>Reports</strong> section.</li>
+
+                <li>Review your attention score, duration, and alerts.</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-text">
+            ClassSense • Smart Classroom Engagement System
+        </div>
+
+    </div>
+
+</body>
+
+</html>

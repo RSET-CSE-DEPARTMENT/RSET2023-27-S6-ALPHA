@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HOUSING_008",
+  "scheme_name": "Loans and Advances for Construction of a House",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Housing Loans",
+  "implementing_authority": "Manipur Building and Other Construction Workers Welfare Board",
+  "description": "Provides low-interest loans to registered construction workers for house construction.",
+  "benefits": {
+    "loan_amount": "₹1,00,000 to ₹2,00,000",
+    "interest_rate": "5% simple interest",
+    "repayment_period": "5 years"
+  },
+  "eligibility": {
+    "registration": "Registered construction worker",
+    "active_labor_card": true
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application form",
+      "Submit documents",
+      "Submit surety bond"
+    ]
+  },
+  "documents_required": [
+    "Registration Certificate",
+    "Contribution Receipt",
+    "Construction Estimate",
+    "Aadhaar Card",
+    "Bank Passbook"
+  ]
+}

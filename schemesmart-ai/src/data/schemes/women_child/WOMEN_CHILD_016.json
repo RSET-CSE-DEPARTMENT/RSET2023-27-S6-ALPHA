@@ -1,0 +1,38 @@
+{
+  "scheme_id": "WOMEN_CHILD_016",
+  "scheme_name": "Back-To-Lab Post-Doctoral Fellowship Programme",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Women in Science / Research",
+  "implementing_authority": "KSCSTE, Government of Kerala",
+  "description": "Supports women scientists with career breaks to re-enter scientific research through post-doctoral fellowships.",
+  "benefits": {
+    "monthly_fellowship": "₹45,000 + 10% HRA",
+    "annual_contingency": "₹75,000",
+    "duration": "Up to 2 years"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "qualification": "PhD in Science / Engineering",
+    "residency": "Kerala",
+    "age_limit": "40 years (relaxable)",
+    "career_break": "Due to family reasons"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Apply on KSCSTE portal",
+      "Preliminary scrutiny",
+      "Peer review",
+      "Expert committee presentation",
+      "Final approval"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Proof of Residency",
+    "PG & PhD Certificates",
+    "Research Publications",
+    "Career Break Certificate",
+    "Mentor Consent Letter"
+  ]
+}

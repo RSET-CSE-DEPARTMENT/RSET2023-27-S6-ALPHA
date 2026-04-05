@@ -1,0 +1,31 @@
+{
+  "scheme_id": "HOUSING_010",
+  "scheme_name": "Ved-Vyas Housing Construction Scheme",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Rural Housing",
+  "implementing_authority": "Department of Agriculture, Animal Husbandry and Cooperative, Government of Jharkhand",
+  "description": "Provides housing construction assistance to BPL fish farmers in Jharkhand.",
+  "benefits": {
+    "financial_assistance": "₹1,20,000 for house construction"
+  },
+  "eligibility": {
+    "occupation": "Fish Farmer",
+    "economic_status": "Below Poverty Line",
+    "housing_condition": "Kutcha/Thatched house",
+    "land_ownership": true
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Visit District Fisheries Office",
+      "Submit application and documents"
+    ]
+  },
+  "documents_required": [
+    "Applicant Photograph",
+    "Kutcha House Photograph",
+    "Income Certificate",
+    "Land Ownership Documents",
+    "Fish Farming Certificate"
+  ]
+}

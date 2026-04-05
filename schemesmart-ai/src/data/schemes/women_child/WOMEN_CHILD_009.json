@@ -1,0 +1,31 @@
+{
+  "scheme_id": "WOMEN_CHILD_009",
+  "scheme_name": "National Award for Senior Citizens – Iconic Mother",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Senior Women Welfare",
+  "implementing_authority": "Ministry of Social Justice and Empowerment",
+  "description": "National award recognizing senior women who raised children against great odds.",
+  "benefits": {
+    "cash_award": "₹2,50,000",
+    "other": "Citation and Memento"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "age": "60 years and above",
+    "achievement": "Outstanding contribution as mother"
+  },
+  "application_process": {
+    "mode": "Online (Nomination)",
+    "steps": [
+      "Registration by nominating agency",
+      "Submission of nomination",
+      "Screening and final selection"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Proof of Age",
+    "Bio-data",
+    "Details of Work and Achievements"
+  ]
+}

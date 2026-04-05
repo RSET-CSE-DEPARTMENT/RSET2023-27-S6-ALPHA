@@ -1,0 +1,36 @@
+{
+  "scheme_id": "HEA_SCH_016",
+  "scheme_name": "National Scholarship for Higher Education of ST Students",
+  "sector": "Education",
+  "sub_sector": "Higher Education Scholarship",
+  "state": "All India",
+  "implementing_department": "Ministry of Tribal Affairs, Government of India",
+  "description": "Provides financial assistance to Scheduled Tribe students pursuing higher education.",
+  "benefits": [
+    "Full tuition fee reimbursement",
+    "Living allowance",
+    "Books and stationery allowance"
+  ],
+  "eligibility": [
+    "Student must belong to Scheduled Tribe (ST)",
+    "Family income less than ₹6,00,000 per annum",
+    "Enrolled in recognized higher education institution"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Apply through National Scholarship Portal",
+      "Upload required documents",
+      "Institution and state verification",
+      "Funds transferred via DBT"
+    ]
+  },
+  "documents_required": [
+    "ST Caste Certificate",
+    "Income Certificate",
+    "Aadhaar Card",
+    "Bank Account Details",
+    "Admission Proof"
+  ],
+  "additional_notes": "Renewal required every academic year."
+}

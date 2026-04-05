@@ -1,0 +1,37 @@
+{
+  "scheme_id": "AGR_SCH_006",
+  "scheme_name": "National Food Security Mission",
+  "sector": "Agriculture",
+  "sub_sector": "Crop Productivity",
+  "state": "All India",
+  "implementing_department": "Department of Agriculture & Farmers Welfare, Government of India",
+  "description": "Mission to increase production and productivity of crops through dissemination of improved technologies and farm management practices.",
+  "benefits": [
+    "₹9000 per ha for crop demonstration",
+    "₹15000 per ha for cropping-system demonstration",
+    "₹6000 per ha for coarse cereals demonstration",
+    "Seed distribution assistance",
+    "Support for farm implements, bio-fertilizers, bio-pesticides",
+    "Cluster and frontline demonstrations"
+  ],
+  "eligibility": [
+    "All farmers are eligible",
+    "Maximum assistance limited to 5 hectares per season",
+    "At least 33% allocation for small and marginal farmers",
+    "At least 30% allocation for women farmers"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Identification of beneficiaries by Gram Panchayat",
+      "Release of funds to State Governments",
+      "Funds transferred to district agencies",
+      "Direct benefit transfer to beneficiaries"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Bank Account Details",
+    "Caste Certificate (if applicable)"
+  ]
+}

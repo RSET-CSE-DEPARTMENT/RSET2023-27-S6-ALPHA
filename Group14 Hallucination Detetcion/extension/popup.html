@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Hallucination Detector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+    <!-- Ambient glow background -->
+    <div class="ambient-glow"></div>
+
+    <header class="header">
+        <div class="header__brand">
+            <div class="header__icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="url(#pg1)" />
+                    <path d="M2 17l10 5 10-5" stroke="url(#pg2)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12l10 5 10-5" stroke="url(#pg2)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="pg1" x1="2" y1="2" x2="22" y2="12">
+                            <stop stop-color="#818cf8" />
+                            <stop offset="1" stop-color="#a78bfa" />
+                        </linearGradient>
+                        <linearGradient id="pg2" x1="2" y1="12" x2="22" y2="22">
+                            <stop stop-color="#818cf8" />
+                            <stop offset="1" stop-color="#c084fc" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="header__text">
+                <h1 class="header__title">HalluGuard</h1>
+                <span class="header__version">v2.0</span>
+            </div>
+        </div>
+        <div class="header__actions">
+            <button class="icon-btn" id="settingsBtn" title="Settings">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.32 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Status Card -->
+        <div class="status-card" id="statusCard">
+            <div class="status-card__top">
+                <div class="status-indicator" id="statusIndicator">
+                    <div class="status-dot-wrapper">
+                        <div class="status-dot-ring" id="statusRing"></div>
+                        <div class="status-dot" id="statusDot"></div>
+                    </div>
+                    <div class="status-info">
+                        <span class="status-text" id="statusText">Checking…</span>
+                        <p class="status-site" id="statusSite"></p>
+                    </div>
+                </div>
+                <div class="status-shield" id="statusShield">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats" id="stats">
+            <div class="stat">
+                <div class="stat__icon stat__icon--issues">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <div class="stat__content">
+                    <span class="stat__value" id="issueCount">—</span>
+                    <span class="stat__label">Issues</span>
+                </div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat__icon stat__icon--scan">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <div class="stat__content">
+                    <span class="stat__value" id="lastScan">—</span>
+                    <span class="stat__label">Last Scan</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggle -->
+        <div class="toggle-row">
+            <div class="toggle-row__left">
+                <svg class="toggle-row__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <span class="toggle-label">Auto-scan responses</span>
+            </div>
+            <label class="toggle">
+                <input type="checkbox" id="toggleCheck" checked />
+                <span class="toggle__track">
+                    <span class="toggle__thumb"></span>
+                </span>
+            </label>
+        </div>
+
+        <!-- Supported Sites -->
+        <div class="sites">
+            <p class="sites__title">Supported Platforms</p>
+            <div class="sites__list">
+                <div class="site-tag" data-site="chatgpt">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" opacity="0.6">
+                        <circle cx="12" cy="12" r="4"/>
+                    </svg>
+                    <span>ChatGPT</span>
+                </div>
+                <div class="site-tag" data-site="claude">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" opacity="0.6">
+                        <circle cx="12" cy="12" r="4"/>
+                    </svg>
+                    <span>Claude</span>
+                </div>
+                <div class="site-tag" data-site="gemini">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" opacity="0.6">
+                        <circle cx="12" cy="12" r="4"/>
+                    </svg>
+                    <span>Gemini</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__left">
+            <span class="footer__badge">AI-Powered</span>
+        </div>
+        <span class="footer__text">HalluGuard Detection Engine</span>
+    </footer>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

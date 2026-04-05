@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ClassSense – Live Session</title>
+
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+
+  <!-- Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+
+  <style>
+    body {
+      background-color: #f5f7fb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+
+    .cs-topbar {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+    }
+
+
+    .cs-brand {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+
+    .cs-brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+      background: #e0edff;
+      font-size: 1.1rem;
+    }
+
+
+    .cs-nav-pill {
+      border-radius: 999px !important;
+      padding-inline: 1.25rem;
+      font-weight: 500;
+      color: #64748b;
+    }
+
+
+    .cs-nav-pill.active {
+      background: #e0edff !important;
+      color: #2563eb !important;
+    }
+
+
+    .cs-session-chip {
+      background: #f1f5f9;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+
+    .cs-timer {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-weight: 600;
+      color: #0f172a;
+      background: #e0f2fe;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+
+    .cs-chip-pill {
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+
+    .cs-card {
+      border-radius: 1rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    }
+
+
+    .cs-student-card {
+      border-radius: 0.9rem;
+      padding: 0.9rem 0.9rem 0.8rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+
+
+    .cs-attention-pill {
+      border-radius: 999px;
+      padding: 0.1rem 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+
+    .cs-att-high {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+
+    .cs-att-mid {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+
+    .cs-att-low {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+
+    .cs-heat-cell {
+      width: 100%;
+      padding-top: 100%;
+      border-radius: 0.75rem;
+      position: relative;
+      cursor: default;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+
+    .cs-heat-cell-inner {
+      position: absolute;
+      inset: 0.35rem;
+      border-radius: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #0f172a;
+      font-size: 0.8rem;
+    }
+
+
+    .cs-heat-cell:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+    }
+
+
+    .cs-alert-banner {
+      border-radius: 0.9rem;
+      padding: 0.85rem 1rem;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+
+    .cs-alert-badge {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 0.1rem 0.55rem;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-weight: 600;
+    }
+
+
+    .cs-scroll-y {
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+
+    .cs-metric-pill {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* ========== ALERTS SYSTEM STYLES ========== */
+    .cs-alert-card {
+      border-radius: 0.9rem;
+      padding: 0.85rem 1rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #e2e8f0;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.04);
+      margin-bottom: 0.6rem;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .cs-alert-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);
+    }
+
+    .cs-alert-card.critical {
+      border-left-color: #ef4444;
+      background: linear-gradient(to right, #fef2f2, #ffffff);
+    }
+
+    .cs-alert-card.warning {
+      border-left-color: #f59e0b;
+      background: linear-gradient(to right, #fffbeb, #ffffff);
+    }
+
+    .cs-alert-card.recovery {
+      border-left-color: #22c55e;
+      background: linear-gradient(to right, #f0fdf4, #ffffff);
+    }
+
+    .cs-severity-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .cs-severity-critical {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .cs-severity-warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .cs-severity-recovery {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    @keyframes cs-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.35);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+      }
+    }
+
+    .cs-alert-card.critical.cs-new {
+      animation: cs-pulse 1.8s ease-in-out 3;
+    }
+
+    .cs-pause-banner {
+      border-radius: 0.9rem;
+      padding: 0.75rem 1rem;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .cs-pause-countdown {
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #1d4ed8;
+    }
+
+    .cs-history-item {
+      padding: 0.4rem 0;
+      font-size: 0.82rem;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .cs-history-item:last-child {
+      border-bottom: none;
+    }
+
+    .cs-history-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .cs-history-dot.critical {
+      background: #ef4444;
+    }
+
+    .cs-history-dot.warning {
+      background: #f59e0b;
+    }
+
+    .cs-history-dot.recovery {
+      background: #22c55e;
+    }
+
+    .cs-history-dot.system {
+      background: #3b82f6;
+    }
+
+    .cs-alerts-scroll {
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    .cs-history-scroll {
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    .cs-alert-action-btn {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 120ms ease;
+    }
+
+    .cs-alert-action-btn.acknowledge {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .cs-alert-action-btn.acknowledge:hover {
+      background: #dcfce7;
+    }
+
+
+
+    .cs-summary-stat {
+      border-radius: 0.75rem;
+      padding: 0.7rem 0.85rem;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-alert-empty {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #94a3b8;
+    }
+
+    .cs-alert-empty i {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- Top navigation / header -->
+  <header class="cs-topbar">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-4">
+        <div class="cs-brand">
+          <span class="cs-brand-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </span>
+          <span>ClassSense</span>
+        </div>
+
+
+        <ul class="nav nav-pills small">
+          <li class="nav-item">
+            <button class="nav-link cs-nav-pill active" data-view="dashboardView">
+              <i class="fa-solid fa-gauge-high me-1"></i> Dashboard
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link cs-nav-pill" data-view="heatmapView">
+              <i class="fa-solid fa-table-cells-large me-1"></i> Heatmap
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link cs-nav-pill" data-view="analyticsView">
+              <i class="fa-solid fa-chart-line me-1"></i> Analytics
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link cs-nav-pill" data-view="alertsView">
+              <i class="fa-solid fa-bell me-1"></i> Alerts
+            </button>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="d-flex align-items-center gap-3">
+        <div class="cs-session-chip">
+          <i class="fa-solid fa-book-open me-1 text-primary"></i>
+          <span id="className">Loading...</span>
+        </div>
+
+
+        <div class="cs-timer">
+          <i class="fa-regular fa-clock text-sky-700"></i>
+          <span id="meetingTime">00:00:00</span>
+        </div>
+
+
+        <button id="endBtn" class="btn btn-outline-danger btn-sm">
+          <i class="fa-solid fa-power-off me-1"></i> End Session
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="container-fluid py-4">
+    <!-- DASHBOARD VIEW -->
+    <section id="dashboardView" class="d-block">
+      <div class="row g-3 mb-3">
+        <div class="col-md-8">
+          <div class="card cs-card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h5 class="mb-1">Live Class Overview</h5>
+                  <div class="cs-metric-pill">
+                    Meeting code:
+                    <span id="codeText" class="fw-semibold text-primary"></span>
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-2 ms-1" onclick="copyCode()">
+                      <i class="fa-regular fa-copy"></i>
+                    </button>
+                  </div>
+                </div>
+                <span class="badge rounded-pill bg-success-subtle text-success-emphasis">
+                  <i class="fa-solid fa-signal me-1"></i> Live
+                </span>
+              </div>
+
+
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-3 bg-slate-50">
+                    <div class="text-muted small mb-1">Total Students</div>
+                    <div class="d-flex align-items-baseline gap-2">
+                      <span id="metricTotal" class="fs-3 fw-semibold">0</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-3 bg-slate-50">
+                    <div class="text-muted small mb-1">Present</div>
+                    <div class="d-flex align-items-baseline gap-2">
+                      <span id="metricPresent" class="fs-3 fw-semibold text-success">0</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-3 bg-slate-50">
+                    <div class="text-muted small mb-1">Average Attention</div>
+                    <div class="d-flex align-items-baseline gap-2">
+                      <span id="metricAvg" class="fs-3 fw-semibold">0%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-3 bg-slate-50">
+                    <div class="text-muted small mb-1">Need Attention</div>
+                    <div class="d-flex align-items-baseline gap-2">
+                      <span id="metricLow" class="fs-3 fw-semibold text-danger">0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <hr class="my-4">
+
+
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Students</h6>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button class="btn btn-outline-secondary active" id="sortDefaultBtn">Default</button>
+                  <button class="btn btn-outline-secondary" id="sortLowBtn">Lowest Attention</button>
+                </div>
+              </div>
+              <div class="row g-3" id="studentsGrid"></div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="card cs-card mb-3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Class Alerts</h6>
+                <span id="alertCountBadge" class="cs-alert-badge">0 active</span>
+              </div>
+
+
+              <div id="alertBanner" class="cs-alert-banner mb-3 d-none">
+                <div class="d-flex gap-2">
+                  <i class="fa-solid fa-triangle-exclamation mt-1"></i>
+                  <div>
+                    <div class="fw-semibold">Low Class Attention Detected</div>
+                    <div class="small mb-1" id="alertTextDesc">
+                      Class attention dropped below 60%. Consider taking action to re‑engage students.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card cs-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Report Generation</h6>
+              </div>
+              <div class="small text-muted mb-3">Generate a summary of the current session for download.</div>
+
+
+              <div class="mb-2 small">
+                <span class="fw-semibold" id="previewStudents">0</span> students •
+                <span class="fw-semibold" id="previewEngaged">0</span> engaged •
+                <span class="fw-semibold" id="previewNeedAttention">0</span> need attention
+              </div>
+
+
+              <div class="d-flex gap-2">
+                <button class="btn btn-primary btn-sm flex-fill">
+                  <i class="fa-solid fa-file-lines me-1"></i> Generate Report
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" id="exportCsvBtn">
+                  <i class="fa-solid fa-download me-1"></i> Export CSV
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- HEATMAP VIEW -->
+    <section id="heatmapView" class="d-none">
+      <div class="card cs-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <h5 class="mb-1">Real‑Time Attention Heatmap</h5>
+              <div class="small text-muted">Visual overview of student engagement levels.</div>
+            </div>
+            <div class="small">
+              <span class="badge rounded-pill text-bg-success me-1">Highly Attentive (≥ 70%)</span>
+              <span class="badge rounded-pill text-bg-warning me-1">Moderate (40–69%)</span>
+              <span class="badge rounded-pill text-bg-danger">Need Attention (&lt; 40%)</span>
+            </div>
+          </div>
+
+
+          <div class="row g-2" id="heatmapGrid"></div>
+
+
+          <div class="row mt-4">
+            <div class="col-md-4">
+              <div class="border rounded-3 px-3 py-2">
+                <div class="small text-muted">Highly Attentive</div>
+                <div class="fw-semibold" id="heatHigh">0 students engaged</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="border rounded-3 px-3 py-2">
+                <div class="small text-muted">Moderate Attention</div>
+                <div class="fw-semibold" id="heatMid">0 students partially engaged</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="border rounded-3 px-3 py-2">
+                <div class="small text-muted">Need Attention</div>
+                <div class="fw-semibold" id="heatLow">0 students disengaged</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ANALYTICS VIEW -->
+    <section id="analyticsView" class="d-none">
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="card cs-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <div>
+                  <h5 class="mb-1">Attention Score vs Time</h5>
+                  <div class="small text-muted">Comprehensive insights into class engagement.</div>
+                </div>
+
+              </div>
+              <canvas id="lineChart" height="110"></canvas>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="card cs-card">
+            <div class="card-body">
+              <h6 class="mb-2">Average Attention per Student</h6>
+              <canvas id="barChart" height="130"></canvas>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="card cs-card">
+            <div class="card-body">
+              <h6 class="mb-2">Cognitive State Distribution</h6>
+              <canvas id="pieChart" height="130"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ALERTS VIEW -->
+    <section id="alertsView" class="d-none">
+      <div class="row g-3">
+        <!-- LEFT: Active Alerts -->
+        <div class="col-md-8">
+          <div class="card cs-card h-100">
+            <div class="card-body">
+              <!-- Controls bar -->
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h5 class="mb-0">Live Alerts</h5>
+                  <div class="small text-muted" id="alertsViewSubtitle">Monitoring student engagement in real time</div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span id="alertsViewCount" class="cs-alert-badge">0 active</span>
+                  <div class="dropdown">
+                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="pauseAlertsBtn"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-pause me-1"></i> Pause Alerts
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" id="pauseDropdownMenu">
+                      <li><a class="dropdown-item" href="#" onclick="closePauseDropdown(); pauseAlerts(1); return false;">1 minute</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="closePauseDropdown(); pauseAlerts(2); return false;">2 minutes</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="closePauseDropdown(); pauseAlerts(5); return false;">5 minutes</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="closePauseDropdown(); pauseAlerts(10); return false;">10 minutes</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pause banner -->
+              <div id="alertsPauseBanner" class="cs-pause-banner mb-3 d-none">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-circle-pause"></i>
+                  <div>
+                    <div class="fw-semibold">Alerts Paused</div>
+                    <div class="small">New alerts are temporarily suppressed. Monitoring continues in the background.
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <span id="pauseCountdown" class="cs-pause-countdown">00:00</span>
+                  <button class="btn btn-sm btn-outline-primary" onclick="resumeAlerts()">
+                    <i class="fa-solid fa-play me-1"></i> Resume
+                  </button>
+                </div>
+              </div>
+
+              <!-- Active alerts list -->
+              <div id="activeAlertsList" class="cs-alerts-scroll"></div>
+
+              <!-- Recovery notifications -->
+              <div id="recoverySection" class="mt-3 d-none">
+                <h6 class="small text-muted mb-2"><i class="fa-solid fa-arrow-trend-up me-1"></i>Recent Recoveries</h6>
+                <div id="recoveryList"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Summary & History -->
+        <div class="col-md-4">
+          <!-- Summary metrics -->
+          <div class="card cs-card mb-3">
+            <div class="card-body">
+              <h6 class="mb-3"><i class="fa-solid fa-chart-pie me-1"></i> Alert Summary</h6>
+              <div class="cs-summary-stat">
+                <div class="small text-muted">Critical Alerts</div>
+                <div class="fs-4 fw-bold text-danger" id="summCritical">0</div>
+              </div>
+              <div class="cs-summary-stat">
+                <div class="small text-muted">Warnings</div>
+                <div class="fs-4 fw-bold" style="color:#f59e0b" id="summWarning">0</div>
+              </div>
+              <div class="cs-summary-stat">
+                <div class="small text-muted">Recoveries</div>
+                <div class="fs-4 fw-bold text-success" id="summRecovery">0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert History Log -->
+          <div class="card cs-card">
+            <div class="card-body">
+              <h6 class="mb-2"><i class="fa-solid fa-clock-rotate-left me-1"></i> Alert History</h6>
+              <div id="alertHistoryLog" class="cs-history-scroll"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <script>
+    /* ================= FIREBASE INIT ================= */
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVjpHNiWzoGudpyIlwMIWsRiRXeuxEQqk",
+      authDomain: "classsense-1b1cd.firebaseapp.com",
+      projectId: "classsense-1b1cd",
+      storageBucket: "classsense-1b1cd.firebasestorage.app",
+      messagingSenderId: "171751023325",
+      appId: "1:171751023325:web:96074fa2db15b6d896b134",
+      measurementId: "G-D37P2EYV04"
+    };
+
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+
+    /* ================= SESSION CODE ================= */
+    const sessionCode = window.location.pathname.substring(1);
+    document.getElementById("codeText").innerText = sessionCode;
+
+
+    /* ================= TIMER ================= */
+    const timerEl = document.getElementById("meetingTime"); // ✅ correct id
+    let sessionStartTime = null;
+    let timerInterval = null;
+
+
+    db.collection("sessions").doc(sessionCode).get().then((doc) => {
+      if (doc.exists) {
+        sessionStartTime = new Date(doc.data().createdAt);
+        startTimer();
+      }
+    });
+
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        const now = new Date();
+        const diff = now - sessionStartTime;
+        const totalSeconds = Math.floor(diff / 1000);
+
+
+        const h = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+        const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+        const s = String(totalSeconds % 60).padStart(2, "0");
+
+
+        timerEl.textContent = `${h}:${m}:${s}`;
+      }, 1000);
+    }
+
+
+    /* ================= STATE ================= */
+    let studentsState = [];
+    let attentionHistory = []; // [{ t, avg }]
+
+
+    function attentionBucket(score) {
+      if (score >= 70) return "high";
+      if (score >= 40) return "mid";
+      return "low";
+    }
+
+
+    function computeAttentionScore(student) {
+      // If backend already provides score, use it.
+      if (typeof student.attentionScore === "number") return student.attentionScore;
+      // Return null if no score available yet (Issue #5: show loading instead of 50)
+      return null;
+    }
+
+
+    /* ================= STUDENT CARDS ================= */
+    const studentsGridEl = document.getElementById("studentsGrid");
+    const metricTotalEl = document.getElementById("metricTotal");
+    const metricPresentEl = document.getElementById("metricPresent");
+    const metricAvgEl = document.getElementById("metricAvg");
+    const metricLowEl = document.getElementById("metricLow");
+
+
+    const previewStudentsEl = document.getElementById("previewStudents");
+    const previewEngagedEl = document.getElementById("previewEngaged");
+    const previewNeedAttentionEl = document.getElementById("previewNeedAttention");
+
+
+    const heatmapGridEl = document.getElementById("heatmapGrid");
+    const heatHighEl = document.getElementById("heatHigh");
+    const heatMidEl = document.getElementById("heatMid");
+    const heatLowEl = document.getElementById("heatLow");
+
+
+    const alertBanner = document.getElementById("alertBanner");
+    const alertCountBadge = document.getElementById("alertCountBadge");
+
+
+    /* ================= ALERTS ENGINE STATE ================= */
+    const CRITICAL_THRESHOLD = 40;
+    const WARNING_THRESHOLD = 55;
+    const RECOVERY_THRESHOLD = 70;
+    const COOLDOWN_MS = 60000; // 60 seconds cooldown per student
+
+    let activeAlerts = [];       // Currently active alert objects
+    let alertHistory = [];       // Chronological log of all events
+    let alertCooldowns = {};     // { studentId: lastAlertTime }
+    let previousScores = {};     // { studentId: lastKnownScore }
+    let recoveryAlerts = [];     // Recent recovery notifications
+    let alertsPaused = false;
+    let pauseEndTime = null;
+    let pauseTimerInterval = null;
+    let alertIdCounter = 0;
+    let totalCriticalCount = 0;
+    let totalWarningCount = 0;
+    let totalRecoveryCount = 0;
+    let alertsPausedDuringSession = false;
+
+    // New alerts view DOM references
+    const activeAlertsListEl = document.getElementById("activeAlertsList");
+    const recoveryListEl = document.getElementById("recoveryList");
+    const recoverySectionEl = document.getElementById("recoverySection");
+    const alertHistoryLogEl = document.getElementById("alertHistoryLog");
+    const alertsPauseBannerEl = document.getElementById("alertsPauseBanner");
+    const pauseCountdownEl = document.getElementById("pauseCountdown");
+    const alertsViewCountEl = document.getElementById("alertsViewCount");
+    const summCriticalEl = document.getElementById("summCritical");
+    const summWarningEl = document.getElementById("summWarning");
+    const summRecoveryEl = document.getElementById("summRecovery");
+
+
+    let sortMode = "default";
+
+
+    document.getElementById("sortDefaultBtn").addEventListener("click", () => {
+      sortMode = "default";
+      document.getElementById("sortDefaultBtn").classList.add("active");
+      document.getElementById("sortLowBtn").classList.remove("active");
+      renderAll();
+    });
+
+
+    document.getElementById("sortLowBtn").addEventListener("click", () => {
+      sortMode = "low";
+      document.getElementById("sortLowBtn").classList.add("active");
+      document.getElementById("sortDefaultBtn").classList.remove("active");
+      renderAll();
+    });
+
+
+    function getPresenceStatus(student) {
+      if (!student.lastSeen) return { status: "unknown", color: "#64748b", label: "Unknown" };
+
+      const lastSeen = new Date(student.lastSeen);
+      const now = new Date();
+      const secondsSinceSeen = (now - lastSeen) / 1000;
+
+      if (student.status === "offline" || student.leaveTime) {
+        return { status: "offline", color: "#ef4444", label: "Disconnected" };
+      }
+
+      if (secondsSinceSeen < 30) {
+        return { status: "online", color: "#22c55e", label: "Online" };
+      } else if (secondsSinceSeen < 120) {
+        return { status: "idle", color: "#facc15", label: "Idle" };
+      } else {
+        return { status: "disconnected", color: "#ef4444", label: "Disconnected" };
+      }
+    }
+
+
+    function formatTime(timeString) {
+      if (!timeString) return "N/A";
+      const date = new Date(timeString);
+      return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+    }
+
+
+    function renderStudents() {
+      studentsGridEl.innerHTML = "";
+      if (!studentsState.length) return;
+
+
+      let list = [...studentsState].filter(s => s.status !== 'offline');
+      if (sortMode === "low") {
+        list.sort((a, b) => a.attentionScore - b.attentionScore);
+      }
+
+
+      list.forEach((student) => {
+        const score = student.attentionScore;
+        const bucket = attentionBucket(score);
+        const stateLabel = {
+          high: "Attentive",
+          mid: "Distracted",
+          low: "Sleepy / Inactive"
+        }[bucket];
+
+
+        const presence = getPresenceStatus(student);
+        const joinTime = formatTime(student.joinTime);
+
+
+        const col = document.createElement("div");
+        col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
+
+
+        const card = document.createElement("div");
+        card.className = "cs-student-card";
+
+
+        const row1 = document.createElement("div");
+        row1.className = "text-center mb-1";
+
+
+        const nameEl = document.createElement("div");
+        nameEl.className = "fw-semibold text-truncate text-center";
+
+        const presenceDot = document.createElement("span");
+        presenceDot.className = "rounded-circle d-inline-block";
+        presenceDot.style.cssText = `width:8px;height:8px;background:${presence.color};margin-right:6px;vertical-align:middle;`;
+
+        nameEl.appendChild(presenceDot);
+        nameEl.appendChild(document.createTextNode(student.name || "Student"));
+
+
+        const scoreEl = document.createElement("div");
+        scoreEl.className = "fw-bold fs-4 text-center";
+        scoreEl.style.color = bucket === "high" ? "#22c55e" : bucket === "mid" ? "#eab308" : "#ef4444";
+        scoreEl.textContent = score != null ? `${score}` : `…`;
+
+
+        row1.appendChild(nameEl);
+        row1.appendChild(scoreEl);
+
+
+        const row2 = document.createElement("div");
+        row2.className = "d-flex justify-content-between align-items-center small";
+
+
+        const pill = document.createElement("span");
+        pill.className = `cs-attention-pill ${bucket === "high" ? "cs-att-high" : bucket === "mid" ? "cs-att-mid" : "cs-att-low"
+          }`;
+        pill.innerHTML = `<span class="rounded-circle d-inline-block me-1" style="width:8px;height:8px;background:${bucket === "high" ? "#22c55e" : bucket === "mid" ? "#facc15" : "#ef4444"
+          };"></span>${stateLabel}`;
+
+
+        const sub = document.createElement("span");
+        sub.className = "text-muted small";
+        sub.textContent = presence.label;
+
+
+        row2.appendChild(pill);
+        row2.appendChild(sub);
+
+
+        const row3 = document.createElement("div");
+        row3.className = "mt-2 small text-muted text-center";
+        row3.textContent = `Joined: ${joinTime}`;
+
+
+        card.appendChild(row1);
+        card.appendChild(row2);
+        card.appendChild(row3);
+        col.appendChild(card);
+        studentsGridEl.appendChild(col);
+      });
+    }
+
+
+    let hasPlayedBeep = false;
+
+    // Helper to play a short beep
+    function playLowAttentionBeep() {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 800; // 800 Hz
+      gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.5); // plays for 0.5 seconds
+    }
+
+    function renderMetrics() {
+      const activeStudents = studentsState.filter(s => s.status !== 'offline');
+      const total = activeStudents.length;
+      const present = activeStudents.filter((s) => {
+        const presence = getPresenceStatus(s);
+        return presence.status === "online" || presence.status === "idle";
+      }).length;
+      const scores = activeStudents.map((s) => s.attentionScore).filter(s => s != null);
+      const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+      const lowCount = activeStudents.filter((s) => s.attentionScore != null && s.attentionScore < 40).length;
+      const engaged = activeStudents.filter((s) => s.attentionScore != null && s.attentionScore >= 70).length;
+
+
+      metricTotalEl.textContent = total;
+      metricPresentEl.textContent = present;
+      metricAvgEl.textContent = `${avg}%`;
+      metricLowEl.textContent = lowCount;
+
+
+      previewStudentsEl.textContent = total;
+      previewEngagedEl.textContent = engaged;
+      previewNeedAttentionEl.textContent = lowCount;
+
+
+      // Dashboard sidebar alert banner (class-wide)
+      const alertActive = activeAlerts.length > 0;
+      alertBanner.classList.toggle("d-none", !alertActive);
+      const critCount = activeAlerts.filter(a => a.severity === 'critical').length;
+      const warnCount = activeAlerts.filter(a => a.severity === 'warning').length;
+      alertCountBadge.textContent = `${activeAlerts.length} active`;
+    }
+
+
+    function renderHeatmap() {
+      heatmapGridEl.innerHTML = "";
+      let high = 0, mid = 0, low = 0;
+      const activeStudents = studentsState.filter(s => s.status !== 'offline');
+
+
+      activeStudents.forEach((s) => {
+        const bucket = attentionBucket(s.attentionScore);
+        if (bucket === "high") high++;
+        else if (bucket === "mid") mid++;
+        else low++;
+
+
+        const col = document.createElement("div");
+        col.className = "col-4 col-sm-3 col-md-2 col-lg-1";
+
+
+        const cell = document.createElement("div");
+        cell.className = "cs-heat-cell";
+        const inner = document.createElement("div");
+        inner.className = "cs-heat-cell-inner";
+        inner.textContent = `${s.attentionScore}%`;
+
+
+        let bg;
+        if (bucket === "high") bg = "#22c55e";
+        else if (bucket === "mid") bg = "#facc15";
+        else bg = "#ef4444";
+
+
+        inner.style.background = bg;
+        inner.style.color = "#0f172a";
+
+
+        cell.appendChild(inner);
+        col.appendChild(cell);
+        heatmapGridEl.appendChild(col);
+      });
+
+
+      heatHighEl.textContent = `${high} students engaged`;
+      heatMidEl.textContent = `${mid} students partially engaged`;
+      heatLowEl.textContent = `${low} students disengaged`;
+    }
+
+
+    /* ================= ALERT ENGINE ================= */
+    function formatTimestamp(date) {
+      if (!date) date = new Date();
+      return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    }
+
+    function processAlerts() {
+      if (!studentsState.length) return;
+      const now = Date.now();
+
+      studentsState.forEach((student) => {
+        const sid = student.id;
+        const score = student.attentionScore;
+        const presence = getPresenceStatus(student);
+
+        // Skip students with null scores (camera still loading)
+        if (score == null) return;
+
+        // Skip offline students
+        if (presence.status === 'offline' || presence.status === 'disconnected') {
+          previousScores[sid] = score;
+          return;
+        }
+
+        // ── STEP 1: Always update live score on existing active alerts ──
+        const existingIdx = activeAlerts.findIndex(a => a.studentId === sid);
+        if (existingIdx >= 0) {
+          activeAlerts[existingIdx].score = score;
+
+          // Determine current severity from live score
+          let liveSeverity = null;
+          let liveStatus = '';
+          if (score < CRITICAL_THRESHOLD) {
+            liveSeverity = 'critical';
+            liveStatus = 'Distracted';
+          } else if (score < WARNING_THRESHOLD) {
+            liveSeverity = 'warning';
+            liveStatus = 'Low engagement';
+          }
+
+          if (liveSeverity) {
+            // Escalate severity if needed (warning → critical)
+            const prevSeverity = activeAlerts[existingIdx].severity;
+            if (prevSeverity !== liveSeverity) {
+              activeAlerts[existingIdx].severity = liveSeverity;
+              if (liveSeverity === 'critical' && prevSeverity === 'warning') {
+                totalCriticalCount++;
+                if (!alertsPaused) playLowAttentionBeep();
+                alertHistory.unshift({
+                  time: formatTimestamp(),
+                  type: 'critical',
+                  message: `${student.name || 'Student'} – Escalated to CRITICAL – Attention ${score}%`
+                });
+              }
+            }
+            activeAlerts[existingIdx].statusText = liveStatus;
+          } else {
+            // Score recovered above warning threshold → trigger recovery
+            if (score >= RECOVERY_THRESHOLD) {
+              const recoveryAlert = {
+                id: ++alertIdCounter,
+                studentId: sid,
+                studentName: student.name || 'Student',
+                score: score,
+                time: new Date(),
+                type: 'recovery'
+              };
+              recoveryAlerts.unshift(recoveryAlert);
+              if (recoveryAlerts.length > 10) recoveryAlerts.pop();
+              totalRecoveryCount++;
+
+              activeAlerts.splice(existingIdx, 1);
+
+              alertHistory.unshift({
+                time: formatTimestamp(),
+                type: 'recovery',
+                message: `${student.name || 'Student'} regained focus – Attention ${score}%`
+              });
+            } else {
+              // Between WARNING_THRESHOLD and RECOVERY_THRESHOLD — keep alert but update score
+              activeAlerts[existingIdx].statusText = 'Recovering';
+            }
+          }
+
+          previousScores[sid] = score;
+          return; // already handled via existing alert
+        }
+
+        // ── STEP 2: Check for recovery on students WITHOUT an active alert ──
+        const prevScore = previousScores[sid];
+        if (prevScore !== undefined && prevScore < WARNING_THRESHOLD && score >= RECOVERY_THRESHOLD) {
+          const recoveryAlert = {
+            id: ++alertIdCounter,
+            studentId: sid,
+            studentName: student.name || 'Student',
+            score: score,
+            time: new Date(),
+            type: 'recovery'
+          };
+          recoveryAlerts.unshift(recoveryAlert);
+          if (recoveryAlerts.length > 10) recoveryAlerts.pop();
+          totalRecoveryCount++;
+
+          alertHistory.unshift({
+            time: formatTimestamp(),
+            type: 'recovery',
+            message: `${student.name || 'Student'} regained focus – Attention ${score}%`
+          });
+        }
+
+        // ── STEP 3: Create NEW alerts (cooldown only gates new creation) ──
+        if (!alertsPaused) {
+          const lastAlert = alertCooldowns[sid] || 0;
+          const cooldownExpired = (now - lastAlert) >= COOLDOWN_MS;
+
+          if (cooldownExpired) {
+            let severity = null;
+            let statusText = '';
+            if (score < CRITICAL_THRESHOLD) {
+              severity = 'critical';
+              statusText = 'Distracted';
+            } else if (score < WARNING_THRESHOLD) {
+              severity = 'warning';
+              statusText = 'Low engagement';
+            }
+
+            if (severity) {
+              if (severity === 'critical' && !alertsPaused) playLowAttentionBeep();
+              const alert = {
+                id: ++alertIdCounter,
+                studentId: sid,
+                studentName: student.name || 'Student',
+                score: score,
+                severity: severity,
+                statusText: statusText,
+                time: new Date(),
+                acknowledged: false,
+                monitoring: false,
+                isNew: true
+              };
+              activeAlerts.unshift(alert);
+
+              if (severity === 'critical') {
+                totalCriticalCount++;
+              } else {
+                totalWarningCount++;
+              }
+
+              alertHistory.unshift({
+                time: formatTimestamp(),
+                type: severity,
+                message: `${student.name || 'Student'} – Attention ${score}% (${severity})`
+              });
+
+              alertCooldowns[sid] = now;
+            }
+          }
+        }
+
+        previousScores[sid] = score;
+      });
+
+      // Clear isNew flag after a brief delay for animation
+      setTimeout(() => {
+        activeAlerts.forEach(a => a.isNew = false);
+      }, 5500);
+    }
+
+    function acknowledgeAlert(alertId) {
+      const idx = activeAlerts.findIndex(a => a.id === alertId);
+      if (idx >= 0) {
+        const alert = activeAlerts[idx];
+        alertHistory.unshift({
+          time: formatTimestamp(),
+          type: 'system',
+          message: `Acknowledged alert for ${alert.studentName}`
+        });
+        activeAlerts.splice(idx, 1);
+        renderAlertsView();
+        renderMetrics();
+      }
+    }
+    window.acknowledgeAlert = acknowledgeAlert;
+
+
+
+    /* ================= PAUSE / RESUME ================= */
+    function closePauseDropdown() {
+      const menu = document.getElementById('pauseDropdownMenu');
+      const btn = document.getElementById('pauseAlertsBtn');
+      if (menu) menu.classList.remove('show');
+      if (btn) {
+        btn.classList.remove('show');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      // Also remove show from the wrapper div
+      const wrapper = btn ? btn.closest('.dropdown') : null;
+      if (wrapper) wrapper.classList.remove('show');
+    }
+    window.closePauseDropdown = closePauseDropdown;
+
+    function pauseAlerts(minutes) {
+      alertsPaused = true;
+      alertsPausedDuringSession = true;
+      pauseEndTime = Date.now() + minutes * 60 * 1000;
+      alertsPauseBannerEl.classList.remove('d-none');
+      document.getElementById('pauseAlertsBtn').disabled = true;
+
+      // Close the dropdown programmatically
+      const dropdownEl = document.getElementById('pauseAlertsBtn');
+      const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(dropdownEl);
+      bsDropdown.hide();
+
+      alertHistory.unshift({
+        time: formatTimestamp(),
+        type: 'system',
+        message: `Alerts paused for ${minutes} minute${minutes > 1 ? 's' : ''}`
+      });
+
+      updatePauseCountdown();
+      pauseTimerInterval = setInterval(updatePauseCountdown, 1000);
+      renderAlertsView();
+    }
+    window.pauseAlerts = pauseAlerts;
+
+    function resumeAlerts() {
+      alertsPaused = false;
+      pauseEndTime = null;
+      if (pauseTimerInterval) clearInterval(pauseTimerInterval);
+      pauseTimerInterval = null;
+      alertsPauseBannerEl.classList.add('d-none');
+      document.getElementById('pauseAlertsBtn').disabled = false;
+
+      alertHistory.unshift({
+        time: formatTimestamp(),
+        type: 'system',
+        message: 'Alerts resumed'
+      });
+      renderAlertsView();
+    }
+    window.resumeAlerts = resumeAlerts;
+
+    function updatePauseCountdown() {
+      if (!pauseEndTime) return;
+      const remaining = Math.max(0, pauseEndTime - Date.now());
+      if (remaining <= 0) {
+        resumeAlerts();
+        return;
+      }
+      const mins = Math.floor(remaining / 60000);
+      const secs = Math.floor((remaining % 60000) / 1000);
+      pauseCountdownEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    /* ================= ALERTS VIEW RENDERER ================= */
+    function renderAlertsView() {
+      // Summary metrics with student details
+      const criticalStudents = activeAlerts.filter(a => a.severity === 'critical');
+      const warningStudents = activeAlerts.filter(a => a.severity === 'warning');
+
+      summCriticalEl.innerHTML = `<div>${totalCriticalCount}</div>` +
+        (criticalStudents.length > 0 ? `<div class="small text-muted mt-1">${criticalStudents.map(a => `${a.studentName} (${a.score}%)`).join(', ')}</div>` : '');
+
+      summWarningEl.innerHTML = `<div>${totalWarningCount}</div>` +
+        (warningStudents.length > 0 ? `<div class="small text-muted mt-1">${warningStudents.map(a => `${a.studentName} (${a.score}%)`).join(', ')}</div>` : '');
+
+      summRecoveryEl.innerHTML = `<div>${totalRecoveryCount}</div>` +
+        (recoveryAlerts.length > 0 ? `<div class="small text-muted mt-1">${recoveryAlerts.slice(0, 3).map(r => `${r.studentName} (${r.score}%)`).join(', ')}</div>` : '');
+
+      // Active alerts count
+      alertsViewCountEl.textContent = `${activeAlerts.length} active`;
+
+      // Active alerts list
+      if (activeAlerts.length === 0) {
+        activeAlertsListEl.innerHTML = `
+          <div class="cs-alert-empty">
+            <i class="fa-regular fa-bell-slash"></i>
+            <div class="fw-semibold mb-1">No Active Alerts</div>
+            <div class="small">All students are currently engaged. Great job!</div>
+          </div>
+        `;
+      } else {
+        activeAlertsListEl.innerHTML = activeAlerts.map(alert => `
+          <div class="cs-alert-card ${alert.severity} ${alert.isNew ? 'cs-new' : ''}">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="fw-semibold">${alert.studentName}</span>
+                  <span class="cs-severity-badge cs-severity-${alert.severity}">
+                    <i class="fa-solid ${alert.severity === 'critical' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation'} me-1"></i>${alert.severity}
+                  </span>
+
+                </div>
+                <div class="small text-muted">
+                  Attention <span class="fw-semibold ${alert.score < CRITICAL_THRESHOLD ? 'text-danger' : ''}"
+                    style="${alert.severity === 'warning' ? 'color:#92400e' : ''}">${alert.score}%</span>
+                  &bull; ${alert.statusText}
+                  &bull; ${formatTimestamp(alert.time)}
+                </div>
+              </div>
+              <div class="d-flex gap-1">
+                <button class="cs-alert-action-btn acknowledge" onclick="acknowledgeAlert(${alert.id})"><i class="fa-solid fa-check me-1"></i>Acknowledge</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Recovery notifications
+      if (recoveryAlerts.length > 0) {
+        recoverySectionEl.classList.remove('d-none');
+        recoveryListEl.innerHTML = recoveryAlerts.slice(0, 5).map(r => `
+          <div class="cs-alert-card recovery">
+            <div class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-arrow-trend-up text-success"></i>
+              <div>
+                <span class="fw-semibold">${r.studentName}</span>
+                <span class="small text-muted">regained focus – Attention <span class="fw-semibold text-success">${r.score}%</span></span>
+                <span class="small text-muted ms-2">${formatTimestamp(r.time)}</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        recoverySectionEl.classList.add('d-none');
+      }
+
+      // History log
+      if (alertHistory.length === 0) {
+        alertHistoryLogEl.innerHTML = '<div class="small text-muted text-center py-3">No events recorded yet.</div>';
+      } else {
+        alertHistoryLogEl.innerHTML = alertHistory.filter(h => h.type === 'critical').slice(0, 50).map(h => `
+          <div class="cs-history-item">
+            <div class="cs-history-dot ${h.type}"></div>
+            <div>
+              <div class="small fw-medium">${h.message}</div>
+              <div class="small text-muted">${h.time}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+
+    /* ================= CHARTS ================= */
+    const lineCtx = document.getElementById("lineChart").getContext("2d");
+    const barCtx = document.getElementById("barChart").getContext("2d");
+    const pieCtx = document.getElementById("pieChart").getContext("2d");
+
+
+    const lineChart = new Chart(lineCtx, {
+      type: "line",
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: "Average Attention",
+            data: [],
+            borderColor: "#2563eb",
+            tension: 0.35,
+            fill: false,
+            pointRadius: 3,
+            pointBackgroundColor: "#2563eb"
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, max: 100, ticks: { stepSize: 10 } }
+        }
+      }
+    });
+
+
+    const barChart = new Chart(barCtx, {
+      type: "bar",
+      data: { labels: [], datasets: [{ label: "Attention", data: [], backgroundColor: "#3b82f6" }] },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, max: 100, ticks: { stepSize: 10 } }
+        }
+      }
+    });
+
+
+    const pieChart = new Chart(pieCtx, {
+      type: "doughnut",
+      data: {
+        labels: ["Attentive", "Distracted", "Sleepy"],
+        datasets: [{ data: [0, 0, 0], backgroundColor: ["#22c55e", "#fbbf24", "#f97373"] }]
+      },
+      options: { responsive: true, cutout: "60%" }
+    });
+
+
+    function updateCharts() {
+      const total = studentsState.length;
+      const scores = studentsState.map((s) => s.attentionScore);
+      const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+
+
+      const timestamp = new Date();
+      const label = `${timestamp.getHours().toString().padStart(2, "0")}:${timestamp
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}`;
+
+
+      attentionHistory.push({ t: label, avg });
+      if (attentionHistory.length > 12) attentionHistory.shift();
+
+
+      lineChart.data.labels = attentionHistory.map((p) => p.t);
+      lineChart.data.datasets[0].data = attentionHistory.map((p) => p.avg);
+      lineChart.update();
+
+
+      barChart.data.labels = studentsState.map((s) => s.name || "Student");
+      barChart.data.datasets[0].data = studentsState.map((s) => s.attentionScore);
+      barChart.update();
+
+
+      const high = studentsState.filter((s) => s.attentionScore >= 70).length;
+      const mid = studentsState.filter((s) => s.attentionScore >= 40 && s.attentionScore < 70).length;
+      const low = studentsState.filter((s) => s.attentionScore < 40).length;
+      pieChart.data.datasets[0].data = [high, mid, low];
+      pieChart.update();
+    }
+
+
+    function renderAll() {
+      processAlerts();
+      renderStudents();
+      renderMetrics();
+      renderHeatmap();
+      renderAlertsView();
+      updateCharts();
+    }
+
+
+    /* ================= REAL‑TIME LISTENER ================= */
+    let sessionData = {};
+    db.collection("sessions")
+      .doc(sessionCode)
+      .onSnapshot((snapshot) => {
+        if (!snapshot.exists) return;
+        sessionData = snapshot.data();
+        const rawStudents = sessionData.students || [];
+        studentsState = rawStudents.map((s) => ({
+          ...s,
+          attentionScore: computeAttentionScore(s)
+        }));
+
+        // Update subject name
+        if (sessionData.subject) {
+          document.getElementById("className").textContent = sessionData.subject;
+        }
+
+        renderAll();
+      });
+
+
+    /* ================= NAVIGATION ================= */
+    document.querySelectorAll(".cs-nav-pill").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".cs-nav-pill").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+
+        const target = btn.getAttribute("data-view");
+        ["dashboardView", "heatmapView", "analyticsView", "alertsView"].forEach((id) => {
+          document.getElementById(id).classList.toggle("d-none", id !== target);
+          document.getElementById(id).classList.toggle("d-block", id === target);
+        });
+      });
+    });
+
+
+    /* ================= HELPERS ================= */
+    function copyCode() {
+      navigator.clipboard.writeText(sessionCode);
+      const btn = document.querySelector('[onclick="copyCode()"]');
+      if (btn) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-check text-success"></i> Copied!';
+        btn.classList.remove('btn-outline-secondary');
+        btn.classList.add('btn-outline-success');
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.classList.remove('btn-outline-success');
+          btn.classList.add('btn-outline-secondary');
+        }, 1500);
+      }
+    }
+    window.copyCode = copyCode;
+
+
+    function showSessionSummary() {
+      const total = studentsState.length;
+      const present = studentsState.filter((s) => {
+        const presence = getPresenceStatus(s);
+        return presence.status === "online" || presence.status === "idle";
+      }).length;
+      const absent = total - present;
+      const scores = studentsState.map((s) => s.attentionScore);
+      const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+      const lowCount = studentsState.filter((s) => s.attentionScore < 40).length;
+      const attendancePercent = total > 0 ? Math.round((present / total) * 100) : 0;
+
+
+      const modal = document.createElement("div");
+      modal.className = "modal fade show";
+      modal.style.display = "block";
+      modal.style.backgroundColor = "rgba(0,0,0,0.5)";
+      modal.innerHTML = `
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Session Summary</h5>
+              <button type="button" class="btn-close" onclick="this.closest('.modal').remove()"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <h6>Subject: <span class="fw-normal">${sessionData.subject || "N/A"}</span></h6>
+                <h6>Session Code: <span class="fw-normal">${sessionCode}</span></h6>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-2 text-center">
+                    <div class="text-muted small">Total Students</div>
+                    <div class="fs-4 fw-bold">${total}</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-2 text-center">
+                    <div class="text-muted small">Present</div>
+                    <div class="fs-4 fw-bold text-success">${present}</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-2 text-center">
+                    <div class="text-muted small">Absent</div>
+                    <div class="fs-4 fw-bold text-danger">${absent}</div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="border rounded-3 px-3 py-2 text-center">
+                    <div class="text-muted small">Attendance</div>
+                    <div class="fs-4 fw-bold text-primary">${attendancePercent}%</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                  <div class="border rounded-3 px-3 py-2 text-center">
+                    <div class="text-muted small">Avg Attention</div>
+                    <div class="fs-4 fw-bold">${avg}%</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="border rounded-3 px-3 py-2 text-center">
+                    <div class="text-muted small">Need Attention</div>
+                    <div class="fs-4 fw-bold text-danger">${lowCount}</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="border rounded-3 px-3 py-2 text-center">
+                    <div class="text-muted small">Engaged</div>
+                    <div class="fs-4 fw-bold text-success">${studentsState.filter((s) => s.attentionScore >= 70).length}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-3">
+                <h6>Student Details</h6>
+                <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                  <table class="table table-sm">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Join Time</th>
+                        <th>Attention</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${studentsState.map(s => `
+                        <tr>
+                          <td>${s.name || "Student"}</td>
+                          <td><span class="badge ${getPresenceStatus(s).status === "online" || getPresenceStatus(s).status === "idle" ? "bg-success" : "bg-danger"}">${getPresenceStatus(s).label}</span></td>
+                          <td>${formatTime(s.joinTime)}</td>
+                          <td>${s.attentionScore}%</td>
+                        </tr>
+                      `).join("")}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id="closeModalBtn">Close</button>
+              <button type="button" class="btn btn-primary" id="downloadReportBtn">Download Report</button>
+            </div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      modal.querySelector("#downloadReportBtn").onclick = () => {
+        exportToCSV();
+      };
+
+      const closeModal = () => {
+        modal.remove();
+        // Redirect back to the subject dashboard
+        const className = sessionData.className || '';
+        window.location.href = `/teacher/subject_dashboard.html?class=${encodeURIComponent(className)}`;
+      };
+
+      modal.querySelector(".btn-close").onclick = closeModal;
+      modal.querySelector("#closeModalBtn").onclick = closeModal;
+      modal.onclick = (e) => {
+        if (e.target === modal) closeModal();
+      };
+    }
+
+
+    function exportToCSV() {
+      const headers = ["Name", "Status", "Join Time", "Leave Time", "Attention Score"];
+      const rows = studentsState.map(s => [
+        s.name || "Student",
+        getPresenceStatus(s).label,
+        formatTime(s.joinTime),
+        formatTime(s.leaveTime) || "N/A",
+        `${s.attentionScore}%`
+      ]);
+
+      const csvContent = [
+        headers.join(","),
+        ...rows.map(row => row.map(cell => `"${cell}"`).join(","))
+      ].join("\n");
+
+      const blob = new Blob([csvContent], { type: "text/csv" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `attendance_${sessionCode}_${new Date().toISOString().split("T")[0]}.csv`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+
+
+    document.getElementById("endBtn").onclick = () => {
+      // Show custom confirmation modal instead of browser confirm()
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.2s ease;';
+      overlay.innerHTML = `
+        <div style="background:#fff;border-radius:1rem;padding:2rem;max-width:440px;width:90%;box-shadow:0 12px 40px rgba(0,0,0,0.2);text-align:center;">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fee2e2;display:inline-flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <i class="fa-solid fa-power-off" style="color:#dc2626;font-size:1.2rem;"></i>
+          </div>
+          <h5 style="color:#0f172a;font-weight:700;margin-bottom:0.5rem;">End Session?</h5>
+          <p style="color:#475569;font-size:0.9rem;margin-bottom:1.5rem;">This will close the session for all students and generate the final report.</p>
+          <div style="display:flex;gap:0.75rem;justify-content:center;">
+            <button class="btn btn-outline-secondary px-4" id="csConfirmNo">Cancel</button>
+            <button class="btn btn-danger px-4" id="csConfirmYes"><i class="fa-solid fa-power-off me-1"></i>End Session</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      overlay.querySelector('#csConfirmNo').onclick = () => overlay.remove();
+      overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+      overlay.querySelector('#csConfirmYes').onclick = async () => {
+        overlay.remove();
+
+        try {
+          await fetch("/end-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              sessionCode,
+              totalCriticalAlerts: totalCriticalCount,
+              totalWarningAlerts: totalWarningCount,
+              totalRecoveries: totalRecoveryCount,
+              alertsPaused: alertsPausedDuringSession
+            })
+          });
+        } catch (err) {
+          console.error("Error closing session:", err);
+        }
+
+        clearInterval(timerInterval);
+
+        showSessionSummary();
+
+        setTimeout(() => {
+          const className = sessionData.className || '';
+          window.location.href = `/teacher/subject_dashboard.html?class=${encodeURIComponent(className)}`;
+        }, 30000);
+      };
+    };
+
+
+    document.getElementById("exportCsvBtn").onclick = () => {
+      exportToCSV();
+    };
+  </script>
+  <!-- Bootstrap JS (for dropdown) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

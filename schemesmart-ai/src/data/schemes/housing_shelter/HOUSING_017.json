@@ -1,0 +1,29 @@
+{
+  "scheme_name": "Financial Assistance as Interest Subsidy on Home Loan",
+  "sector": ["Housing"],
+  "implementing_department": "Kendriya Sainik Board, Ministry of Defence",
+  "details": "Provides interest subsidy on home loans to war widows and disabled ex-servicemen.",
+  "benefits": {
+    "interest_subsidy": "50% of interest",
+    "loan_limit": "₹1,00,000",
+    "duration": "Up to 5 years"
+  },
+  "eligibility": [
+    "War widow or disabled ex-serviceman",
+    "Home loan from approved institutions"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on KSB portal",
+      "Submit application",
+      "Forward documents to District Sainik Board"
+    ]
+  },
+  "documents_required": [
+    "Ex-servicemen Identity Card",
+    "Discharge Book",
+    "Bank Certificates",
+    "Interest Payment Statement"
+  ]
+}

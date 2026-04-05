@@ -1,0 +1,32 @@
+{
+  "scheme_id": "AGR_SCH_004",
+  "scheme_name": "Community Canning and Training in Fruit Preservation",
+  "sector": "Agriculture",
+  "sub_sector": "Food Processing",
+  "state": "Assam",
+  "implementing_department": "Directorate of Agriculture (Fruit Preservation), Assam",
+  "description": "Provides training and facilities for fruit and vegetable preservation to promote self-employment.",
+  "benefits": [
+    "Training in food preservation",
+    "Certificate after completion",
+    "Support for small-scale cottage industries"
+  ],
+  "eligibility": [
+    "Women, housewives, SHGs, rural youth",
+    "Interest in food processing or self-employment"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Contact district canning center",
+      "Submit application",
+      "Attend training sessions"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Voter ID",
+    "Bank Account Details"
+  ],
+  "additional_notes": "Training duration ranges from 1 to 15 days."
+}

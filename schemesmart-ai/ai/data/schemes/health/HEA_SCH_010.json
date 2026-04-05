@@ -1,0 +1,35 @@
+{
+  "scheme_id": "HEA_SCH_010",
+  "scheme_name": "Merit Awards for Students with Disabilities",
+  "sector": "Education",
+  "sub_sector": "Merit Scholarship",
+  "state": "Maharashtra",
+  "implementing_department": "Department of Social Justice & Special Assistance, Government of Maharashtra",
+  "description": "Awards given to top-ranking disabled students in SSC and HSC examinations.",
+  "benefits": [
+    "Cash award of ₹1,000",
+    "Certificate of merit",
+    "Travel allowance up to ₹100"
+  ],
+  "eligibility": [
+    "Permanent resident of Maharashtra",
+    "Student with disability",
+    "Secured 1st, 2nd or 3rd rank among disabled students in SSC or HSC"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application form from District Social Welfare Office",
+      "Fill and submit application with documents",
+      "Receive acknowledgement receipt"
+    ]
+  },
+  "required_documents": [
+    "Disability Certificate",
+    "Educational Certificates",
+    "Bonafide Certificate",
+    "Aadhaar Card",
+    "Bank Account Details"
+  ],
+  "additional_notes": "100% funded by Government of Maharashtra."
+}

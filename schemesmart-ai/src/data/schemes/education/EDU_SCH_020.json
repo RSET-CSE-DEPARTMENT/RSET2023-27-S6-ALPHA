@@ -1,0 +1,46 @@
+{
+  "scheme_id": "EDU_SCH_020",
+  "scheme_name": "Scholarship for Students with Disabilities (Grades 1–8)",
+  "sector": "Education",
+  "sub_sector": "Disability Education Support",
+  "state": "Tamil Nadu",
+  "central_or_state": "State",
+  "implementing_department": "Department for the Welfare of Differently Abled Persons, Government of Tamil Nadu",
+  "description": "Provides financial assistance to differently-abled students studying in government-recognized schools to purchase books and notebooks.",
+  "objectives": [
+    "Support educational expenses of differently-abled students",
+    "Encourage continued schooling among children with disabilities"
+  ],
+  "benefits": [
+    "₹1,000 per annum for students studying in Classes 1–5",
+    "₹3,000 per annum for students studying in Classes 6–8"
+  ],
+  "eligibility": [
+    "Student must be a differently-abled person",
+    "Student must be studying in Classes 1 to 8",
+    "Student must be enrolled in a government-recognized school",
+    "Student must not be availing similar assistance from other sources"
+  ],
+  "application_mode": "Offline",
+  "application_process": [
+    "Collect application form from District Differently Abled Welfare Officer",
+    "Fill the form and attach required documents",
+    "Submit application to the District Welfare Officer",
+    "Obtain acknowledgment receipt"
+  ],
+  "documents_required": [
+    "Certificate stating student has not availed similar assistance",
+    "Disability certificate",
+    "School certificate"
+  ],
+  "target_beneficiaries": [
+    "Differently-abled students",
+    "School students (Classes 1–8)"
+  ],
+  "income_limit": "Not specified",
+  "education_level": "School",
+  "gender_specific": "No",
+  "disability_specific": true,
+  "dbt": false,
+  "official_source": "myscheme.gov.in"
+}

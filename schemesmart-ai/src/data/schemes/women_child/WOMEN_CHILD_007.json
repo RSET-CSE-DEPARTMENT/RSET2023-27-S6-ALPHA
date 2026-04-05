@@ -1,0 +1,31 @@
+{
+  "scheme_id": "WOMEN_CHILD_007",
+  "scheme_name": "Saraswati Cycle Yojana",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Girl Education / Transportation",
+  "implementing_authority": "Government of Chhattisgarh",
+  "description": "Provides free bicycles to encourage education of girl students in Class 9.",
+  "benefits": {
+    "non_monetary": "Free bicycle"
+  },
+  "eligibility": {
+    "gender": "Girl student",
+    "class": "Class 9",
+    "category": "BPL / SC / ST",
+    "residency": "Chhattisgarh"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Contact school headmaster",
+      "Submit application with documents",
+      "Verification and approval"
+    ]
+  },
+  "documents_required": [
+    "BPL Card",
+    "Caste Certificate",
+    "School Certificate",
+    "Aadhaar Card"
+  ]
+}

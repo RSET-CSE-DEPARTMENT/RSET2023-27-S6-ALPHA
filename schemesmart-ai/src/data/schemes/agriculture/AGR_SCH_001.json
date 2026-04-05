@@ -1,0 +1,38 @@
+{
+  "scheme_id": "AGR_SCH_001",
+  "scheme_name": "Krishak Bakri Palan Yojna",
+  "sector": "Agriculture",
+  "sub_sector": "Animal Husbandry",
+  "state": "Himachal Pradesh",
+  "implementing_department": "Department of Animal Husbandry, Government of Himachal Pradesh",
+  "description": "A subsidy-based goat farming scheme to enhance income generation and meat production among economically weaker rural communities.",
+  "benefits": [
+    "60% subsidy on goat units",
+    "Distribution of 3, 5, or 11 goat units",
+    "Improved livelihood and sustainable income"
+  ],
+  "eligibility": [
+    "Resident of Himachal Pradesh",
+    "Small or marginal farmer, landless laborer, SC/ST/Women/BPL",
+    "Annual income not exceeding ₹2,00,000",
+    "Mandatory goat husbandry training"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Visit official Animal Husbandry portal",
+      "Read guidelines and agree to terms",
+      "Fill application form and upload documents",
+      "Submit application online"
+    ]
+  },
+  "documents_required": [
+    "Bank Passbook",
+    "Income Certificate",
+    "Unemployment Certificate",
+    "BPL Certificate",
+    "Training Certificate",
+    "Caste Certificate"
+  ],
+  "additional_notes": "At least 30% beneficiaries must be women."
+}

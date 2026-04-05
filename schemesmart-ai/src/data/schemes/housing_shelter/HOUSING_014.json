@@ -1,0 +1,31 @@
+{
+  "scheme_name": "Mukhyamantri Awas Yojna (HPBOCWWB)",
+  "sector": ["Housing", "Shelter"],
+  "state": "Himachal Pradesh",
+  "implementing_department": "Himachal Pradesh Building and Other Construction Workers Welfare Board",
+  "details": "Provides financial assistance to registered construction workers for house construction.",
+  "benefits": {
+    "financial_assistance": "₹1,50,000"
+  },
+  "eligibility": [
+    "Registered HPBOCWWB worker",
+    "Active membership",
+    "Age between 18–60 years",
+    "Minimum 90 days of work in last 12 months"
+  ],
+  "application_process": {
+    "mode": ["Online", "Offline"],
+    "steps": [
+      "Register as construction worker",
+      "Login and apply for scheme",
+      "Upload documents and submit"
+    ]
+  },
+  "documents_required": [
+    "Labour Card",
+    "Identity Proof",
+    "Address Proof",
+    "Bank Passbook",
+    "Age Proof"
+  ]
+}

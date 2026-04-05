@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>ClassSense – Home</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+body{
+min-height:100vh;
+background: radial-gradient(circle at top,#e0edff 0,#020617 40%,#020617 100%);
+color:#e5e7eb;
+font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+margin:0;
+}
+
+/* navbar */
+
+.cs-topbar {
+  background: rgba(15,23,42,0.95);
+  border-bottom: 1px solid rgba(59,130,246,0.15);
+  backdrop-filter: blur(20px);
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cs-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cs-brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(59,130,246,0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  font-size: 1rem;
+}
+
+.cs-brand-text {
+  font-weight: 700;
+  color: #60a5fa;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.cs-nav-links {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.cs-nav-pill {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.cs-nav-pill:hover {
+  background: rgba(59,130,246,0.1);
+  color: #60a5fa;
+  border-color: rgba(59,130,246,0.2);
+}
+
+.cs-nav-pill i {
+  margin-right: 0.35rem;
+}
+
+.cs-logout-btn {
+  background: transparent;
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #f87171;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-logout-btn:hover {
+  background: rgba(239,68,68,0.12);
+  border-color: rgba(239,68,68,0.5);
+  color: #ef4444;
+}
+
+iframe{
+width:100%;
+height:calc(100vh - 66px);
+border:none;
+}
+
+/* Toast system */
+.cs-toast-container { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 9999; display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; }
+.cs-toast { padding: 1rem 1.25rem; border-radius: 0.85rem; color: #fff; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 0.75rem; box-shadow: 0 8px 24px rgba(0,0,0,0.35); animation: csToastIn 0.35s ease; border: 1px solid rgba(255,255,255,0.1); }
+.cs-toast.cs-toast-out { animation: csToastOut 0.3s ease forwards; }
+.cs-toast-success { background: rgba(22, 101, 52, 0.92); }
+.cs-toast-info { background: rgba(30, 64, 175, 0.92); }
+.cs-toast i { font-size: 1.1rem; margin-top: 0.1rem; }
+.cs-toast-content { flex: 1; }
+.cs-toast-title { font-weight: 600; margin-bottom: 0.15rem; }
+.cs-toast-msg { font-size: 0.82rem; opacity: 0.9; }
+.cs-toast-close { background: none; border: none; color: rgba(255,255,255,0.6); cursor: pointer; font-size: 1rem; padding: 0; }
+.cs-toast-close:hover { color: #fff; }
+@keyframes csToastIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes csToastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(40px); } }
+
+</style>
+</head>
+
+<body>
+
+<div class="cs-toast-container" id="toastContainer"></div>
+
+<header class="cs-topbar">
+  <div class="d-flex align-items-center gap-3">
+    <div class="cs-brand" onclick="loadPage('homeContent.html')">
+      <div class="cs-brand-icon">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <span class="cs-brand-text">ClassSense</span>
+    </div>
+
+    <div class="cs-nav-links">
+      <a class="cs-nav-pill" onclick="loadPage('index.html')">
+        <i class="fa-solid fa-video"></i>Join Meeting
+      </a>
+      <a class="cs-nav-pill" onclick="loadPage('report.html')">
+        <i class="fa-solid fa-chart-line"></i>Reports
+      </a>
+    </div>
+  </div>
+
+  <button class="cs-logout-btn" onclick="logout()">
+    <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
+  </button>
+</header>
+
+<iframe id="contentFrame" src="homeContent.html"></iframe>
+
+<script>
+
+function loadPage(page){
+document.getElementById("contentFrame").src = page;
+}
+
+function logout(){
+
+localStorage.clear()
+
+if(window.firebase){
+firebase.auth().signOut()
+}
+
+window.location.href="login.html"
+
+}
+
+/* ===== TOAST SYSTEM ===== */
+function showToast(type, title, message, duration = 4000) {
+  const container = document.getElementById('toastContainer');
+  const iconMap = { success: 'fa-circle-check', error: 'fa-circle-xmark', warning: 'fa-triangle-exclamation', info: 'fa-circle-info' };
+  const toast = document.createElement('div');
+  toast.className = `cs-toast cs-toast-${type}`;
+  toast.innerHTML = `
+    <i class="fa-solid ${iconMap[type] || iconMap.info}"></i>
+    <div class="cs-toast-content">
+      <div class="cs-toast-title">${title}</div>
+      <div class="cs-toast-msg">${message}</div>
+    </div>
+    <button class="cs-toast-close" onclick="this.parentElement.classList.add('cs-toast-out'); setTimeout(() => this.parentElement.remove(), 300);">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  `;
+  container.appendChild(toast);
+  setTimeout(() => { if (toast.parentElement) { toast.classList.add('cs-toast-out'); setTimeout(() => toast.remove(), 300); } }, duration);
+}
+
+/* ===== LOGIN SUCCESS CHECK ===== */
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('loggedIn') === '1') {
+  const name = urlParams.get('name') || localStorage.getItem('studentName') || 'Student';
+  setTimeout(() => showToast('success', 'Welcome!', `Logged in successfully as ${name}.`), 300);
+  // Clean URL without reloading
+  const cleanUrl = window.location.pathname;
+  window.history.replaceState({}, document.title, cleanUrl);
+}
+
+</script>
+
+</body>
+</html>

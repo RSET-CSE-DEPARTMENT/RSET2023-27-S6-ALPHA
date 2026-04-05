@@ -1,0 +1,37 @@
+{
+  "scheme_id": "WOMEN_CHILD_003",
+  "scheme_name": "Savitribai Jyotirao Phule Fellowship for Single Girl Child",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Higher Education / Research",
+  "implementing_authority": "University Grants Commission (UGC)",
+  "description": "Fellowship scheme to support single girl children pursuing Ph.D. in recognized institutions.",
+  "benefits": {
+    "fellowship": {
+      "JRF": "₹31,000 per month (first 2 years)",
+      "SRF": "₹35,000 per month (remaining tenure)"
+    },
+    "contingency": "₹10,000–₹25,000 per annum",
+    "tenure": "Up to 5 years"
+  },
+  "eligibility": {
+    "beneficiary": "Single girl child",
+    "program": "Full-time regular Ph.D.",
+    "age_limit": "40 years (General), 45 years (Reserved)"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on UGC FRG portal",
+      "Submit eligibility and academic details",
+      "Upload affidavit and proposal",
+      "Final submission online"
+    ]
+  },
+  "documents_required": [
+    "Photograph and Signature",
+    "Research Proposal",
+    "Affidavit for Single Girl Child",
+    "Degree Certificates",
+    "Signed Auto-generated Application Form"
+  ]
+}

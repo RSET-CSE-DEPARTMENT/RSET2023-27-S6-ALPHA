@@ -1,0 +1,36 @@
+{
+  "scheme_id": "EDU_SCH_016",
+  "scheme_name": "Cash Award for Children of Construction Workers",
+  "sector": "Education",
+  "state": "Arunachal Pradesh",
+  "ministry_or_department": "Department of Labour and Employment",
+  "implementing_agency": "APB&OCWWB",
+  "description": "Cash awards for children of registered construction workers who perform well academically.",
+  "benefits": {
+    "cash_awards": [
+      "₹500",
+      "₹750",
+      "₹1,000"
+    ]
+  },
+  "eligibility": {
+    "worker_registration": "Registered with APB&OCWWB",
+    "child_qualification": "Passed Class X or XII",
+    "residence": "Arunachal Pradesh"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application from district office",
+      "Submit filled form with documents",
+      "Verification and approval"
+    ]
+  },
+  "documents_required": [
+    "Worker registration card",
+    "Mark sheets",
+    "Bank passbook",
+    "Identity proof",
+    "Photographs"
+  ]
+}

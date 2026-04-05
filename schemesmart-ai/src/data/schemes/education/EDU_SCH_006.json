@@ -1,0 +1,21 @@
+{
+  "scheme_id": "EDU_SCH_006",
+  "scheme_name": "Research Grant for In-Service Faculty Members",
+  "sector": "Education",
+  "ministry": "University Grants Commission",
+  "implementing_agency": "UGC",
+  "description": "Research funding support for regularly appointed faculty members.",
+  "benefits": {
+    "grant_amount": "₹10,00,000"
+  },
+  "tenure": "2 years",
+  "eligibility": {
+    "age_limit": "Below 50 years",
+    "experience": "Minimum 10 years service",
+    "research_experience": "5 PhD scholars guided, 2 sponsored projects completed"
+  },
+  "application_process": {
+    "mode": "Online",
+    "portal": "https://frg.ugc.ac.in/"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "scheme_id": "WOMEN_CHILD_011",
+  "scheme_name": "Scheme For Study In Abroad",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Higher Education / Girl Empowerment",
+  "implementing_authority": "Department of Secondary Education, Government of Rajasthan",
+  "description": "Provides an opportunity to meritorious girl students of Rajasthan government schools to pursue graduate-level education abroad for four years.",
+  "benefits": {
+    "sat_coaching": "Up to ₹30,000",
+    "sat_registration": "Up to ₹50,000",
+    "foreign_application": "₹25,000",
+    "annual_expenditure_cap": "Up to ₹10,00,000 per year",
+    "other": "Economy class airfare for parent once a year and university accommodation"
+  },
+  "eligibility": {
+    "gender": "Girl student",
+    "academic_merit": "Top 3 girls at state level in Class 10 (RBSE) from government schools",
+    "residency": "Rajasthan"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Download application form",
+      "Fill and submit to District Education Officer",
+      "Consent verification by parents/guardian",
+      "Selection finalized by Secondary Education Department"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Age Proof",
+    "Address Proof",
+    "Domicile Certificate",
+    "Class 10 & 12 Marksheet",
+    "Passport"
+  ]
+}

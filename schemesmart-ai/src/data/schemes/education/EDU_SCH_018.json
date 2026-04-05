@@ -1,0 +1,36 @@
+{
+  "scheme_id": "EDU_SCH_018",
+  "scheme_name": "Bihar Student Credit Card Scheme",
+  "sector": "Education",
+  "state": "Bihar",
+  "ministry_or_department": "Department of Education",
+  "implementing_agency": "Government of Bihar",
+  "description": "Provides education loans to students for higher studies at subsidized interest rates.",
+  "benefits": {
+    "maximum_loan": "₹4,00,000",
+    "interest_rate": "1% for girls, Divyang and transgender students"
+  },
+  "eligibility": {
+    "residence": "Bihar",
+    "minimum_qualification": "Passed Class 12",
+    "age_limit": "Up to 25 years",
+    "admission": "Recognized institution"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on portal",
+      "Submit application",
+      "Document verification at DRCC",
+      "Loan sanction and disbursement"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar card",
+    "PAN card",
+    "Mark sheets",
+    "Admission proof",
+    "Income certificate",
+    "Bank statements"
+  ]
+}

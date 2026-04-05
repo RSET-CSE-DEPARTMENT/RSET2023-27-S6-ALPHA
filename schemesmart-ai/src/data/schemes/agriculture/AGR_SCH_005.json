@@ -1,0 +1,34 @@
+{
+  "scheme_id": "AGR_SCH_005",
+  "scheme_name": "Subsidy Scheme on Establishment of 25 RIR Birds Unit",
+  "sector": "Agriculture",
+  "sub_sector": "Poultry Farming",
+  "state": "Gujarat",
+  "implementing_department": "Department of Agriculture, Farmers Welfare & Co-operation, Government of Gujarat",
+  "description": "Provides poultry units to Scheduled Tribe beneficiaries with high subsidy.",
+  "benefits": [
+    "25 RIR birds unit",
+    "75% subsidy up to ₹4,500",
+    "Regular vaccination support"
+  ],
+  "eligibility": [
+    "Scheduled Tribe beneficiary",
+    "Adult resident of Gujarat",
+    "Poultry training completed"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application from Poultry Development Office",
+      "Submit filled form with documents",
+      "Verification and approval"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Income Certificate",
+    "Caste Certificate",
+    "Bank Passbook"
+  ],
+  "additional_notes": "Priority given to women and BPL applicants."
+}

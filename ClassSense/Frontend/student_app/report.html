@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ClassSense – Student Reports</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: transparent;
+      color: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .cs-card {
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 24px 26px;
+      margin-bottom: 16px;
+    }
+
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+    }
+
+    .table {
+      --bs-table-bg: transparent !important;
+      --bs-table-color: #c8d6e5 !important;
+      --bs-table-border-color: rgba(148, 163, 184, 0.08) !important;
+      --bs-table-striped-bg: transparent !important;
+      --bs-table-hover-bg: rgba(59, 130, 246, 0.08) !important;
+      --bs-table-hover-color: #c8d6e5 !important;
+      background-color: transparent !important;
+      color: #c8d6e5 !important;
+      margin-bottom: 0;
+    }
+
+    .table> :not(caption)>*>* {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .table thead {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8 !important;
+    }
+
+    .table thead tr {
+      background: linear-gradient(135deg, rgba(22, 37, 74, 0.95), rgba(15, 23, 42, 0.98)) !important;
+    }
+
+    .table thead th {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18) !important;
+      padding: 12px 16px;
+      font-weight: 600;
+      color: #94a3b8 !important;
+      background: transparent !important;
+    }
+
+    .table tbody td {
+      font-size: 0.85rem;
+      color: #c8d6e5 !important;
+      padding: 11px 16px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08) !important;
+      background: transparent !important;
+      transition: color 0.2s ease;
+    }
+
+    .table tbody td.text-secondary,
+    .table tbody td .text-secondary {
+      color: #7a8ba8 !important;
+    }
+
+    .table tbody tr {
+      background: rgba(15, 23, 42, 0.6) !important;
+      transition: background 0.25s ease;
+    }
+
+    .table tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.75) !important;
+    }
+
+    .table tbody tr:hover {
+      background: rgba(59, 130, 246, 0.10) !important;
+    }
+
+    .table-responsive {
+      background: rgba(15, 23, 42, 0.55) !important;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .cs-card .small.text-muted {
+      color: #cbd5f5 !important;
+    }
+
+    .attn-high {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    .attn-medium {
+      color: #f59e0b;
+      font-weight: 600;
+    }
+
+    .attn-low {
+      color: #ef4444;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-4">
+    <div class="cs-card mb-3">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <h4 class="mb-0 fw-bold">Student Reports</h4>
+          <div class="small text-secondary" id="studentNameLabel">Loading...</div>
+        </div>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col-md-3 col-6">
+          <div>
+            <div class="stat-value" id="statClasses">--</div>
+            <div class="stat-label mt-1">Classes Attended</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div>
+            <div class="stat-value text-primary" id="statAvgAttention">--%</div>
+            <div class="stat-label mt-1">Average Attention</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div>
+            <div class="stat-value text-warning" id="statAlerts">--</div>
+            <div class="stat-label mt-1">Total Alerts</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div>
+            <div class="stat-value text-success" id="statAttendance">--%</div>
+            <div class="stat-label mt-1">Attendance Ratio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="cs-card">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="small text-muted text-uppercase fw-semibold">Attention Trend</div>
+          </div>
+          <div style="height: 220px;">
+            <canvas id="attentionTrendChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="cs-card">
+          <div class="small text-muted text-uppercase fw-semibold mb-2">Alerts Per Class</div>
+          <div style="height: 220px;">
+            <canvas id="alertsTrendChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-card mt-3">
+      <div class="small text-muted text-uppercase fw-semibold mb-2">Class Participation</div>
+      <div style="height: 230px;">
+        <canvas id="durationChart"></canvas>
+      </div>
+    </div>
+
+    <div class="cs-card mt-3">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="small text-muted text-uppercase fw-semibold">Classes Attended</div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-borderless align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Meeting ID</th>
+              <th>Subject</th>
+              <th>Attention</th>
+              <th>Alerts</th>
+              <th>Student Duration</th>
+              <th>Total Duration</th>
+            </tr>
+          </thead>
+          <tbody id="meetingsTableBody">
+            <tr>
+              <td colspan="7" class="text-center text-secondary py-3">Loading meetings…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVjpHNiWzoGudpyIlwMIWsRiRXeuxEQqk",
+      authDomain: "classsense-1b1cd.firebaseapp.com",
+      projectId: "classsense-1b1cd",
+      storageBucket: "classsense-1b1cd.firebasestorage.app",
+      messagingSenderId: "171751023325",
+      appId: "1:171751023325:web:96074fa2db15b6d896b134"
+    };
+
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const params = new URLSearchParams(window.location.search);
+    const localStudentId = localStorage.getItem("studentId");
+    const localStudentName = localStorage.getItem("studentName");
+    const studentId = params.get("id") || localStudentId;
+    const studentName = params.get("name") || localStudentName || "Student";
+
+    document.getElementById("studentNameLabel").innerText = `${studentName} (${studentId || "Unknown ID"})`;
+
+    let attentionChartInstance = null;
+    let alertsChartInstance = null;
+    let durationChartInstance = null;
+
+    async function loadReports() {
+      if (!studentId) {
+        document.getElementById("meetingsTableBody").innerHTML =
+          `<tr><td colspan="7" class="text-center text-secondary py-3">No student ID found. Please log in again.</td></tr>`;
+        return;
+      }
+
+      try {
+        // Prefer session_history (single source of truth across dashboards)
+        const shSnap = await db.collection("session_history")
+          .where("studentIds", "array-contains", studentId)
+          .get();
+
+        if (!shSnap.empty) {
+          const sessions = [];
+          shSnap.forEach(d => sessions.push({ id: d.id, ...d.data() }));
+
+          sessions.sort((a, b) => {
+            const da = a.endedAt || a.createdAt || "";
+            const dbv = b.endedAt || b.createdAt || "";
+            return da.localeCompare(dbv);
+          });
+
+          renderFromSessionHistory(sessions);
+          return;
+        }
+
+        // Fallback to Unq_Student if session_history isn't available yet
+        const ref = db.collection("Unq_Student").doc(studentId).collection("meetings");
+        const snapshot = await ref.orderBy("Si_no").get();
+
+        if (snapshot.empty) {
+          renderEmptyState();
+          return;
+        }
+
+        const meetings = [];
+        snapshot.forEach(doc => meetings.push(doc.data()));
+        renderFromUnqStudent(meetings);
+
+      } catch (e) {
+        console.error(e);
+        document.getElementById("meetingsTableBody").innerHTML =
+          `<tr><td colspan="7" class="text-center text-danger py-3">Error loading reports.</td></tr>`;
+      }
+    }
+
+    function renderEmptyState() {
+      document.getElementById("meetingsTableBody").innerHTML =
+        `<tr><td colspan="7" class="text-center text-secondary py-3">No meeting reports yet.</td></tr>`;
+      document.getElementById("statClasses").innerText = "0";
+      document.getElementById("statAvgAttention").innerText = "0%";
+      document.getElementById("statAlerts").innerText = "0";
+      document.getElementById("statAttendance").innerText = "0%";
+      drawCharts([], [], [], [], []);
+    }
+
+    function renderFromSessionHistory(sessions) {
+      const totalClasses = sessions.length;
+      let sumAttention = 0;
+      let sumAlerts = 0;
+      let sumStudentDurMin = 0;
+      let sumTotalDurMin = 0;
+
+      const labels = [];
+      const attData = [];
+      const alertsData = [];
+      const studentDurData = [];
+      const totalDurData = [];
+
+      const tbody = document.getElementById("meetingsTableBody");
+      tbody.innerHTML = "";
+
+      sessions.forEach((sess, idx) => {
+        const createdAt = sess.createdAt || sess.endedAt;
+        const label = createdAt
+          ? new Date(createdAt).toLocaleDateString([], { month: "short", day: "numeric" })
+          : `Class ${idx + 1}`;
+
+        const stuEntry = (sess.students || []).find(s => s.id === studentId);
+        const att = stuEntry && stuEntry.attentionScore != null ? parseInt(stuEntry.attentionScore, 10) : 0;
+
+        const alertsMap = sess.studentAlerts || {};
+        const alerts = alertsMap[studentId] != null ? parseInt(alertsMap[studentId], 10) : 0;
+
+        const totalDurMin = sess.durationSeconds != null ? Math.round((sess.durationSeconds || 0) / 60) : 0;
+
+        let stuDurMin = 0;
+        try {
+          const jt = stuEntry && stuEntry.joinTime ? new Date(stuEntry.joinTime) : null;
+          const lt = stuEntry && (stuEntry.leaveTime || sess.endedAt) ? new Date(stuEntry.leaveTime || sess.endedAt) : null;
+          if (jt && lt && !isNaN(jt) && !isNaN(lt)) {
+            stuDurMin = Math.max(0, Math.round((lt - jt) / 60000));
+          }
+        } catch { }
+
+        sumAttention += att;
+        sumAlerts += alerts;
+        sumStudentDurMin += stuDurMin;
+        sumTotalDurMin += totalDurMin;
+
+        labels.push(label);
+        attData.push(att);
+        alertsData.push(alerts);
+        studentDurData.push(stuDurMin);
+        totalDurData.push(totalDurMin);
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="text-secondary">${sess.sessionId || sess.id || "-"}</td>
+          <td>${sess.subject || "-"}</td>
+          <td><span class="${getAttentionClass(att)}">${att}%</span></td>
+          <td>${alerts}</td>
+          <td>${stuDurMin} min</td>
+          <td>${totalDurMin} min</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const avgAttention = totalClasses > 0 ? Math.round(sumAttention / totalClasses) : 0;
+      const attendanceRatio = sumTotalDurMin > 0 ? Math.round((sumStudentDurMin / sumTotalDurMin) * 100) : 0;
+
+      document.getElementById("statClasses").innerText = String(totalClasses);
+      document.getElementById("statAvgAttention").innerText = `${avgAttention}%`;
+      document.getElementById("statAlerts").innerText = String(sumAlerts);
+      document.getElementById("statAttendance").innerText = `${attendanceRatio}%`;
+
+      drawCharts(labels.map((l, i) => sessions[i].subject || `Class ${i + 1}`), attData, alertsData, studentDurData, totalDurData);
+    }
+
+    function renderFromUnqStudent(meetings) {
+      const totalClasses = meetings.length;
+      let sumAttention = 0;
+      let sumAlerts = 0;
+      let sumStudentDur = 0;
+      let sumTotalDur = 0;
+
+      const labels = [];
+      const attData = [];
+      const alertsData = [];
+      const studentDurData = [];
+      const totalDurData = [];
+
+      const tbody = document.getElementById("meetingsTableBody");
+      tbody.innerHTML = "";
+
+      meetings.forEach((m, idx) => {
+        const att = m.Attention_score || 0;
+        const alerts = m.Num_Alerts || 0;
+        const stuDur = m.Student_duration || 0;
+        const totDur = m.Total_duration || 0;
+
+        sumAttention += att;
+        sumAlerts += alerts;
+        sumStudentDur += stuDur;
+        sumTotalDur += totDur;
+
+        labels.push(`Class ${idx + 1}`);
+        attData.push(att);
+        alertsData.push(alerts);
+        studentDurData.push(stuDur);
+        totalDurData.push(totDur);
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="text-secondary">${m.Meet_id || "-"}</td>
+          <td>${m.Subject || "-"}</td>
+          <td><span class="${getAttentionClass(att)}">${att}%</span></td>
+          <td>${alerts}</td>
+          <td>${stuDur} min</td>
+          <td>${totDur} min</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const avgAttention = totalClasses > 0 ? Math.round(sumAttention / totalClasses) : 0;
+      const attendanceRatio = sumTotalDur > 0 ? Math.round((sumStudentDur / sumTotalDur) * 100) : 0;
+
+      document.getElementById("statClasses").innerText = String(totalClasses);
+      document.getElementById("statAvgAttention").innerText = `${avgAttention}%`;
+      document.getElementById("statAlerts").innerText = String(sumAlerts);
+      document.getElementById("statAttendance").innerText = `${attendanceRatio}%`;
+
+      drawCharts(labels, attData, alertsData, studentDurData, totalDurData);
+    }
+
+    function getAttentionClass(score) {
+      if (score >= 70) return "attn-high";
+      if (score >= 40) return "attn-medium";
+      return "attn-low";
+    }
+
+    function drawCharts(labels, attData, alertsData, studentDurData, totalDurData) {
+      const attCtx = document.getElementById("attentionTrendChart").getContext("2d");
+      if (attentionChartInstance) attentionChartInstance.destroy();
+      attentionChartInstance = new Chart(attCtx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            label: "Attention",
+            data: attData,
+            borderColor: "#3b82f6",
+            fill: false,
+            tension: 0.3,
+            borderWidth: 2,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
+      });
+
+      const alertsCtx = document.getElementById("alertsTrendChart").getContext("2d");
+      if (alertsChartInstance) alertsChartInstance.destroy();
+      alertsChartInstance = new Chart(alertsCtx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [{
+            label: "Alerts",
+            data: alertsData,
+            backgroundColor: "#f97316",
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+
+      const durCtx = document.getElementById("durationChart").getContext("2d");
+      if (durationChartInstance) durationChartInstance.destroy();
+      durationChartInstance = new Chart(durCtx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Student Duration (min)",
+              data: studentDurData,
+              backgroundColor: "#22c55e",
+              borderRadius: 4
+            },
+            {
+              label: "Total Duration (min)",
+              data: totalDurData,
+              backgroundColor: "#6366f1",
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    loadReports();
+  </script>
+</body>
+
+</html>

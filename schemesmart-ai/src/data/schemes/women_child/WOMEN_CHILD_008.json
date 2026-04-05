@@ -1,0 +1,34 @@
+{
+  "scheme_id": "WOMEN_CHILD_008",
+  "scheme_name": "Biotechnology Career Advancement and Re-orientation (BioCARe) Programme",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Women in Science / Research",
+  "implementing_authority": "Department of Biotechnology, Government of India",
+  "description": "Supports unemployed women scientists with independent research grants in biotechnology.",
+  "benefits": {
+    "research_grant": "₹40–60 lakh",
+    "monthly_fellowship": "₹50,000–₹68,000",
+    "duration": "3 years"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "age_limit": "Up to 55 years",
+    "qualification": "PhD / MTech / MPharma"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Apply through DBT portal",
+      "Screening and peer review",
+      "Presentation before committee",
+      "Sanction order"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Degree Certificates",
+    "Research Proposal",
+    "Mentor Details",
+    "Publications Record"
+  ]
+}

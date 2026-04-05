@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ClassSense – Class Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #e0edff 0, #f8fafc 42%, #eff6ff 100%);
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .cs-hero-card {
+      border-radius: 1.5rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+    }
+
+    .cs-badge-soft {
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      background: #e0edff;
+      color: #1d4ed8;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 1rem;
+      border: 1px solid #e2e8f0;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #64748b;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Toast system */
+    .cs-toast-container {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 400px;
+    }
+
+    .cs-toast {
+      padding: 1rem 1.25rem;
+      border-radius: 0.85rem;
+      color: #fff;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      animation: csToastIn 0.35s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cs-toast.cs-toast-out {
+      animation: csToastOut 0.3s ease forwards;
+    }
+
+    .cs-toast-success {
+      background: rgba(22, 101, 52, 0.92);
+    }
+
+    .cs-toast-error {
+      background: rgba(153, 27, 27, 0.92);
+    }
+
+    .cs-toast-warning {
+      background: rgba(146, 64, 14, 0.92);
+    }
+
+    .cs-toast-info {
+      background: rgba(30, 64, 175, 0.92);
+    }
+
+    .cs-toast i {
+      font-size: 1.1rem;
+      margin-top: 0.1rem;
+    }
+
+    .cs-toast-content {
+      flex: 1;
+    }
+
+    .cs-toast-title {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .cs-toast-msg {
+      font-size: 0.82rem;
+      opacity: 0.9;
+    }
+
+    .cs-toast-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0;
+    }
+
+    .cs-toast-close:hover {
+      color: #fff;
+    }
+
+    @keyframes csToastIn {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes csToastOut {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+    }
+
+    /* Confirm dialog */
+    .cs-confirm-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .cs-confirm-box {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .cs-confirm-box h5 {
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-confirm-box p {
+      color: #475569;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cs-toast-container" id="toastContainer"></div>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <div class="cs-hero-card p-4 p-md-5">
+          <!-- Header -->
+          <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+            <div class="d-flex align-items-center gap-3">
+              <div
+                class="rounded-circle bg-success-subtle text-success d-inline-flex align-items-center justify-content-center"
+                style="width:48px;height:48px;font-size:1.2rem;">
+                <i class="fa-solid fa-users-rectangle"></i>
+              </div>
+              <div>
+                <h4 class="mb-0 fw-bold">Class Teacher Dashboard</h4>
+                <div class="text-muted small">Managing Class: <span id="managingClassDisplay"
+                    class="fw-bold text-dark">...</span></div>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-outline-danger btn-sm me-2" id="deleteAccountBtn">
+                <i class="fa-solid fa-user-xmark me-1"></i> Delete Class Teacher Role
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" id="logoutBtn">
+                <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Logout
+              </button>
+            </div>
+          </div>
+
+          <!-- Overall Stats -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value text-primary" id="avgAttentionDisplay">--%</div>
+                <div class="stat-label mt-1">Overall Class Attention</div>
+                <div class="small text-muted line-clamp-1 mt-1">Past 10 Sessions</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value" id="totalSessionsDisplay">--</div>
+                <div class="stat-label mt-1">Sessions Recorded</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value text-success" id="activeStudentsDisplay">--</div>
+                <div class="stat-label mt-1">Registered Students</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <!-- Left: Class Overview Chart -->
+            <div class="col-md-7">
+              <div class="p-4 rounded-4 bg-white border h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="cs-badge-soft d-inline-flex align-items-center gap-1">
+                    <i class="fa-solid fa-chart-line"></i> Overall Trend
+                  </span>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted">Subject:</span>
+                    <select class="form-select form-select-sm" id="subjectFilter" style="max-width: 220px;">
+                      <option value="">All Subjects</option>
+                    </select>
+                  </div>
+                </div>
+                <div style="height: 250px;">
+                  <canvas id="classTrendChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Student Individual Analysis -->
+            <div class="col-md-5">
+              <div class="p-4 rounded-4 bg-light border h-100">
+                <h6 class="fw-bold mb-3"><i class="fa-solid fa-user-graduate text-primary me-2"></i>Student Analysis
+                </h6>
+                <div class="mb-3">
+                  <select class="form-select form-select-sm" id="studentSelect">
+                    <option value="">Select a student...</option>
+                  </select>
+                </div>
+
+                <div id="studentStatsArea" class="d-none">
+                  <div class="p-3 bg-white border rounded text-center mb-3">
+                    <div class="fw-bold fs-3 text-primary" id="studentAvgAttention">--%</div>
+                    <div class="small text-muted text-uppercase fw-semibold">Avg. Attention (Past 10)</div>
+                  </div>
+
+                  <div style="height: 150px;">
+                    <canvas id="studentTrendChart"></canvas>
+                  </div>
+                </div>
+
+                <div id="noStudentSelected" class="text-center text-muted py-5 small">
+                  Select a student to view their individual attention trend across the past 10 classes.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: List of Sessions -->
+          <div class="mt-4 pt-3 border-top">
+            <h6 class="fw-bold mb-3">Recent Sessions Conducted</h6>
+            <div class="table-responsive bg-white rounded-3 border">
+              <table class="table table-hover table-borderless align-middle mb-0">
+                <thead class="table-light text-muted small text-uppercase">
+                  <tr>
+                    <th class="ps-3 py-3">Date</th>
+                    <th>Subject</th>
+                    <th>Students</th>
+                    <th>Avg Attention</th>
+                  </tr>
+                </thead>
+                <tbody id="sessionsTableBody">
+                  <tr>
+                    <td colspan="4" class="text-center py-4 text-muted small">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-4" id="sessionDetailArea" style="display:none;">
+              <h6 class="fw-bold mb-2">Selected Session Analysis</h6>
+              <div class="small text-muted mb-3" id="sessionDetailLabel">
+                Click a recent session row to view per‑student attention and focus distribution for that class.
+              </div>
+              <div class="row g-3">
+                <div class="col-md-7">
+                  <div class="p-3 rounded-3 border bg-light">
+                    <div class="small text-muted text-uppercase fw-semibold mb-1">Student Attention</div>
+                    <div style="height: 200px;">
+                      <canvas id="sessionStudentChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="p-3 rounded-3 border bg-light">
+                    <div class="small text-muted text-uppercase fw-semibold mb-1">Focus Distribution</div>
+                    <div style="height: 200px;">
+                      <canvas id="sessionFocusChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVjpHNiWzoGudpyIlwMIWsRiRXeuxEQqk",
+      authDomain: "classsense-1b1cd.firebaseapp.com",
+      projectId: "classsense-1b1cd",
+      storageBucket: "classsense-1b1cd.firebasestorage.app",
+      messagingSenderId: "171751023325",
+      appId: "1:171751023325:web:96074fa2db15b6d896b134",
+      measurementId: "G-D37P2EYV04"
+    };
+
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetClass = urlParams.get('class');
+    document.getElementById('managingClassDisplay').innerText = targetClass || "Unknown Class";
+
+    let classChartInstance = null;
+    let studentChartInstance = null;
+    let sessionStudentChartInstance = null;
+    let sessionFocusChartInstance = null;
+    let allSessions = [];
+    let currentFilteredSessions = [];
+
+    /* ===== TOAST SYSTEM ===== */
+    function showToast(type, title, message, duration = 4000) {
+      const container = document.getElementById('toastContainer');
+      const iconMap = { success: 'fa-circle-check', error: 'fa-circle-xmark', warning: 'fa-triangle-exclamation', info: 'fa-circle-info' };
+      const toast = document.createElement('div');
+      toast.className = `cs-toast cs-toast-${type}`;
+      toast.innerHTML = `
+        <i class="fa-solid ${iconMap[type] || iconMap.info}"></i>
+        <div class="cs-toast-content">
+          <div class="cs-toast-title">${title}</div>
+          <div class="cs-toast-msg">${message}</div>
+        </div>
+        <button class="cs-toast-close" onclick="this.parentElement.classList.add('cs-toast-out'); setTimeout(() => this.parentElement.remove(), 300);">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => { if (toast.parentElement) { toast.classList.add('cs-toast-out'); setTimeout(() => toast.remove(), 300); } }, duration);
+    }
+
+    /* ===== CONFIRM DIALOG ===== */
+    function showConfirm(title, message) {
+      return new Promise((resolve) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'cs-confirm-overlay';
+        overlay.innerHTML = `
+          <div class="cs-confirm-box">
+            <h5>${title}</h5>
+            <p>${message}</p>
+            <div class="d-flex gap-2 justify-content-center">
+              <button class="btn btn-outline-secondary px-4" id="confirmNo">Cancel</button>
+              <button class="btn btn-danger px-4" id="confirmYes">Yes, Delete</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+        overlay.querySelector('#confirmYes').onclick = () => { overlay.remove(); resolve(true); };
+        overlay.querySelector('#confirmNo').onclick = () => { overlay.remove(); resolve(false); };
+      });
+    }
+
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        window.location.href = "/teacher/login";
+        return;
+      }
+
+      if (!targetClass) {
+        showToast('error', 'No Class Specified', 'No class was specified in the URL.');
+        return;
+      }
+
+      // Verify they are actually the class teacher
+      const roleRef = await db.collection("teacher_roles")
+        .where("uid", "==", user.uid)
+        .where("role", "==", "Class Teacher")
+        .where("class", "==", targetClass)
+        .get();
+
+      if (roleRef.empty) {
+        showToast('error', 'Unauthorized', `You are not the Class Teacher for ${targetClass}. This role may have been deleted.`);
+        setTimeout(async () => {
+          await firebase.auth().signOut();
+          window.location.href = "/teacher/login";
+        }, 2500);
+        return;
+      }
+
+      loadDashboardData();
+    });
+
+    async function loadDashboardData() {
+      // 1. Fetch Students
+      const studentsQuery = await db.collection("students").where("class", "==", targetClass).get();
+      document.getElementById('activeStudentsDisplay').innerText = studentsQuery.size;
+
+      const studentSelect = document.getElementById('studentSelect');
+      const studentsMap = {};
+      studentsQuery.forEach(doc => {
+        const s = doc.data();
+        s.id = doc.id;
+        studentsMap[doc.id] = s;
+        const opt = document.createElement('option');
+        opt.value = doc.id;
+        opt.innerText = `${s.name} (${s.rollNumber || s.email || doc.id})`;
+        studentSelect.appendChild(opt);
+      });
+
+      // 2. Fetch Sessions for this class from session_history (single source of truth)
+      const sessionsQuery = await db.collection("session_history")
+        .where("className", "==", targetClass)
+        .get();
+
+      allSessions = [];
+      sessionsQuery.forEach(doc => {
+        allSessions.push({ id: doc.id, ...doc.data() });
+      });
+
+      // Sort by time ascending so slicing from the end gives latest sessions
+      allSessions.sort((a, b) => {
+        const da = a.endedAt || a.createdAt || "";
+        const dbv = b.endedAt || b.createdAt || "";
+        return da.localeCompare(dbv);
+      });
+
+      await populateSubjectFilter(allSessions);
+      applySubjectFilterAndRender();
+
+      // Student selection: reacts to current filtered sessions
+      studentSelect.addEventListener('change', (e) => {
+        const sid = e.target.value;
+        handleStudentSelection(sid);
+      });
+    }
+
+    async function populateSubjectFilter(sessions) {
+      const subjectFilter = document.getElementById('subjectFilter');
+      if (!subjectFilter) return;
+
+      const subjects = new Set();
+      sessions.forEach(s => {
+        if (s.subject) subjects.add(s.subject);
+      });
+
+      // Also include any subjects defined by subject teachers for this class
+      try {
+        const rolesSnap = await db.collection("teacher_roles")
+          .where("class", "==", targetClass)
+          .where("role", "==", "Subject Teacher")
+          .get();
+        rolesSnap.forEach(doc => {
+          const data = doc.data() || {};
+          if (data.subject) {
+            subjects.add(data.subject);
+          }
+        });
+      } catch (e) {
+        console.error("Failed to load subject teacher roles for subject filter", e);
+      }
+
+      subjectFilter.innerHTML = `<option value="">All Subjects</option>`;
+      Array.from(subjects).sort().forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub;
+        opt.innerText = sub;
+        subjectFilter.appendChild(opt);
+      });
+
+      subjectFilter.onchange = () => {
+        applySubjectFilterAndRender();
+        // Reset student analysis when subject filter changes (#20)
+        const studentSelect = document.getElementById('studentSelect');
+        if (studentSelect) {
+          studentSelect.value = '';
+          const statsArea = document.getElementById('studentStatsArea');
+          const placeholder = document.getElementById('noStudentSelected');
+          if (statsArea) statsArea.classList.add('d-none');
+          if (placeholder) placeholder.classList.remove('d-none');
+        }
+      };
+    }
+
+    function applySubjectFilterAndRender() {
+      const subjectFilter = document.getElementById('subjectFilter');
+      let filtered = [...allSessions];
+      if (subjectFilter && subjectFilter.value) {
+        const subject = subjectFilter.value;
+        filtered = filtered.filter(s => (s.subject || '') === subject);
+      }
+
+      currentFilteredSessions = filtered.slice(-10);
+
+      // Determine if a specific subject is selected
+      const isSpecificSubject = !!(subjectFilter && subjectFilter.value);
+      renderForSessions(currentFilteredSessions, isSpecificSubject);
+    }
+
+    function renderForSessions(sessions, isSpecificSubject = false) {
+      const tbody = document.getElementById('sessionsTableBody');
+      tbody.innerHTML = '';
+
+      if (sessions.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-muted small">No sessions recorded yet.</td></tr>`;
+        document.getElementById('avgAttentionDisplay').innerText = "N/A";
+        document.getElementById('totalSessionsDisplay').innerText = "0";
+        drawClassChart([], []);
+        document.getElementById('sessionDetailArea').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('totalSessionsDisplay').innerText = sessions.length;
+
+      let sumAvg = 0;
+      let validSessions = 0;
+      const chartLabels = [];
+      const chartData = [];
+      const uniqueFromSessions = new Set();
+
+      // sessions are ascending by time already
+      sessions.forEach((session, i) => {
+        const dateStr = (session.endedAt || session.createdAt)
+          ? new Date(session.endedAt || session.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric' })
+          : `Session ${i + 1}`;
+
+        let sAvg = 0;
+        if (session.students && session.students.length > 0) {
+          sAvg = Math.round(
+            session.students.reduce((acc, s) => acc + (s.attentionScore || 0), 0) /
+            session.students.length
+          );
+          session.students.forEach(st => {
+            if (st.id) uniqueFromSessions.add(st.id);
+          });
+        }
+
+        if (session.students && session.students.length > 0) {
+          sumAvg += sAvg;
+          validSessions++;
+        }
+
+        // For the overall trend chart: use dates if specific subject, else subject names
+        if (isSpecificSubject) {
+          chartLabels.push(dateStr);
+        } else {
+          chartLabels.push(session.subject || `Session ${i + 1}`);
+        }
+        chartData.push(sAvg);
+
+        // Store date labels for student analysis
+        session._dateLabel = dateStr;
+
+        // Build table row (will be appended after loop in reverse for latest-first ordering)
+      });
+
+      if (validSessions > 0) {
+        document.getElementById('avgAttentionDisplay').innerText = `${Math.round(sumAvg / validSessions)}%`;
+      } else {
+        document.getElementById('avgAttentionDisplay').innerText = "0%";
+      }
+
+      // Update Registered Students stat from session history if it provides more information
+      const activeStudentsEl = document.getElementById('activeStudentsDisplay');
+      const derivedCount = uniqueFromSessions.size;
+      const currentVal = activeStudentsEl.innerText;
+      if (derivedCount > 0 && (currentVal === '--' || currentVal === '0' || currentVal === 'N/A')) {
+        activeStudentsEl.innerText = derivedCount.toString();
+      }
+
+      // Ensure dropdown includes any students that appear only in sessions
+      const studentSelect = document.getElementById('studentSelect');
+      const existingIds = new Set();
+      Array.from(studentSelect.options).forEach(opt => {
+        if (opt.value) existingIds.add(opt.value);
+      });
+      sessions.forEach(session => {
+        (session.students || []).forEach(st => {
+          const id = st.id;
+          if (!id || existingIds.has(id)) return;
+          const opt = document.createElement('option');
+          opt.value = id;
+          opt.innerText = st.name ? `${st.name} (${id})` : id;
+          studentSelect.appendChild(opt);
+          existingIds.add(id);
+        });
+      });
+
+      drawClassChart(chartLabels, chartData);
+
+      // Recent Sessions table: show newest first and allow click to inspect
+      [...sessions].slice().reverse().forEach(session => {
+        const dateStr = (session.endedAt || session.createdAt)
+          ? new Date(session.endedAt || session.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric' })
+          : '-';
+        let sAvg = 0;
+        if (session.students && session.students.length > 0) {
+          sAvg = Math.round(
+            session.students.reduce((acc, s) => acc + (s.attentionScore || 0), 0) /
+            session.students.length
+          );
+        }
+        const tr = document.createElement('tr');
+        tr.style.cursor = 'pointer';
+        tr.dataset.sessionId = session.id;
+        const studentCount = session.students ? session.students.length : (session.totalStudents || 0);
+        tr.innerHTML = `
+          <td class="ps-3 fw-medium">${dateStr}</td>
+          <td>${session.subject || 'General'}</td>
+          <td class="text-muted small">${studentCount}</td>
+          <td class="fw-bold ${sAvg > 60 ? 'text-success' : sAvg < 40 ? 'text-danger' : 'text-warning'}">${sAvg}%</td>
+        `;
+        tr.addEventListener('click', () => selectTableSession(session.id));
+        tbody.appendChild(tr);
+      });
+    }
+
+    function selectTableSession(sessionId) {
+      const session = allSessions.find(s => s.id === sessionId);
+      if (!session) {
+        document.getElementById('sessionDetailArea').style.display = 'none';
+        return;
+      }
+
+      const label = (session.endedAt || session.createdAt)
+        ? new Date(session.endedAt || session.createdAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })
+        : `Session ${session.id}`;
+      document.getElementById('sessionDetailLabel').innerText =
+        `Per‑student attention for ${label} (${session.subject || 'General'}).`;
+
+      const students = session.students || [];
+      const names = students.map(s => s.name || s.id || 'Student');
+      const scores = students.map(s => s.attentionScore || 0);
+
+      drawSessionStudentChart(names, scores);
+      drawSessionFocusChart(scores);
+      document.getElementById('sessionDetailArea').style.display = 'block';
+    }
+
+    function drawSessionStudentChart(labels, scores) {
+      const ctx = document.getElementById('sessionStudentChart').getContext('2d');
+      if (sessionStudentChartInstance) sessionStudentChartInstance.destroy();
+
+      sessionStudentChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Attention',
+            data: scores,
+            backgroundColor: scores.map(v =>
+              v >= 70 ? '#22c55e' : v >= 40 ? '#eab308' : '#ef4444'
+            ),
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
+      });
+    }
+
+    function drawSessionFocusChart(scores) {
+      const ctx = document.getElementById('sessionFocusChart').getContext('2d');
+      if (sessionFocusChartInstance) sessionFocusChartInstance.destroy();
+
+      const low = scores.filter(v => v < 40).length;
+      const medium = scores.filter(v => v >= 40 && v < 70).length;
+      const high = scores.filter(v => v >= 70).length;
+
+      sessionFocusChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Low', 'Medium', 'High'],
+          datasets: [{
+            data: [low, medium, high],
+            backgroundColor: ['#ef4444', '#eab308', '#22c55e']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          },
+          cutout: '60%'
+        }
+      });
+    }
+
+    async function handleStudentSelection(sid) {
+      const statsArea = document.getElementById('studentStatsArea');
+      const placeholder = document.getElementById('noStudentSelected');
+
+      if (!sid) {
+        statsArea.classList.add('d-none');
+        placeholder.classList.remove('d-none');
+        return;
+      }
+
+      try {
+        const subjectFilter = document.getElementById('subjectFilter');
+        const params = new URLSearchParams();
+        params.append('studentId', sid);
+        params.append('className', targetClass);
+        if (subjectFilter && subjectFilter.value) {
+          params.append('subject', subjectFilter.value);
+        }
+
+        const res = await fetch(`/api/analytics/student?${params.toString()}`);
+        const json = await res.json();
+        if (json.error) {
+          console.error(json.error);
+          statsArea.classList.add('d-none');
+          placeholder.classList.remove('d-none');
+          return;
+        }
+
+        const history = json.history || [];
+        if (!history.length) {
+          statsArea.classList.add('d-none');
+          placeholder.classList.remove('d-none');
+          return;
+        }
+
+        const labels = [];
+        const scores = [];
+        let sum = 0;
+        let count = 0;
+
+        history.forEach((h, idx) => {
+          const label = h.subject || (h.createdAt
+            ? new Date(h.createdAt).toLocaleDateString([], { month: 'short', day: 'numeric' })
+            : `S${idx + 1}`);
+          labels.push(label);
+
+          const sc = h.studentAttention != null ? h.studentAttention : 0;
+          scores.push(sc);
+          sum += sc;
+          count += 1;
+        });
+
+        const avg = count > 0 ? Math.round(sum / count) : 0;
+        document.getElementById('studentAvgAttention').innerText = `${avg}%`;
+
+        statsArea.classList.remove('d-none');
+        placeholder.classList.add('d-none');
+
+        drawStudentChart(labels, scores);
+      } catch (e) {
+        console.error(e);
+        statsArea.classList.add('d-none');
+        placeholder.classList.remove('d-none');
+      }
+    }
+
+    function drawClassChart(labels, data) {
+      const ctx = document.getElementById('classTrendChart').getContext('2d');
+      if (classChartInstance) classChartInstance.destroy();
+
+      classChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Avg Class Attention',
+            data: data,
+            borderColor: '#3b82f6',
+            fill: false,
+            tension: 0.3,
+            borderWidth: 2,
+            pointBackgroundColor: '#ffffff',
+            pointBorderColor: '#3b82f6',
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
+      });
+    }
+
+    function drawStudentChart(labels, data) {
+      const ctx = document.getElementById('studentTrendChart').getContext('2d');
+      if (studentChartInstance) studentChartInstance.destroy();
+
+      studentChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Student Attention',
+            data: data,
+            backgroundColor: data.map(val => val >= 70 ? '#22c55e' : val >= 40 ? '#eab308' : '#ef4444'),
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, max: 100 }
+          }
+        }
+      });
+    }
+
+    document.getElementById('logoutBtn').onclick = async () => {
+      await firebase.auth().signOut();
+      window.location.href = "/teacher/login";
+    };
+
+    document.getElementById('deleteAccountBtn').onclick = async () => {
+      const confirmed = await showConfirm(
+        'Delete Class Teacher Role',
+        `This will remove your <strong>Class Teacher</strong> role for <strong>${targetClass}</strong>. Your other roles (if any) will remain. Continue?`
+      );
+      if (confirmed) {
+        try {
+          const user = firebase.auth().currentUser;
+          const uid = user.uid;
+
+          const res = await fetch("/api/teacher/delete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ uid: uid, role: "Class Teacher", className: targetClass })
+          });
+          const json = await res.json();
+          if (json.success) {
+            showToast('success', 'Role Deleted', `Class Teacher role for ${targetClass} has been removed.`);
+            // Always sign out and redirect to login after role deletion
+            setTimeout(async () => {
+              await firebase.auth().signOut();
+              window.location.href = "/teacher/login";
+            }, 1500);
+          } else {
+            showToast('error', 'Delete Failed', json.error);
+          }
+        } catch (e) {
+          showToast('error', 'Server Error', 'Could not delete role. Check server logs.');
+        }
+      }
+    };
+  </script>
+</body>
+
+</html>

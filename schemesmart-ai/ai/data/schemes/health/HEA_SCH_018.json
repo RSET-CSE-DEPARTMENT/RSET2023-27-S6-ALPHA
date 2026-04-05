@@ -1,0 +1,33 @@
+{
+  "scheme_id": "HEA_SCH_018",
+  "scheme_name": "National Apprenticeship Promotion Scheme",
+  "sector": "Employment",
+  "sub_sector": "Skill Development",
+  "state": "All India",
+  "implementing_department": "Ministry of Skill Development and Entrepreneurship, Government of India",
+  "description": "Promotes apprenticeship training and provides financial support to employers and apprentices.",
+  "benefits": [
+    "Government shares stipend cost",
+    "Basic training cost support"
+  ],
+  "eligibility": [
+    "Indian citizen",
+    "Age between 14 to 35 years",
+    "Minimum educational qualification as per trade"
+  ],
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on Apprenticeship India Portal",
+      "Apply for apprenticeship opportunities",
+      "Employer selection and contract signing"
+    ]
+  },
+  "required_documents": [
+    "Aadhaar Card",
+    "Educational Certificates",
+    "Bank Account Details",
+    "Passport Size Photograph"
+  ],
+  "additional_notes": "Stipend amount varies based on trade."
+}

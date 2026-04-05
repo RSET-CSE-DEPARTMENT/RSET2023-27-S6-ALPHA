@@ -1,0 +1,29 @@
+{
+  "scheme_id": "HOUSING_009",
+  "scheme_name": "Construction of Free Houses for Tribals",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Free Housing",
+  "implementing_authority": "Adi Dravidar and Tribal Welfare Department, Tamil Nadu",
+  "description": "Provides free house construction for SC/ST beneficiaries with house site pattas.",
+  "benefits": {
+    "housing": "Free house construction"
+  },
+  "eligibility": {
+    "community": "SC / ST",
+    "residency": "Tamil Nadu",
+    "house_site_patta": true
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application form",
+      "Submit documents",
+      "Receive acknowledgment"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Caste Certificate",
+    "House Site Patta"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "scheme_id": "WOMEN_CHILD_013",
+  "scheme_name": "Matru Jyothi – Financial Assistance for PwD Mothers",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Motherhood / Disability Welfare",
+  "implementing_authority": "Department of Social Justice, Government of Kerala",
+  "description": "Provides monthly financial assistance to differently-abled mothers until the child attains two years of age.",
+  "benefits": {
+    "monthly_assistance": "₹2,000 per month",
+    "duration": "Until child turns 2 years"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "residency": "Kerala",
+    "disability": "As per RPwD Act 2016",
+    "child_age": "Below 2 years",
+    "income_limit": "₹1,00,000 per annum"
+  },
+  "application_process": {
+    "mode": "Online / Offline",
+    "steps": [
+      "Register on SUNEETHI portal",
+      "Create profile",
+      "Login and apply for scheme",
+      "Upload documents and submit"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Disability Certificate",
+    "Hospital Discharge Certificate",
+    "Income Certificate",
+    "Bank Passbook",
+    "Photograph"
+  ]
+}

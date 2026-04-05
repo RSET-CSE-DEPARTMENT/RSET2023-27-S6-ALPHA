@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>ClassSense – Join Class</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      min-height: 100vh;
+      background: #020617;
+      color: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .cs-shell {
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.2) 0, #020617 55%, #020617 100%);
+      padding: 1.75rem;
+      max-width: 880px;
+      width: 100%;
+      border: 1px solid rgba(30, 64, 175, 0.4);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.9);
+    }
+
+
+    .cs-focus-card {
+      border-radius: 1rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(30, 64, 175, 0.4);
+      padding: 1.5rem;
+    }
+
+
+    .form-control,
+    .form-control:focus {
+      background-color: #020617;
+      border-color: #1e293b;
+      color: #e5e7eb;
+    }
+
+
+    .form-control::placeholder {
+      color: #6b7280;
+    }
+
+
+    .cs-chip {
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.75rem;
+    }
+
+    /* Toast system */
+    .cs-toast-container {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 400px;
+    }
+
+    .cs-toast {
+      padding: 1rem 1.25rem;
+      border-radius: 0.85rem;
+      color: #fff;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      animation: csToastIn 0.35s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .cs-toast.cs-toast-out {
+      animation: csToastOut 0.3s ease forwards;
+    }
+
+    .cs-toast-success {
+      background: rgba(22, 101, 52, 0.92);
+    }
+
+    .cs-toast-error {
+      background: rgba(153, 27, 27, 0.92);
+    }
+
+    .cs-toast-warning {
+      background: rgba(146, 64, 14, 0.92);
+    }
+
+    .cs-toast-info {
+      background: rgba(30, 64, 175, 0.92);
+    }
+
+    .cs-toast i {
+      font-size: 1.1rem;
+      margin-top: 0.1rem;
+    }
+
+    .cs-toast-content {
+      flex: 1;
+    }
+
+    .cs-toast-title {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .cs-toast-msg {
+      font-size: 0.82rem;
+      opacity: 0.9;
+    }
+
+    .cs-toast-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0;
+    }
+
+    .cs-toast-close:hover {
+      color: #fff;
+    }
+
+    @keyframes csToastIn {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes csToastOut {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+    }
+  </style>
+</head>
+
+
+<body style="background:transparent;">
+  <div class="cs-toast-container" id="toastContainer"></div>
+  <div class="cs-shell">
+    <div class="row g-3 g-md-4 align-items-stretch">
+      <div class="col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div
+            class="rounded-circle bg-primary-subtle text-primary d-inline-flex align-items-center justify-content-center"
+            style="width:34px;height:34px;">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <div class="fw-semibold text-primary">ClassSense – Student</div>
+            <div class="small text-secondary">Real‑time focus, privacy‑first</div>
+          </div>
+        </div>
+
+
+        <h1 class="h4 mb-2">Join your class</h1>
+        <p class="small text-secondary mb-4">
+          Use the meeting code shared by your teacher. Your identity is remembered on this device using
+          a private ID – no sign‑ups or passwords.
+        </p>
+
+
+        <div class="mb-3">
+          <label class="form-label small text-secondary">Your name</label>
+          <input id="name" class="form-control form-control-sm" placeholder="Auto‑filled from login">
+        </div>
+        <div class="mb-4">
+          <label class="form-label small text-secondary">Meeting code</label>
+          <input id="code" class="form-control form-control-sm" placeholder="E.g. ABC123">
+        </div>
+
+
+        <button id="joinBtn" class="btn btn-primary w-100 mb-3">
+          Join Session
+        </button>
+
+
+
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="cs-focus-card h-100 d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="small text-secondary">Focus feedback</div>
+            <span class="badge bg-success-subtle text-success cs-chip">
+              <i class="fa-solid fa-shield-halved me-1"></i> Privacy‑first
+            </span>
+          </div>
+          <div class="flex-grow-1 d-flex flex-column justify-content-center">
+            <div id="focusMessage" class="h5 mb-2">Waiting to join session…</div>
+            <div id="focusSub" class="small text-secondary">
+              Once you join, you’ll see gentle feedback like “Good focus!” or “You seem distracted” based on
+              local camera analysis on your device.
+            </div>
+          </div>
+          <div class="small text-secondary pt-2 border-top border-slate-700 mt-3">
+            Your video never leaves this device. Only anonymous attention scores are sent to your teacher.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const BACKEND_URL = "http://127.0.0.1:5000";
+
+
+    function getOrCreateStudentId() {
+      let studentId = localStorage.getItem("studentId");
+      if (!studentId) {
+        studentId = crypto.randomUUID();
+        localStorage.setItem("studentId", studentId);
+      }
+      return studentId;
+    }
+
+    /* ===== TOAST SYSTEM ===== */
+    function showToast(type, title, message, duration = 4000) {
+      const container = document.getElementById('toastContainer');
+      const iconMap = { success: 'fa-circle-check', error: 'fa-circle-xmark', warning: 'fa-triangle-exclamation', info: 'fa-circle-info' };
+      const toast = document.createElement('div');
+      toast.className = `cs-toast cs-toast-${type}`;
+      toast.innerHTML = `
+        <i class="fa-solid ${iconMap[type] || iconMap.info}"></i>
+        <div class="cs-toast-content">
+          <div class="cs-toast-title">${title}</div>
+          <div class="cs-toast-msg">${message}</div>
+        </div>
+        <button class="cs-toast-close" onclick="this.parentElement.classList.add('cs-toast-out'); setTimeout(() => this.parentElement.remove(), 300);">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => { if (toast.parentElement) { toast.classList.add('cs-toast-out'); setTimeout(() => toast.remove(), 300); } }, duration);
+    }
+
+
+    // Prefill from login.
+    const nameInput = document.getElementById("name");
+    const storedName = localStorage.getItem("studentName");
+    if (storedName) {
+      nameInput.value = storedName;
+    }
+
+
+    document.getElementById("joinBtn").onclick = async () => {
+      const name = nameInput.value.trim();
+      const code = document.getElementById("code").value.trim();
+
+
+      if (!name || !code) {
+        showToast('warning', 'Missing Fields', 'Please enter your name and the meeting code.');
+        return;
+      }
+
+
+      const studentId = getOrCreateStudentId();
+
+
+      try {
+        const res = await fetch(`${BACKEND_URL}/join-session`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name,
+            studentId: studentId,
+            sessionCode: code
+          })
+        });
+
+
+        const data = await res.json();
+
+
+        if (data.joined) {
+          window.top.location.href = `meeting.html?code=${code}&name=${encodeURIComponent(name)}&id=${studentId}`;
+        } else {
+          if (data.error) {
+            showToast('error', 'Join Failed', data.error);
+          } else {
+            showToast('error', 'Invalid Code', 'Invalid meeting code or session is closed. Please check the code and try again.');
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        showToast('error', 'Connection Error', 'Unable to connect to server. Please check your internet connection and try again.');
+      }
+    };
+  </script>
+</body>
+
+
+</html>

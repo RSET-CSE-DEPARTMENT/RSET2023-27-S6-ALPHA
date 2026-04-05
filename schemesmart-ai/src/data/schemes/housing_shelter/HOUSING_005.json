@@ -1,0 +1,36 @@
+{
+  "scheme_id": "HOUSING_005",
+  "scheme_name": "Opening and Maintenance of Boys and Girls Hostels",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Student Hostels",
+  "implementing_authority": "Adi Dravidar Welfare Department, Puducherry",
+  "description": "Provides hostel facilities to Scheduled Caste students to support education.",
+  "benefits": {
+    "lodging": "Free lodging",
+    "boarding": "Free boarding",
+    "clothing": "Cash for clothing",
+    "travel": "Conveyance charges"
+  },
+  "eligibility": {
+    "community": "Scheduled Caste",
+    "student": true,
+    "residency": "Puducherry (minimum 5 years)"
+  },
+  "application_process": {
+    "mode": "Online/Offline",
+    "steps": [
+      "Register on e-District Portal",
+      "Fill online application",
+      "Upload documents",
+      "Submit and track application"
+    ]
+  },
+  "documents_required": [
+    "Residence Certificate",
+    "Caste Certificate",
+    "Aadhaar Card",
+    "Income Certificate",
+    "Bonafide Certificate",
+    "Transfer Certificate"
+  ]
+}

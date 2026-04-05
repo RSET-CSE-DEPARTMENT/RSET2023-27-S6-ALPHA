@@ -1,0 +1,36 @@
+{
+  "scheme_id": "WOMEN_CHILD_015",
+  "scheme_name": "Widow B.Ed Scheme",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Higher Education / Widow Empowerment",
+  "implementing_authority": "Government of Rajasthan",
+  "description": "Reimburses B.Ed course fees for widowed or abandoned women enrolled in teacher training programs.",
+  "benefits": {
+    "fee_reimbursement": "₹17,880"
+  },
+  "eligibility": {
+    "gender": "Woman",
+    "status": "Widowed / Divorced / Abandoned",
+    "residency": "Rajasthan",
+    "course": "B.Ed (Regular)",
+    "attendance": "Minimum 75%"
+  },
+  "application_process": {
+    "mode": "Online",
+    "steps": [
+      "Register on portal",
+      "Login with SSO ID",
+      "Fill application form",
+      "Upload documents",
+      "Submit"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Divorce / Death Certificate",
+    "Domicile Certificate",
+    "Education Certificates",
+    "Fee Receipt",
+    "Jan Aadhaar Card"
+  ]
+}

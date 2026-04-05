@@ -1,0 +1,37 @@
+{
+  "scheme_id": "HOUSING_002",
+  "scheme_name": "Residential School For Blinds",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Residential Schools",
+  "implementing_authority": "Social Welfare Department, Government of Jammu and Kashmir",
+  "description": "Provides residential education, lodging, vocational training, and overall development for blind students.",
+  "benefits": {
+    "education": "Free education and vocational training",
+    "boarding": "Free boarding and lodging",
+    "pocket_money": "₹500 per month",
+    "retention": "Till graduation or 25 years of age"
+  },
+  "eligibility": {
+    "citizenship": "Indian citizen",
+    "residency": "Permanent resident of Jammu & Kashmir",
+    "disability": "Blindness (total or partial)",
+    "age_range": "6 to 21 years"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Visit District Social Welfare Office",
+      "Fill application form",
+      "Submit documents",
+      "Admission subject to vacancy"
+    ]
+  },
+  "documents_required": [
+    "Domicile Certificate",
+    "Disability Certificate",
+    "Passport Size Photographs",
+    "Aadhaar Card",
+    "Proof of Age",
+    "Educational Certificates"
+  ]
+}

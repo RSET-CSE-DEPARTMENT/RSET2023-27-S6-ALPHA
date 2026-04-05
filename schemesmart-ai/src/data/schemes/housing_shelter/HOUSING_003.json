@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HOUSING_003",
+  "scheme_name": "Pratyasha Housing Scheme",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Police Housing",
+  "implementing_authority": "West Bengal Police Housing & Infrastructure Development Corporation",
+  "description": "Housing project for West Bengal Police personnel to own flats through a lottery-based allotment system.",
+  "benefits": {
+    "housing": "Construction of flats under A, B, and C categories"
+  },
+  "eligibility": {
+    "profession": "West Bengal or Kolkata Police Personnel",
+    "income_based_entitlement": true,
+    "one_application_per_person": true
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Download application form",
+      "Attach demand draft and documents",
+      "Submit at designated office or by post"
+    ]
+  },
+  "documents_required": [
+    "Demand Draft",
+    "PAN Card",
+    "Salary Certificate",
+    "Photographs",
+    "Cancelled Cheque",
+    "Bank Passbook Copy"
+  ]
+}

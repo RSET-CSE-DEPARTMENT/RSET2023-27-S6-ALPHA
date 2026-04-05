@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HEA_SCH_019",
+  "scheme_name": "Sukanya Samriddhi Yojana",
+  "sector": "Women & Child Welfare",
+  "sub_sector": "Girl Child Savings",
+  "state": "All India",
+  "implementing_department": "Ministry of Finance, Government of India",
+  "description": "A small savings scheme aimed at securing the financial future of the girl child.",
+  "benefits": [
+    "High interest rate savings account",
+    "Tax benefits under Section 80C"
+  ],
+  "eligibility": [
+    "Girl child below 10 years of age",
+    "Indian resident",
+    "Only one account per girl child"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Visit post office or authorized bank",
+      "Submit application form",
+      "Deposit minimum amount to activate account"
+    ]
+  },
+  "documents_required": [
+    "Birth Certificate of Girl Child",
+    "Guardian Identity Proof",
+    "Address Proof"
+  ],
+  "additional_notes": "Account matures after 21 years from opening date."
+}

@@ -1,0 +1,39 @@
+{
+  "scheme_id": "AGR_SCH_020",
+  "scheme_name": "Grant of Subsidy for Procurement of Vehicle",
+  "sector": "Fisheries",
+  "state": "Puducherry",
+  "implementing_department": "Department of Fisheries and Fishermen Welfare, Government of Puducherry",
+  "description": "Provides subsidy for procurement of vehicles to ensure quick transport of fish and reduce spoilage.",
+  "benefits": [
+    "50% subsidy up to ₹75,000 for auto goods carrier (≤1 ton)",
+    "50% subsidy up to ₹1,50,000 for mini truck (1–3 ton)",
+    "50% subsidy up to ₹3,50,000 for mini lorry (3–5 ton)",
+    "50% subsidy up to ₹5,00,000 for insulated fish van (5–10 ton)",
+    "50% subsidy up to ₹15,000 for moped with insulated ice box",
+    "50% subsidy up to ₹2,000 per annum for engine spares"
+  ],
+  "eligibility": [
+    "Belong to fishermen community",
+    "Resident of Puducherry",
+    "Age between 18 and 50 years",
+    "Member of Fishermen Cooperative Society",
+    "Valid driving license",
+    "No prior subsidy for same purpose"
+  ],
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Collect application form from Fisheries Department",
+      "Fill application with required documents",
+      "Submit and collect acknowledgment receipt"
+    ]
+  },
+  "documents_required": [
+    "Loan Sanction Order",
+    "Vehicle Quotation",
+    "Driving License and Badge",
+    "Purchase Invoice and RC Book",
+    "Mortgage Documents"
+  ]
+}

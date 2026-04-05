@@ -1,0 +1,29 @@
+{
+  "scheme_id": "EDU_SCH_005",
+  "scheme_name": "UGC Emeritus Fellowship",
+  "sector": "Education",
+  "ministry": "University Grants Commission",
+  "implementing_agency": "UGC",
+  "description": "Research fellowship for superannuated teachers to pursue active research.",
+  "benefits": {
+    "honorarium": "₹31,000 per month",
+    "contingency": "₹50,000 per annum"
+  },
+  "tenure": "2 years (non-extendable)",
+  "eligibility": {
+    "target_group": "Superannuated teachers",
+    "maximum_age": "70 years",
+    "institution_type": "UGC recognized institutions"
+  },
+  "slots": "200",
+  "application_process": {
+    "mode": "Online",
+    "portal": "https://www.ugc.ac.in/"
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Undertaking Certificate",
+    "Award letter",
+    "Continuation certificate"
+  ]
+}

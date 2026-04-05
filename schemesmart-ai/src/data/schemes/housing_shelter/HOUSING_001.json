@@ -1,0 +1,37 @@
+{
+  "scheme_id": "HOUSING_001",
+  "scheme_name": "Homes For Intellectually Impaired Persons",
+  "sector": "Housing & Shelter",
+  "sub_sector": "Shelter Homes",
+  "implementing_authority": "Department of Social Justice & Special Assistance, Government of Maharashtra",
+  "description": "Provides shelter homes with food, care, and protection for mentally deficient children in need of care and protection.",
+  "benefits": {
+    "shelter": "Free shelter home accommodation",
+    "food": "Free food",
+    "care": "Care and protection services"
+  },
+  "eligibility": {
+    "citizenship": "Indian citizen",
+    "residency": "Permanent resident of Maharashtra",
+    "orphan": true,
+    "disability_type": "Mentally Deficient Child",
+    "minimum_disability_percentage": 40
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Visit the Child Welfare Committee",
+      "Collect and fill the application form",
+      "Attach required documents",
+      "Submit the form and collect acknowledgment"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar Card",
+    "Passport Size Photographs",
+    "Proof of Age",
+    "Maharashtra Domicile Certificate",
+    "Disability Certificate",
+    "Bank Account Details"
+  ]
+}

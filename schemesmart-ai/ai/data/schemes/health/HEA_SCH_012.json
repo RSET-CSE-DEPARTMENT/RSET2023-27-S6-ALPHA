@@ -1,0 +1,32 @@
+{
+  "scheme_id": "HEA_SCH_012",
+  "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+  "sector": "Agriculture",
+  "sub_sector": "Income Support",
+  "state": "All India",
+  "implementing_department": "Ministry of Agriculture & Farmers Welfare, Government of India",
+  "description": "Income support scheme providing financial assistance to eligible farmer families.",
+  "benefits": [
+    "₹6,000 per year in three equal installments of ₹2,000"
+  ],
+  "eligibility": [
+    "Small and marginal farmer families",
+    "Ownership of cultivable land as per state land records",
+    "Valid Aadhaar-linked bank account"
+  ],
+  "application_process": {
+    "mode": "Online / Offline",
+    "steps": [
+      "Apply through PM-KISAN portal or Common Service Centre",
+      "Verification by State Government",
+      "Funds transferred via DBT"
+    ]
+  },
+  "required_documents": [
+    "Aadhaar Card",
+    "Land Ownership Records",
+    "Bank Account Details",
+    "Identity Proof"
+  ],
+  "additional_notes": "Institutional landholders and income tax payers are excluded."
+}

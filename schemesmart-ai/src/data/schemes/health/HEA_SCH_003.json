@@ -1,0 +1,35 @@
+{
+  "scheme_id": "HEA_SCH_003",
+  "scheme_name": "Rajasthan Chief Minister’s Relief Fund – Medical Help",
+  "sector": "Health",
+  "sub_sector": "Financial Assistance",
+  "state": "Rajasthan",
+  "implementing_department": "Chief Minister’s Relief Fund, Rajasthan",
+  "description": "Financial assistance for medical treatment of serious diseases and special medical conditions.",
+  "benefits": [
+    "Up to ₹1.5 lakh in government hospitals",
+    "Up to ₹90,000 in recognized private hospitals",
+    "Special assistance for cancer, cochlear implant, thalassemia"
+  ],
+  "eligibility": [
+    "Non-BPL applicant",
+    "Family income above ₹2 lakh",
+    "Not covered under Ayushman Bharat Rajasthan"
+  ],
+  "application_process": {
+    "mode": "Online/Offline",
+    "steps": [
+      "Apply via CM Relief Fund portal",
+      "Upload medical documents",
+      "Receive acknowledgment number"
+    ]
+  },
+  "documents_required": [
+    "Income Certificate",
+    "Address Proof",
+    "Ration Card",
+    "Medical Certificate",
+    "Treatment Estimate"
+  ],
+  "additional_notes": "Funds are transferred directly to hospital or beneficiary."
+}

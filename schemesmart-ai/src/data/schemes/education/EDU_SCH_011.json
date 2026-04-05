@@ -1,0 +1,35 @@
+{
+  "scheme_id": "EDU_SCH_011",
+  "scheme_name": "Stipend to Students Studying at Govt. Hindi Institute, Dimapur",
+  "sector": "Education",
+  "state": "Nagaland",
+  "ministry_or_department": "Department of School Education, Government of Nagaland",
+  "implementing_agency": "Government Hindi Institute, Dimapur",
+  "description": "Provides monthly financial assistance to students studying at the Government Hindi Institute, Dimapur.",
+  "objectives": [
+    "Support students pursuing Hindi education",
+    "Reduce financial burden on students"
+  ],
+  "benefits": {
+    "monthly_stipend": "₹400 per month"
+  },
+  "eligibility": {
+    "residence": "Resident of Nagaland",
+    "institution": "Government Hindi Institute, Dimapur"
+  },
+  "application_process": {
+    "mode": "Offline",
+    "steps": [
+      "Contact the concerned authority at the institute",
+      "Submit application with required documents"
+    ]
+  },
+  "documents_required": [
+    "Aadhaar card or identity proof",
+    "Proof of residence",
+    "Family income proof",
+    "Previous academic mark sheets",
+    "Admission proof",
+    "Bank account details"
+  ]
+}
